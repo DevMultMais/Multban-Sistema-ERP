@@ -449,7 +449,6 @@ class ClienteController extends Controller
 
         $query = rtrim($query, "AND ");
 
-        //dd($query);
         if (!empty($query)) {
             $data = Cliente::
             join('tbdm_clientes_emp', 'tbdm_clientes_geral.cliente_id', '=', 'tbdm_clientes_emp.cliente_id')
