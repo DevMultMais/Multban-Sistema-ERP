@@ -24,12 +24,14 @@ class CreateTbdmClientesCardTable extends Migration
             $table->integer('cliente_cardcv')->length(3);
             //FIELDS
             $table->string('card_sts', 2);
+            $table->string('card_tp', 4);
             $table->string('card_mod', 4);
             $table->string('card_categ', 4);
             $table->string('card_desc', 100);
             $table->decimal('card_saldo_vlr', 10, 2);
             $table->decimal('card_limite', 10, 2);
             $table->integer('card_saldo_pts')->length(10);
+            $table->text('card_pass')->nullable();
             $table->integer('criador');
             $table->timestamp('dthr_cr');
             $table->integer('modificador');

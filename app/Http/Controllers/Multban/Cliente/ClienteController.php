@@ -7,6 +7,9 @@ use App\Enums\EstoqramEnum;
 use App\Enums\FiltrosEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Multban\Auditoria\LogAuditoria;
+use App\Models\Multban\Cliente\CardCateg;
+use App\Models\Multban\Cliente\CardMod;
+use App\Models\Multban\Cliente\CardTipo;
 use App\Models\Multban\Cliente\Cliente;
 use App\Models\Multban\Cliente\ClienteStatus;
 use App\Models\Multban\Cliente\ClienteTipo;
@@ -15,11 +18,11 @@ use App\Models\Multban\Cliente\Endereco\Cadasmun;
 use App\Models\Multban\Cliente\Endereco\CadasPais;
 use App\Models\Multban\Empresa\Empresa;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -179,13 +182,18 @@ class ClienteController extends Controller
 
         $status = ClienteStatus::all();
         $tipos = ClienteTipo::all();
-
+        $cardTipos = CardTipo::all();
+        $cardMod = CardMod::all();
+        $cardCateg = CardCateg::all();
         $cliente = Cliente::findOrFail($id);
 
         return response()->view('Multban.cliente.edit', compact(
             'cliente',
             'status',
-            'tipos'
+            'tipos',
+            'cardTipos',
+            'cardMod',
+            'cardCateg',
         ));
     }
 
@@ -200,13 +208,14 @@ class ClienteController extends Controller
     {
         try {
 
-            $idempresafilial = Auth::user()->idempresafilial;
-
-            $cliente = Cliente::where('idempresafilial', $idempresafilial)->find($id);
+            $cliente = Cliente::find($id);
             $input = $request->all();
 
-            $input['clicgc'] = removerCNPJ($request->clicgc);
-            $input['clicep'] = removerMascaraCEP($request->clicep);
+            $input['cliente_doc'] = removerCNPJ($request->clicgc);
+            $input['cliente_cel'] = removerMascaraTelefone($request->clicep);
+            $input['cliente_telfixo'] = removerMascaraTelefone($request->clicep);
+            $input['cliente_cel_s'] = removerMascaraTelefone($request->clicep);
+            $input['cliente_cep'] = removerMascaraCEP($request->clicep);
 
             $validator = Validator::make($input, $cliente->rules($id), $cliente->messages(), $cliente->attributes());
 
@@ -233,7 +242,6 @@ class ClienteController extends Controller
                             $logAuditoria->audant = $cliente->$key;
                             $logAuditoria->auddep = $value;
                             $logAuditoria->audnip = request()->ip();
-                            $logAuditoria->idempresafilial = $idempresafilial;
 
                             $logAuditoria->save();
                         }
@@ -241,49 +249,10 @@ class ClienteController extends Controller
                 }
             }
 
-            $cliente->clides = mb_strtoupper(rtrim($request->clides), 'UTF-8');
-            $cliente->clicgc = removerCNPJ($request->clicgc);
-            $cliente->cliies = rtrim($request->cliies);
-            // $cliente->clifan = $request->clifan;
-            $cliente->clisig = $request->clisig;
-            $cliente->cliram = $request->cliram;
-            $cliente->clite1 = $request->clite1;
-            $cliente->clite2 = $request->clite2;
-            $cliente->clict1 = mb_strtoupper(rtrim($request->clict1), 'UTF-8');
-            $cliente->clihpg = rtrim($request->clihpg);
-            $cliente->clieml = rtrim($request->clieml);
-            $cliente->clinfe = rtrim($request->clinfe);
-            $cliente->clicep = removerMascaraCEP($request->clicep);
-            $cliente->cliend = mb_strtoupper(rtrim($request->cliend), 'UTF-8');
-            $cliente->clinro = mb_strtoupper(rtrim($request->clinro), 'UTF-8');
-            $cliente->clicmp = mb_strtoupper(rtrim($request->clicmp), 'UTF-8');
-            $cliente->clibai = mb_strtoupper(rtrim($request->clibai), 'UTF-8');
-            $cliente->clipai = $request->clipai;
-            $cliente->cliufe = $request->cliufe;
-            $cliente->climun = $request->climun;
-            $cliente->clicic = $request->clicic;
-            //$cliente->clired = $request->clired;
-            //$cliente->clisbr = $request->clisbr;
-            $cliente->clifpg = $request->clifpg;
-            $cliente->cliprz = $request->cliprz;
-            $cliente->clicap = $request->clicap;
-            $cliente->clinap = $request->clinap;
-            //$cliente->cliadm = $request->cliadm;
-            $cliente->clipdi = $request->clipdi;
-            $cliente->clipac = $request->clipac;
-            $cliente->clifre = $request->clifre;
-            $cliente->cliobs = mb_strtoupper(rtrim($request->cliobs), 'UTF-8');
-
-            $cliente->idempresafilial = $idempresafilial;
-
             $cliente->save();
 
-            Session::flash("idModeloInserido", $cliente->id);
-
-            Session::flash('success', "Cliente " . str_pad($cliente->id, 5, "0", STR_PAD_LEFT) . " atualizado com sucesso.");
-
             return response()->json([
-                'message'   => 'Processando...',
+                'message'   => 'Cliente atualizado com sucesso.',
             ]);
         } catch (\Throwable $e) {
             return response()->json([
@@ -305,7 +274,6 @@ class ClienteController extends Controller
         try {
 
             $cliente = Cliente::find($id);
-
             if ($cliente) {
                 $cliente->cliente_sts = EmpresaStatusEnum::EXCLUIDO;
                 $cliente->save();
@@ -323,9 +291,7 @@ class ClienteController extends Controller
             ]);
         } catch (\Throwable $e) {
             return response()->json([
-                'title' => 'Erro',
-                'text' => $e->getMessage(),
-                'type' => 'error'
+                'message'   => $e->getMessage(),
             ], 500);
         }
     }
@@ -535,10 +501,261 @@ class ClienteController extends Controller
 
                 return $badge;
             })->editColumn('cliente_id', function ($row) {
-                $id = str_pad($row->cliente_id, 5, "0", STR_PAD_LEFT);
-                return $id;
+                //$id = str_pad($row->cliente_id, 5, "0", STR_PAD_LEFT);
+                return $row->cliente_id;
             })
             ->rawColumns(['action', 'cliente_doc', 'cliente_sts', 'cliente_tipo'])
+            ->make(true);
+    }
+
+    //Cartão
+    public function storeCard(Request $request)
+    {
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'emp_id' => 'required',
+                'card_tp' => 'required',
+                'card_mod' => 'required',
+                'card_categ' => 'required',
+                'card_desc' => 'required',
+                'card_limite' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => $validator->errors(),
+
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
+            DB::beginTransaction();
+
+           $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->insert([
+                'emp_id' => $request->emp_id,
+                'cliente_id' => $request->cliente_id,
+                'cliente_doc' => removerCNPJ($request->cliente_doc),
+                'cliente_pasprt' => $request->cliente_pasprt,
+                'card_uuid' => Str::uuid()->toString(),
+                'card_tp' => $request->card_tp,
+                'card_mod' => $request->card_mod,
+                'card_categ' => $request->card_categ,
+                'card_desc' => mb_strtoupper(rtrim($request->card_desc), 'UTF-8'),
+                'criador' => Auth::user()->user_id,
+                'dthr_cr' => Carbon::now(),
+                'modificador' => Auth::user()->user_id,
+                'dthr_ch' => Carbon::now(),
+            ]);
+
+            if ($data) {
+                DB::commit();
+                return response()->json([
+                    'title' => 'Sucesso',
+                    'text' => 'Registro criado com sucesso!',
+                    'type' => 'success',
+                    'data' => $data
+                ]);
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'title' => 'Erro',
+                'text' => $th->getMessage(),
+                'type' => 'error'
+            ], 500);
+        }
+    }
+
+    public function updateCard(Request $request)
+    {
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'tabela' => 'required',
+                'campo' => 'required',
+                'emp_id' => 'required',
+                'user_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => $validator->errors(),
+
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
+            $data = DB::connection('dbsysclient')->table('tbcf_config_wf')
+                ->where('tabela', '=', $request->tabela)
+                ->where('campo', '=', $request->campo)
+                ->where('user_id', '=', $request->user_id)
+                ->where('emp_id', '=', $request->emp_id)->update([
+                    "tabela" => $request->tabela,
+                    "campo" => $request->campo,
+                    "user_id" => $request->user_id,
+                    "emp_id" => $request->emp_id,
+                ]);
+
+            return response()->json([
+                'title' => 'Sucesso',
+                'text' => 'Work Flow atualizado com sucesso!',
+                'type' => 'success',
+                'data' => $data
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'title' => 'Erro',
+                'text' => $th->getMessage(),
+                'type' => 'error'
+            ], 500);
+        }
+    }
+
+    public function editCard(Request $request, $emp_id)
+    {
+        try {
+
+            $data = DB::connection('dbsysclient')->table('tbcf_config_wf')
+                ->where('tabela', '=', $request->tabela)
+                ->where('campo', '=', $request->campo)
+                ->where('emp_id', '=', $request->emp_id)->first();
+
+            $columnsList = DB::connection('dbsysclient')->getSchemaBuilder()->getColumnListing($request->tabela);
+            $columns = [];
+
+            foreach ($columnsList as $key => $col) {
+                $columns[] = ['id' => $col, 'text' => $col];
+            }
+
+            if ($data) {
+                return response()->json([
+                    'title' => 'Sucesso',
+                    'text' => 'Resposta obtida com sucesso!',
+                    'type' => 'success',
+                    'data' => $data,
+                    'columns' => $columns,
+                ]);
+            }
+
+            return response()->json([
+                'title' => 'Erro',
+                'text' => 'Registro não encontrado!',
+                'type' => 'error'
+            ], Response::HTTP_NOT_FOUND);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'title' => 'Erro',
+                'text' => $th->getMessage(),
+                'type' => 'error'
+            ], 500);
+        }
+    }
+
+    public function destroyCard(Request $request, $emp_id)
+    {
+        try {
+
+            $data = DB::connection('dbsysclient')->table('tbcf_config_wf')
+                ->where('tabela', '=', $request->tabela)
+                ->where('campo', '=', $request->campo)
+                ->where('emp_id', '=', $request->emp_id)->delete();
+
+            if ($data) {
+                return response()->json([
+                    'title' => 'Sucesso',
+                    'text' => 'Registro deletado com sucesso!',
+                    'type' => 'success',
+                    'btnPesquisar' => 'btnPesquisarWf'
+                ]);
+            }
+
+            return response()->json([
+                'title' => 'Erro',
+                'text' => 'Registro não encontrado!',
+                'type' => 'error'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'title' => 'Erro',
+                'text' => $th->getMessage(),
+                'type' => 'error'
+            ], 500);
+        }
+    }
+
+    public function getObterGridPesquisaCard(Request $request)
+    {
+
+        if (!Auth::check()) {
+            abort(Response::HTTP_UNAUTHORIZED, "Usuário não autenticado...");
+        }
+
+        $data = new Collection();
+
+        $query = "";
+
+        if (!empty($request->tabela_filtro)) {
+
+            $query .= "tabela = " . quotedstr($request->tabela_filtro) . " AND ";
+        }
+
+        if (!empty($request->emp_id)) {
+
+            if (is_numeric($request->emp_id)) {
+
+                $query .= "emp_id = " . $request->emp_id;
+                $data = TbCfWorkFlow::whereRaw(DB::raw($query))->get();
+            } else {
+
+                $empresasGeral = Empresa::where('emp_nmult', 'like', '%' . $request->emp_id . '%')->get(['emp_id'])->pluck('emp_id')->toArray();
+                if ($empresasGeral) {
+                    $query .= selectItens($empresasGeral, 'emp_id');
+                    $data = TbCfWorkFlow::whereRaw(DB::raw($query))->get();
+                }
+            }
+        }
+
+        $this->permissions = Auth::user()->getAllPermissions()->pluck('name')->toArray();
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $btn = '';
+
+                if (in_array('config-sistema-multmais.edit', $this->permissions)) {
+
+                    $btn .= '<button type="button" ';
+                    $btn .= 'data-emp-id="' . $row->emp_id . '" ';
+                    $btn .= 'data-tabela="' . $row->tabela . '" ';
+                    $btn .= 'data-campo="' . $row->campo . '" ';
+                    $btn .= 'class="btn btn-primary btn-sm mr-1 btn-edit" title="Editar"><i class="fas fa-edit"></i></a>';
+                }
+
+                if (in_array('config-sistema-multmais.destroy', $this->permissions)) {
+
+                    $btn .= '<button href="#" class="btn btn-sm btn-primary mr-1 delete_id " ';
+                    $btn .= 'data-emp-id="' . $row->emp_id . '" ';
+                    $btn .= 'data-tabela="' . $row->tabela . '" ';
+                    $btn .= 'data-campo="' . $row->campo . '" ';
+                    $btn .= 'data-url="destroy-card" ';
+                    $btn .= 'title="Excluir"><i class="far fa-trash-alt"></i></button>';
+                }
+
+                return $btn;
+            })->editColumn('user', function ($row) {
+                $user = User::find($row->user_id);
+                $userName = "";
+                if ($user) {
+                    $userName = $user->user_name;
+                }
+                return $userName;
+            })->editColumn('empresa', function ($row) {
+                $emp_rzsoc = "";
+                if ($row->empresa) {
+                    $emp_rzsoc = $row->empresa->emp_rzsoc;
+                }
+                return $emp_rzsoc;
+            })
+            ->rawColumns(['action'])
             ->make(true);
     }
 }

@@ -385,13 +385,17 @@
         @endif
 
         // Verifica o status do usuário e ajusta o texto do botão de ativação/inativação
-        if ("{{$usuario->user_sts}}" == "EX" || "{{$usuario->user_sts}}" == "IN") {
+        if ("{{$usuario->user_sts}}" == "EX" ) {
             $("#btnInativar").text("Ativar");
             $("#btnInativar").prepend('<i class="fa fa-check"></i> ');
             $("#btnExcluir").prop('disabled', true);
 
 
-        } else {
+        } else if ("{{$usuario->user_sts}}" == "AT") {
+            $("#btnInativar").text("Inativar");
+            $("#btnInativar").prepend('<i class="fa fa-ban"></i> ');
+            $("#btnExcluir").prop('disabled', false);}
+         else {
             $("#btnInativar").text("Inativar");
             $("#btnInativar").prepend('<i class="fa fa-ban"></i> ');
         }
