@@ -68,8 +68,9 @@ class Cliente extends Model
     {
         return [
             'cliente_tipo' => 'required',
-            'cliente_doc' => 'min:11|max:14|string|required|unique:tbdm_clientes_geral,cliente_doc, ' . $id . ',cliente_id',
+            'cliente_doc' => 'min:11|max:14|string|required|unique:dbsysclient.tbdm_clientes_geral,cliente_doc, ' . $id . ',cliente_id',
             'cliente_sts' => 'required',
+            'cliente_pasprt' => 'max:15',
             'cliente_nome' => 'required|max:80',
             'cliente_email' => 'required|email',
             'cliente_cel' => 'required',
@@ -88,18 +89,24 @@ class Cliente extends Model
     public function attributes()
     {
         return [
-            'cliente_tipo' => 'Tipo de Cliente',
-            'cliente_doc' => 'CPF/CNPJ',
-            'cliente_sts' => 'Status do Cliente',
+            'cliente_tipo' =>    '"Dados Gerais"Tipo de Cliente',
+            'cliente_sts' =>     '"Dados Gerais"Status do Cliente',
+            'cliente_doc' =>     '"Dados Gerais"CPF/CNPJ',
+            'cliente_pasprt' =>  '"Dados Gerais"Número do Passaporte',
+            'cliente_nome' =>    '"Dados Gerais"Nome',
+            'cliente_email' =>   '"Dados Gerais"E-mail',
+            'cliente_cel' =>     '"Dados Gerais"Celular',
+            'cliente_rendam' =>  '"Dados Gerais"Renda Mensal Aprox.',
+            'cliente_dt_fech' => '"Dados Gerais"Dia para Fech.',
             //Endereço
-            'cliente_cep' => 'CEP',
-            'cliente_end' => 'Endereço',
-            'cliente_endnum' => 'Número',
-            'cliente_endcmp' => 'Complemento',
-            'cliente_endbair' => 'Bairro',
-            'cliente_endcid' => 'Cidade',
-            'cliente_endest' => 'Estado',
-            'cliente_endpais' => 'País',
+            'cliente_cep' =>     '"Endereço"CEP',
+            'cliente_end' =>     '"Endereço"Endereço',
+            'cliente_endnum' =>  '"Endereço"Número',
+            'cliente_endcmp' =>  '"Endereço"Complemento',
+            'cliente_endbair' => '"Endereço"Bairro',
+            'cliente_endcid' =>  '"Endereço"Cidade',
+            'cliente_endest' =>  '"Endereço"Estado',
+            'cliente_endpais' => '"Endereço"País',
         ];
     }
 

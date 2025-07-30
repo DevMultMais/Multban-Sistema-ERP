@@ -113,7 +113,7 @@ function notify(type, message) {
                 $("#emp_endnum").focus();
             });
         },
-        comboBoxSelectTags: function (id, url, parametros, modal = null) {
+        comboBoxSelectTags: function (id, url, parametros, modal = null, campo = "") {
 
             var elemento = $("#" + id);
             elemento.select2({
@@ -128,6 +128,7 @@ function notify(type, message) {
                         return $.extend(
                             {
                                 parametro: params.term,
+                                campo: campo,
                             },
                             $.isFunction(parametros) ? parametros() : {}
                         );

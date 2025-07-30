@@ -15,11 +15,11 @@ class CreateTbdmClientesEmpTable extends Migration
     {
         Schema::create('tbdm_clientes_emp', function (Blueprint $table) {
             //PRIMARY KEY
-            $table->foreignId('emp_id');
-            $table->foreignId('cliente_id');
+            $table->unsignedBigInteger('emp_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->uuid('cliente_uuid');
-            $table->string('cliente_doc')->length(14);
-            $table->string('cliente_pasprt')->lenght(15);
+            $table->string('cliente_doc', 14);
+            $table->string('cliente_pasprt', 15)->nullable();
             $table->string('cad_liberado', 1);
             //FIELDS
             $table->integer('criador');
@@ -27,10 +27,8 @@ class CreateTbdmClientesEmpTable extends Migration
             $table->integer('modificador');
             $table->timestamp('dthr_ch')->useCurrent();;
             //KEYS
-            $table->primary(['emp_id', 'cliente_id', 'cliente_uuid', 'cliente_doc', 'cliente_pasprt', 'cad_liberado']);
-            //FOREIGN KEY
-            $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
-            $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
+            $table->primary(['emp_id', 'cliente_id', 'cliente_uuid', 'cliente_doc', 'cad_liberado']);
+            
         });
     }
 

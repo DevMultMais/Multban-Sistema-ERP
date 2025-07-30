@@ -5,7 +5,7 @@ $(document).ready(function () {
 
         $('.select2').select2();
 
-        ns.comboBoxSelectTags("empresa_id", "/empresa/obter-empresas", "emp_id");
+        ns.comboBoxSelectTags("empresa_id", "/empresa/obter-empresas", "emp_id", "", "emp_nmult");
         ns.comboBoxSelectTags("cliente_id", "/cliente/get-client", "cliente_id");
 
         $('#btnPesquisar').click(function () {

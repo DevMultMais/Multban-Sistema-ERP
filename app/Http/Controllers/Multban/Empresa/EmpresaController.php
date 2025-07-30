@@ -1067,13 +1067,18 @@ class EmpresaController extends Controller
     public function getObterEmpresas(Request $request)
     {
         $parametro = $request != null ? $request->all()['parametro'] : '';
+        $campo = 'emp_rzsoc';
 
         if (empty($parametro)) {
             return [];
         }
 
-        return Empresa::select(DB::raw('emp_id as id, emp_id, emp_cnpj, UPPER(emp_rzsoc) text'))
-            ->whereRaw(DB::raw("emp_rzsoc LIKE '%" . $parametro . "%' OR emp_cnpj LIKE '%" . $parametro . "%' OR emp_id = '%" . $parametro . "%'"))
+        if (!empty($request->campo)) {
+            $campo = $request->campo;
+        }
+
+        return Empresa::select(DB::raw('emp_id as id, emp_id, emp_cnpj, UPPER(' . $campo . ') text'))
+            ->whereRaw(DB::raw($campo . " LIKE '%" . $parametro . "%' OR emp_cnpj LIKE '%" . $parametro . "%' OR emp_id = '%" . $parametro . "%'"))
             ->get()
             ->toArray();
     }

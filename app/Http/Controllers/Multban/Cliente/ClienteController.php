@@ -18,6 +18,7 @@ use App\Models\Multban\Cliente\Endereco\Cadasmun;
 use App\Models\Multban\Cliente\Endereco\CadasPais;
 use App\Models\Multban\Empresa\Empresa;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -50,14 +51,32 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $cliente = new Cliente();
+        $emp_id = Auth::user()->emp_id;
+        $userRole = Auth::user()->roles->pluck('name', 'name')->all();
+        $canChangeStatus = false;
+        foreach ($userRole as $key => $value) {
+
+            if ($value == 'admin') {
+                $canChangeStatus = true; //Se for usuário Admin, pode mudar o Status
+            }
+        }
+
         $status = ClienteStatus::all();
         $tipos = ClienteTipo::all();
+        $cardTipos = CardTipo::all();
+        $cardMod = CardMod::all();
+        $cardCateg = CardCateg::all();
+
+        $cliente = new Cliente();
 
         return response()->view('Multban.cliente.edit', compact(
             'cliente',
             'status',
             'tipos',
+            'cardTipos',
+            'cardMod',
+            'cardCateg',
+            'canChangeStatus'
         ));
     }
 
@@ -69,15 +88,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
 
+
             $emp_id = Auth::user()->emp_id;
+
+            $userRole = Auth::user()->roles->pluck('name', 'name')->all();
+            $canChangeStatus = false;
+            foreach ($userRole as $key => $value) {
+
+                if ($value == 'admin') {
+                    $canChangeStatus = true; //Se for usuário Admin, pode mudar o Status
+                }
+            }
 
             $cliente = new Cliente();
             $input = $request->all();
 
             $input['cliente_nome'] = rtrim($request->cliente_nome);
             $input['cliente_doc'] = removerCNPJ($request->cliente_doc);
+            $input['cliente_rendam'] = formatarTextoParaDecimal($request->cliente_rendam);
 
             $validator = Validator::make($input, $cliente->rules(), $cliente->messages(), $cliente->attributes());
 
@@ -91,8 +122,8 @@ class ClienteController extends Controller
             $cliente->cliente_tipo       = $request->cliente_tipo;
             $cliente->cliente_doc        = removerCNPJ($request->cliente_doc);
             $cliente->cliente_pasprt     = $request->cliente_pasprt;
-            $cliente->cliente_sts        = 'NA'; /*Cliente nasce com o status "Em Análise"*/
-            $cliente->cliente_uuid       = $request->cliente_uuid;
+            $cliente->cliente_sts        = !$canChangeStatus ? 'NA' : $request->cliente_sts; /*Cliente nasce com o status "Em Análise"*/
+            $cliente->cliente_uuid       = Str::uuid()->toString();
             $cliente->cliente_nome       = mb_strtoupper(rtrim($request->cliente_nome), 'UTF-8');
             $cliente->cliente_nm_alt     = mb_strtoupper(rtrim($request->cliente_nm_alt), 'UTF-8');
             $cliente->cliente_nm_card    = $request->cliente_nm_card;
@@ -101,7 +132,7 @@ class ClienteController extends Controller
             $cliente->cliente_cel        = $request->cliente_cel;
             $cliente->cliente_cel_s      = $request->cliente_cel_s;
             $cliente->cliente_telfixo    = $request->cliente_telfixo;
-            $cliente->cliente_rendam     = $request->cliente_rendam;
+            $cliente->cliente_rendam     = $input['cliente_rendam'];
             $cliente->cliente_rdam_s     = $request->cliente_rdam_s;
             $cliente->cliente_dt_fech    = $request->cliente_dt_fech;
             $cliente->cliente_cep        = removerMascaraCEP($request->cliente_cep);
@@ -123,11 +154,25 @@ class ClienteController extends Controller
             $cliente->cliente_score      = $request->cliente_score;
             $cliente->cliente_lmt_sg     = $request->cliente_lmt_sg;
             $cliente->criador            = Auth::user()->user_id;
+            $cliente->modificador            = Auth::user()->user_id;
             $cliente->dthr_cr            = Carbon::now();
             $cliente->dthr_ch            = Carbon::now();
 
-
             $cliente->save();
+
+            $tbdm_clientes_emp = DB::connection('dbsysclient')->table('tbdm_clientes_emp')->insert([
+                'emp_id' => $emp_id,
+                'cliente_id' => $cliente->cliente_id,
+                'cliente_uuid' => Str::uuid()->toString(),
+                'cliente_doc' => removerCNPJ($cliente->cliente_doc),
+                'cliente_pasprt' => $cliente->cliente_pasprt,
+                'cad_liberado' => '',
+                'criador' => Auth::user()->user_id,
+                'dthr_cr' => Carbon::now(),
+                'modificador' => Auth::user()->user_id,
+                'dthr_ch' => Carbon::now(),
+            ]);
+
             //Auditoria
 
             $logAuditoria         = new LogAuditoria();
@@ -141,6 +186,8 @@ class ClienteController extends Controller
             $logAuditoria->audnip = request()->ip();
             $logAuditoria->save();
 
+
+            DB::commit();
             // Session::flash("idModeloInserido", $cliente->cliente_id);
 
             // Session::flash('success', "Cliente " . str_pad($cliente->cliente_id, 5, "0", STR_PAD_LEFT) . " adicionado com sucesso.");
@@ -148,7 +195,8 @@ class ClienteController extends Controller
             return response()->json([
                 'message'   => "Cliente " . str_pad($cliente->cliente_id, 5, "0", STR_PAD_LEFT) . " adicionado com sucesso.",
             ]);
-        } catch (\Throwable $e) {
+        } catch (Exception | \Throwable $e) {
+            DB::rollBack();
             return response()->json([
                 'message'   => $e->getMessage(),
             ], 500);
@@ -179,6 +227,7 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $emp_id = Auth::user()->emp_id;
+        $userRole = Auth::user()->roles->pluck('name', 'name')->all();
 
         $status = ClienteStatus::all();
         $tipos = ClienteTipo::all();
@@ -187,6 +236,14 @@ class ClienteController extends Controller
         $cardCateg = CardCateg::all();
         $cliente = Cliente::findOrFail($id);
 
+        $canChangeStatus = false;
+        foreach ($userRole as $key => $value) {
+
+            if ($value == 'admin') {
+                $canChangeStatus = true; //Se for usuário Admin, pode mudar o Status
+            }
+        }
+
         return response()->view('Multban.cliente.edit', compact(
             'cliente',
             'status',
@@ -194,6 +251,7 @@ class ClienteController extends Controller
             'cardTipos',
             'cardMod',
             'cardCateg',
+            'canChangeStatus'
         ));
     }
 
@@ -386,12 +444,11 @@ class ClienteController extends Controller
             $query .= "cliente_tipo = " . quotedstr($request->cliente_tipo) . " AND ";
         }
         if (!empty($request->cliente_id)) {
-            if(is_numeric($request->cliente_id)){
+            if (is_numeric($request->cliente_id)) {
                 $query .= "tbdm_clientes_geral.cliente_id = " . quotedstr($request->cliente_id) . " AND ";
             } else {
                 $query .= "tbdm_clientes_geral.cliente_nome like '%" . $request->cliente_id . "%' AND ";
             }
-
         }
 
         if (!empty($request->cliente_doc)) {
@@ -416,8 +473,7 @@ class ClienteController extends Controller
         $query = rtrim($query, "AND ");
 
         if (!empty($query)) {
-            $data = Cliente::
-            join('tbdm_clientes_emp', 'tbdm_clientes_geral.cliente_id', '=', 'tbdm_clientes_emp.cliente_id')
+            $data = Cliente::join('tbdm_clientes_emp', 'tbdm_clientes_geral.cliente_id', '=', 'tbdm_clientes_emp.cliente_id')
                 ->select(
                     'tbdm_clientes_geral.*',
                     'tbdm_clientes_emp.emp_id',
@@ -531,7 +587,7 @@ class ClienteController extends Controller
 
             DB::beginTransaction();
 
-           $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->insert([
+            $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->insert([
                 'emp_id' => $request->emp_id,
                 'cliente_id' => $request->cliente_id,
                 'cliente_doc' => removerCNPJ($request->cliente_doc),

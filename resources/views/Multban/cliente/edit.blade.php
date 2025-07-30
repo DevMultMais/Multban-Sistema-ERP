@@ -104,16 +104,19 @@
                                         </div>
 
                                         <div class="form-group col-md-2">
-                                            <label for="cliente_sts">Status:</label>
-                                            <label id="cliente_sts">Status:</label>
+                                            <label for="cliente_sts">Status:*</label>
                                             <select class="form-control select2" id="cliente_sts" name="cliente_sts"
                                                 data-placeholder="Selecione o Status" style="width: 100%;">
                                                 <option></option>
-                                                @foreach($status as $key => $sta)
-                                                <option value="{{$sta->cliente_sts}}" {{$cliente->cliente_sts ==
-                                                    $sta->cliente_sts ? 'selected': ''}}>{{$sta->cliente_sts_desc}}
-                                                </option>
-                                                @endforeach
+                                                @if ($canChangeStatus)
+                                                    @foreach($status as $key => $sta)
+                                                        <option value="{{$sta->cliente_sts}}" {{$cliente->cliente_sts ==
+                                                            $sta->cliente_sts ? 'selected': ''}}>{{$sta->cliente_sts_desc}}
+                                                        </option>
+                                                    @endforeach
+                                                @else
+                                                <option value="NA" selected>Em análise</option>
+                                                @endif
                                             </select>
                                         </div>
 
@@ -125,20 +128,28 @@
                                                     value="{{$cliente->cliente_doc}}">
                                             </div>
                                         </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="cliente_pasprt">Número do Passaporte:</label>
+                                            <div class="input-group">
+                                                <input type="text" maxlength="15" id="cliente_pasprt" name="cliente_pasprt"
+                                                    class="form-control" placeholder="Digite o Número do Passaporte"
+                                                    value="{{$cliente->cliente_pasprt}}">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-row">
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nome">Nome:*</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Digite o nome"
+                                            <input autocomplete="off" maxlength="255" class="form-control" placeholder="Digite o nome"
                                                 name="cliente_nome" type="text" id="cliente_nome"
                                                 value="{{$cliente->cliente_nome}}">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nm_alt">Nome Alternativo:</label>
-                                            <input autocomplete="off" class="form-control"
+                                            <input autocomplete="off" maxlength="255" class="form-control"
                                                 placeholder="Digite o nome alternativo" name="cliente_nm_alt"
                                                 type="text" id="cliente_nm_alt" value="{{$cliente->cliente_nm_alt}}">
                                         </div>
@@ -198,7 +209,7 @@
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_dt_fech">Dia para Fech.:*</label>
-                                            <input autocomplete="off" class="form-control"
+                                            <input class="form-control"
                                                 placeholder="Digite o melhor dia para fechamento" name="cliente_dt_fech"
                                                 type="number" id="cliente_dt_fech" value="{{$cliente->cliente_dt_fech}}"
                                                 required>

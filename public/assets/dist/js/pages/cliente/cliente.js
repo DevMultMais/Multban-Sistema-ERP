@@ -495,13 +495,13 @@ $(function () {
         console.log(clientetipo);
         //Cliente Física
         if (clientetipo == 1) {
-            labelCnpj.html("CPF:");
+            labelCnpj.html("CPF:*");
             cliente_doc.mask("999.999.999-99");
             cliente_doc.attr("placeholder", "Digite o CPF");
             cliente_doc.val("");
         } else {
             //Cliente Jurídica
-            labelCnpj.html("CNPJ:");
+            labelCnpj.html("CNPJ:*");
             cliente_doc.mask("99.999.999/9999-99");
             cliente_doc.attr("placeholder", "Digite o CNPJ");
             cliente_doc.val("");
