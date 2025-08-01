@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
                     ->setAttribute('role', 'menu')
                     ->setAttribute('data-widget', 'treeview')
                     ->setAttribute('data-accordion', 'false')
-                    ->addClass('nav nav-pills nav-sidebar flex-column nav-flat nav-compact')
+                    ->addClass('nav nav-pills nav-sidebar flex-column nav-flat nav-child-indent')
                     ->add(Link::to('/', '<i class="nav-icon fas fa-tachometer-alt"></i> <p>Home</p>')
                         ->addClass('nav-link')
                         ->addParentClass('nav-item'));

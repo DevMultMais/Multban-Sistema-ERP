@@ -117,7 +117,7 @@ function notify(type, message) {
 
             var elemento = $("#" + id);
             elemento.select2({
-                dropdownParent: modal ? $('#'+modal) : $('body'),
+                dropdownParent: modal ? $('#' + modal) : $('body'),
                 tags: true,
                 allowClear: true,
                 ajax: {
@@ -166,7 +166,7 @@ function notify(type, message) {
         comboBoxSelect: function (id, url, ident = 'id', pad = 5, parametros, modal = null) {
             var elemento = $("#" + id);
             elemento.select2({
-                dropdownParent: modal ? $('#'+modal) : $('body'),
+                dropdownParent: modal ? $('#' + modal) : $('body'),
                 allowClear: true,
                 ajax: {
                     url: url,
@@ -840,6 +840,11 @@ function notify(type, message) {
 
                 // if (elementoSelect2Fechado && elementoSemFocus && modalFechado)
                 //     $("#btnSalvar").trigger("click");
+            });
+
+            $('body').css({
+                'zoom': '80%',
+                'transform-origin': 'bottom center' // Ensures scaling originates from the top-left corner
             });
         },
         selectAll: function (e) {

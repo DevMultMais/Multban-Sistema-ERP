@@ -51,6 +51,8 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
 
+
+
 .swal2-styled.swal2-confirm{
     background-color: var(--primary-multban) !important
 }
@@ -13294,7 +13296,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
 }
 
 .content-wrapper {
-    background-color: #f4f6f9
+    background-color: #ffffff
 }
 
 .content-wrapper>.content {
@@ -13363,7 +13365,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
     float: none;
     left: 0;
     position: fixed;
-    top: 0
+    top: 0;
+    height: 100%;
 }
 
 .layout-fixed .control-sidebar {
