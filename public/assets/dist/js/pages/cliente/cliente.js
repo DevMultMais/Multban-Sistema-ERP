@@ -228,16 +228,16 @@ $(function () {
     });
 
     var observer = window.ResizeObserver ? new ResizeObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    $(entry.target).DataTable().columns.adjust();
-                });
-            }) : null;
+        entries.forEach(function (entry) {
+            $(entry.target).DataTable().columns.adjust();
+        });
+    }) : null;
 
-            // Function to add a datatable to the ResizeObserver entries array
-            var resizeHandler = function ($table) {
-                if (observer)
-                    observer.observe($table[0]);
-            };
+    // Function to add a datatable to the ResizeObserver entries array
+    var resizeHandler = function ($table) {
+        if (observer)
+            observer.observe($table[0]);
+    };
 
     $('body').on('click', '#btnCriarCartao', function () {
         $("#is_edit").val("0");
