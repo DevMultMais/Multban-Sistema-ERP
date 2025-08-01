@@ -31,6 +31,8 @@ $(function () {
                 } else {
                     formData.append("emp_id", $(btnSubmit).data('emp-id'));
                 }
+
+                formData.append("cliente_id", $("#cliente_id").val());
                 inputElements.forEach(input => {
 
                     if (input.type === 'checkbox') {
@@ -133,7 +135,7 @@ $(function () {
                     }
                 })
                 .DataTable({
-                    dom: 'rt<"bottom"iflp>',
+                    // dom: 'rt<"bottom"iflp>',
                     processing: true,
                     serverSide: false,
                     responsive: false,
@@ -144,10 +146,11 @@ $(function () {
                         [10, 50, 100, -1],
                         [10, 50, 100, 'Todos']
                     ],
-                    searching: false,
+                    searching: true,
                     ordering: true,
-                    info: true,
-                    autoWidth: false,
+                    info: true, autoWidth: true,
+                    scrollX: true,
+
                     rowId: "id",
                     language: {
                         select: {
@@ -183,18 +186,19 @@ $(function () {
                         },
                     },
                     ajax: {
-                        url: '/config-sistema-multmais/' + url,
+                        url: url,
                         type: 'POST',
                         data: function (d) {
+                            console.log(d);
                             const myDiv = document.getElementById(formId);
                             const inputElements = myDiv.querySelectorAll('input, select, textarea,file');
                             var token = $('meta[name="csrf-token"]').attr("content");
                             var formData = new FormData();
                             formData.append("emp_id", $("#empresa_id option:selected").val());
-                            formData.append("tabela_bdm", $("#tabela_bdm option:selected").val());
+                            formData.append("cliente_id", $("#cliente_id").val());
                             formData.append("_token", token);
                             inputElements.forEach(input => {
-                                formData.append(input.name, input.value);
+                                // formData.append(input.name, input.value);
                             });
 
                             // Append DataTables' parameters to your custom FormData
@@ -216,9 +220,24 @@ $(function () {
                 });
 
             new $.fn.dataTable.FixedHeader(dataTable);
+            if (colunaFixa) {
+                resizeHandler($('#' + id));
+            }
 
         },
     });
+
+    var observer = window.ResizeObserver ? new ResizeObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    $(entry.target).DataTable().columns.adjust();
+                });
+            }) : null;
+
+            // Function to add a datatable to the ResizeObserver entries array
+            var resizeHandler = function ($table) {
+                if (observer)
+                    observer.observe($table[0]);
+            };
 
     $('body').on('click', '#btnCriarCartao', function () {
         $("#is_edit").val("0");
@@ -529,6 +548,78 @@ $(function () {
     clienteTipo();
     searchClient();
     setClienteTipo();
+
+    var alterar = document.URL.split("/")[5] == "alterar";
+    var colunasConfiguracao = [
+        { width: 120, targets: 0 },
+        { width: "auto", targets: 1 },
+        { width: "auto", targets: 2 },
+        { width: "auto", targets: 3 }
+    ];
+    if (alterar) {
+        clientejs.gridDataTable([
+            {
+                data: 'action',
+                name: 'action',
+                "width": "25%"
+            },
+            {
+                data: 'empresa',
+                name: 'empresa'
+            },
+            {
+                data: 'cliente_cardn',
+                name: 'cliente_cardn',
+                autoWidth: true
+            },
+            {
+                data: 'cliente_cardcv',
+                name: 'cliente_cardcv'
+            },
+            {
+                data: 'card_sts',
+                name: 'card_sts'
+            },
+            {
+                data: 'card_tp',
+                name: 'card_tp',
+                searchable: false
+            },
+            {
+                data: 'card_mod',
+                name: 'card_mod',
+                searchable: false
+            },
+            {
+                data: 'card_categ',
+                name: 'card_categ',
+                searchable: false
+            },
+            {
+                data: 'card_desc',
+                name: 'card_desc',
+                searchable: false
+            },
+            {
+                data: 'card_saldo_vlr',
+                name: 'card_saldo_vlr',
+                searchable: false
+            },
+            {
+                data: 'card_limite',
+                name: 'card_limite',
+                searchable: false
+            },
+            {
+                data: 'card_saldo_pts',
+                name: 'card_saldo_pts',
+                searchable: false
+            },
+        ], colunasConfiguracao, true, false, "/cliente/get-obter-grid-pesquisa-card", "gridtemplate-cards", "formPrincipal");
+
+
+    }
+
 
     $("body").on("keyup change", "input[type='text']", function (e) {
         $(this).removeClass('is-invalid');

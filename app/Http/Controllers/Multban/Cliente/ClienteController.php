@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Multban\Auditoria\LogAuditoria;
 use App\Models\Multban\Cliente\CardCateg;
 use App\Models\Multban\Cliente\CardMod;
+use App\Models\Multban\Cliente\CardStatus;
 use App\Models\Multban\Cliente\CardTipo;
 use App\Models\Multban\Cliente\Cliente;
 use App\Models\Multban\Cliente\ClienteStatus;
@@ -587,21 +588,47 @@ class ClienteController extends Controller
 
             DB::beginTransaction();
 
-            $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->insert([
-                'emp_id' => $request->emp_id,
-                'cliente_id' => $request->cliente_id,
-                'cliente_doc' => removerCNPJ($request->cliente_doc),
-                'cliente_pasprt' => $request->cliente_pasprt,
-                'card_uuid' => Str::uuid()->toString(),
-                'card_tp' => $request->card_tp,
-                'card_mod' => $request->card_mod,
-                'card_categ' => $request->card_categ,
-                'card_desc' => mb_strtoupper(rtrim($request->card_desc), 'UTF-8'),
-                'criador' => Auth::user()->user_id,
-                'dthr_cr' => Carbon::now(),
-                'modificador' => Auth::user()->user_id,
-                'dthr_ch' => Carbon::now(),
-            ]);
+            $empresa = Empresa::find($request->emp_id);
+            $cnpj = '';
+            if ($empresa) {
+                $cnpj = substr(removerCNPJ($empresa->emp_cnpj), 0, 7);
+            }
+
+            $cliente = Cliente::find($request->cliente_id);
+            $cpf = '';
+            if ($cliente) {
+                $cpf = substr(removerCNPJ($cliente->cliente_doc), 0, 7);
+            }
+
+            // Exemplo: '4' para Visa, '5' para Mastercard, '3' para American Express
+            // Você pode ajustar o prefixo conforme necessário para outros tipos de cartões
+            // Gera um número de cartão de crédito com 16 dígitos
+            $numeroCartao = $this->gerarNumeroCartaoCredito($cnpj, $cpf, $request->card_mod, $request->card_tp);
+
+            $dadosCartao = [
+                'emp_id'           => $request->emp_id,
+                'cliente_id'       => $request->cliente_id,
+                'cliente_doc'      => removerCNPJ($request->cliente_doc),
+                'cliente_pasprt'   => $cliente->cliente_pasprt,
+                'card_uuid'        => Str::uuid()->toString(),
+                'cliente_cardn'    => $numeroCartao,
+                'cliente_cardcv'   => random_int(100, 999),
+                'card_sts'         => 'AT',
+                'card_tp'          => $request->card_tp,
+                'card_mod'         => $request->card_mod,
+                'card_categ'       => $request->card_categ,
+                'card_desc'        => mb_strtoupper(rtrim($request->card_desc), 'UTF-8'),
+                'card_saldo_vlr'   => formatarTextoParaDecimal($request->card_limite),
+                'card_limite'      => formatarTextoParaDecimal($request->card_limite),
+                'card_saldo_pts'   => 0,
+                'card_pass'        => $request->card_pass ?? null,
+                'criador'          => Auth::user()->user_id,
+                'dthr_cr'          => Carbon::now(),
+                'modificador'      => Auth::user()->user_id,
+                'dthr_ch'          => Carbon::now(),
+            ];
+
+            $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->insert($dadosCartao);
 
             if ($data) {
                 DB::commit();
@@ -620,6 +647,71 @@ class ClienteController extends Controller
                 'type' => 'error'
             ], 500);
         }
+    }
+
+    /**
+     * Gera um número de cartão de crédito com base no CNPJ da empresa, CPF do cliente e tipo de cartão,
+     * completando com dígitos aleatórios e finalizando com o dígito de Luhn.
+     *
+     * @param string $cnpj
+     * @param string $cpf
+     * @param string $card_mod
+     * @param int $length
+     * @return string
+     */
+    private function gerarNumeroCartaoCredito($cnpj, $cpf, $card_mod, $card_tp, $length = 16)
+    {
+        // Remove caracteres não numéricos
+        $cnpj = preg_replace('/\D/', '', $cnpj);
+        $cpf = preg_replace('/\D/', '', $cpf);
+
+        // Identifica o tipo de cartão pelo card_mod e card_tp
+        $tipo = '1'; // Padrão para POS
+
+        if ($card_tp == 'PRE') {
+
+            $tipo = '2';
+        }
+
+        if ($card_tp == 'POS' && $card_mod == 'CRDT') {
+
+            $tipo = '1';
+        }
+
+        if ($card_mod == 'GIFT') {
+
+            $tipo = '3';
+        }
+
+        if ($card_mod == 'FIDL') {
+
+            $tipo = '4';
+        }
+
+        // Usa o prefixo: 61 + 7 primeiros do CNPJ + 7 primeiros do CPF + tipo
+        $prefix = '61' . substr($cnpj, 0, 6) . substr($cpf, 0, 6) . $tipo;
+
+        // Completa até o penúltimo dígito com números aleatórios
+        while (strlen($prefix) < ($length - 1)) {
+            $prefix .= mt_rand(0, 9);
+        }
+
+        // Calcula o dígito verificador (Luhn)
+        $soma = 0;
+        $invertido = strrev($prefix);
+        for ($i = 0; $i < strlen($invertido); $i++) {
+            $digito = intval($invertido[$i]);
+            if ($i % 2 == 0) {
+                $digito *= 2;
+                if ($digito > 9) {
+                    $digito -= 9;
+                }
+            }
+            $soma += $digito;
+        }
+        $digitoVerificador = (10 - ($soma % 10)) % 10;
+
+        return $prefix . $digitoVerificador;
     }
 
     public function updateCard(Request $request)
@@ -745,30 +837,16 @@ class ClienteController extends Controller
             abort(Response::HTTP_UNAUTHORIZED, "Usuário não autenticado...");
         }
 
-        $data = new Collection();
+        $data = DB::connection('dbsysclient')->table('tbdm_clientes_card')->where(
+            'emp_id',
+            '=',
+            1
+        )->where(
+            'cliente_id',
+            '=',
+            $request->cliente_id
+        )->get();
 
-        $query = "";
-
-        if (!empty($request->tabela_filtro)) {
-
-            $query .= "tabela = " . quotedstr($request->tabela_filtro) . " AND ";
-        }
-
-        if (!empty($request->emp_id)) {
-
-            if (is_numeric($request->emp_id)) {
-
-                $query .= "emp_id = " . $request->emp_id;
-                $data = TbCfWorkFlow::whereRaw(DB::raw($query))->get();
-            } else {
-
-                $empresasGeral = Empresa::where('emp_nmult', 'like', '%' . $request->emp_id . '%')->get(['emp_id'])->pluck('emp_id')->toArray();
-                if ($empresasGeral) {
-                    $query .= selectItens($empresasGeral, 'emp_id');
-                    $data = TbCfWorkFlow::whereRaw(DB::raw($query))->get();
-                }
-            }
-        }
 
         $this->permissions = Auth::user()->getAllPermissions()->pluck('name')->toArray();
 
@@ -777,41 +855,64 @@ class ClienteController extends Controller
             ->addColumn('action', function ($row) {
                 $btn = '';
 
-                if (in_array('config-sistema-multmais.edit', $this->permissions)) {
+                if (in_array('cliente.edit', $this->permissions)) {
 
-                    $btn .= '<button type="button" ';
+                    $btn .= '<button class="btn btn-sm btn-primary mr-1"';
                     $btn .= 'data-emp-id="' . $row->emp_id . '" ';
-                    $btn .= 'data-tabela="' . $row->tabela . '" ';
-                    $btn .= 'data-campo="' . $row->campo . '" ';
-                    $btn .= 'class="btn btn-primary btn-sm mr-1 btn-edit" title="Editar"><i class="fas fa-edit"></i></a>';
+                    $btn .= 'data-uuid="' . $row->card_uuid . '" ';
+                    $btn .= ' title="Resetar Senha"><i class="fas fa-key"></i></button>';
                 }
 
-                if (in_array('config-sistema-multmais.destroy', $this->permissions)) {
+                    $btn .= '<button class="btn btn-sm btn-primary mr-1" title="Editar"><i class="fas fa-edit"></i></button>';
+                    $btn .= '<button class="btn btn-sm btn-primary mr-1" title="Ativar"><i class="far fa-check-circle"></i></button>';
+                    $btn .= '<button class="btn btn-sm btn-primary mr-1" title="Bloquear"><i class="fas fa-ban"></i></button>';
+                    $btn .= '<button class="btn btn-sm btn-primary mr-1" title="Excluir"><i class="far fa-trash-alt"></i></button>';
 
-                    $btn .= '<button href="#" class="btn btn-sm btn-primary mr-1 delete_id " ';
-                    $btn .= 'data-emp-id="' . $row->emp_id . '" ';
-                    $btn .= 'data-tabela="' . $row->tabela . '" ';
-                    $btn .= 'data-campo="' . $row->campo . '" ';
-                    $btn .= 'data-url="destroy-card" ';
-                    $btn .= 'title="Excluir"><i class="far fa-trash-alt"></i></button>';
-                }
 
                 return $btn;
-            })->editColumn('user', function ($row) {
-                $user = User::find($row->user_id);
-                $userName = "";
-                if ($user) {
-                    $userName = $user->user_name;
+            })->editColumn('card_sts', function ($row) {
+                $badge = '';
+                if (!empty($row->card_sts)) {
+                    $statusStr = '';
+                    $status = CardStatus::where('card_sts', $row->card_sts)->first();
+                    if ($status) {
+                        $statusStr = $status->card_sts_desc;
+                    } else {
+                        $statusStr = 'Desconhecido';
+                    }
+
+                    switch ($row->card_sts) {
+                        case 'AT':
+                            $badge = '<span class="badge badge-success">' . $statusStr . '</span>';
+                            break;
+                        case 'IN':
+                        case 'EX':
+                        case 'BL':
+                            $badge = '<span class="badge badge-danger">' . $statusStr . '</span>';
+                            break;
+                    }
                 }
-                return $userName;
-            })->editColumn('empresa', function ($row) {
-                $emp_rzsoc = "";
-                if ($row->empresa) {
-                    $emp_rzsoc = $row->empresa->emp_rzsoc;
-                }
-                return $emp_rzsoc;
+
+                return $badge;
+            })->editColumn('card_tp', function ($row) {
+                return $row->card_tp == 'PRE' ? 'Pré-pago' : 'Pós-pago';
+            })->editColumn('card_mod', function ($row) {
+                return $row->card_mod == 'CRDT' ? 'Crédito' : ($row->card_mod == 'DEBT' ? 'Débito' : ($row->card_mod == 'GIFT' ? 'Gift Card' : 'Fidelidade'));
+            })->editColumn('cliente_cardn', function ($row) {
+                return formatarCartaoCredito(Str::mask($row->cliente_cardn,'*', 0, -4));
+            })->addColumn('empresa', function ($row) {
+                $empresa = Empresa::find($row->emp_id);
+                return $empresa ? $empresa->emp_nmult : 'Empresa não encontrada';
+            })->editColumn('card_limite', function ($row) {
+                return formatarDecimalParaTexto($row->card_limite);
+            })->editColumn('card_saldo_vlr', function ($row) {
+                return formatarDecimalParaTexto($row->card_saldo_vlr);
+            })->editColumn('card_saldo_pts', function ($row) {
+                return formatarDecimalParaTexto($row->card_saldo_pts);
+            })->editColumn('card_desc', function ($row) {
+                return mb_strtoupper(rtrim($row->card_desc), 'UTF-8');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'card_sts'])
             ->make(true);
     }
 }

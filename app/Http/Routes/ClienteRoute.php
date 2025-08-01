@@ -30,7 +30,7 @@ class ClienteRoute
         Route::patch('cliente/update-card', [ClienteController::class, 'updateCard']);
         Route::delete('cliente/{emp_id}/destroy-card', [ClienteController::class, 'destroyCard']);
 
-        Route::get('cliente/get-obter-grid-pesquisa-card/{emp_id}', [ClienteController::class, 'getObterGridPesquisaCard']);
+        Route::post('cliente/get-obter-grid-pesquisa-card', [ClienteController::class, 'getObterGridPesquisaCard']);
 
     }
 }

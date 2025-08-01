@@ -113,24 +113,24 @@ class Cliente extends Model
     public function messages()
     {
         return [
-            'cliente_tipo.required' => 'Campo obrigatório.',
-            'cliente_doc.max' => 'O campo deve conter no máximo 14 caracteres.',
-            'cliente_doc.required' => 'Campo obrigatório.',
-            'cliente_doc.unique' => 'Já existe um Cliente cadastrado com esse CPF/CNPJ.',
-            'cliente_doc.min' => 'O campo deve conter no mínimo 14 caracteres.',
-            'cliente_doc.max' => 'O campo deve conter no máximo 14 caracteres.',
-            'cliente_sts.required' => 'Campo obrigatório.',
+            // 'cliente_tipo.required' => 'Campo obrigatório.',
+            // 'cliente_doc.max' => 'O campo deve conter no máximo 14 caracteres.',
+            // 'cliente_doc.required' => 'Campo obrigatório.',
+             'cliente_doc.unique' => '"Dados Gerais"Já existe um Cliente cadastrado com esse CPF/CNPJ.',
+            // 'cliente_doc.min' => 'O campo deve conter no mínimo 14 caracteres.',
+            // 'cliente_doc.max' => 'O campo deve conter no máximo 14 caracteres.',
+            // 'cliente_sts.required' => 'Campo obrigatório.',
 
-            //Endereço
-            'cliente_cep.required' => 'Campo obrigatório.',
-            'cliente_cep.min' => 'O campo deve conter no mínimo 8 caracteres.',
-            'cliente_cep.max' => 'O campo deve conter no máximo 8 caracteres.',
-            'cliente_end.max' => 'O campo deve conter no máximo 60 caracteres.',
-            'cliente_end.required' => 'Campo obrigatório.',
-            'cliente_endbair.required' => 'Campo obrigatório.',
-            'cliente_endpais.required' => 'Campo obrigatório.',
-            'cliente_endest.required' => 'Campo obrigatório.',
-            'cliente_endcid.required' => 'Campo obrigatório.',
+            // //Endereço
+            // 'cliente_cep.required' => 'Campo obrigatório.',
+            // 'cliente_cep.min' => 'O campo deve conter no mínimo 8 caracteres.',
+            // 'cliente_cep.max' => 'O campo deve conter no máximo 8 caracteres.',
+            // 'cliente_end.max' => 'O campo deve conter no máximo 60 caracteres.',
+            // 'cliente_end.required' => 'Campo obrigatório.',
+            // 'cliente_endbair.required' => 'Campo obrigatório.',
+            // 'cliente_endpais.required' => 'Campo obrigatório.',
+            // 'cliente_endest.required' => 'Campo obrigatório.',
+            // 'cliente_endcid.required' => 'Campo obrigatório.',
 
         ];
     }

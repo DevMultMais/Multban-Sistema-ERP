@@ -27,6 +27,7 @@
             @endif
             @include('Multban.template.updatetemplate')
 
+                <input type="hidden" id="cliente_id" name="cliente_id" value="{{$cliente->cliente_id}}" />
              <input type="hidden" id="is_edit" value="1" />
             <div class="card card-primary card-outline card-outline-tabs">
                 <!-- MENU ABAS/TABS -->
@@ -275,7 +276,7 @@
                                     <div class="form-row">
 
                                         <div class="form-group col-md-2">
-                                            <label for="cliente_cep">CEP:</label>
+                                            <label for="cliente_cep">CEP:*</label>
                                             <a href="#" data-toggle="modal" data-target="#cep-info-modal">
                                                 <i class="far fa-question-circle"></i>
                                             </a>
@@ -292,14 +293,14 @@
                                         </div>
 
                                         <div class="form-group col-md-4">
-                                            <label for="cliente_end">Endereço (Logradouro):</label>
+                                            <label for="cliente_end">Endereço (Logradouro):*</label>
                                             <input autocomplete="off" class="form-control" placeholder="Endereço"
                                                 value="{{$cliente->cliente_end}}" name="cliente_end" type="text"
                                                 id="cliente_end">
                                         </div>
 
                                         <div class="form-group col-md-2">
-                                            <label for="cliente_endnum">Número:</label>
+                                            <label for="cliente_endnum">Número:*</label>
                                             <input autocomplete="off" class="form-control" placeholder="Número"
                                                 value="{{$cliente->cliente_endnum}}" name="cliente_endnum" type="text"
                                                 id="cliente_endnum">
@@ -315,14 +316,14 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
-                                            <label for="cliente_endbair">Bairro:</label>
+                                            <label for="cliente_endbair">Bairro:*</label>
                                             <input autocomplete="off" class="form-control" placeholder="Bairro"
                                                 value="{{$cliente->cliente_endbair}}" name="cliente_endbair" type="text"
                                                 id="cliente_endbair">
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <label for="cliente_endcid">Cidade:</label>
+                                            <label for="cliente_endcid">Cidade:*</label>
                                             <select id="cliente_endcid" name="cliente_endcid"
                                                 class="form-control select2 select2-hidden-accessible"
                                                 data-placeholder="Pesquise a cidade" style="width: 100%;"
@@ -336,7 +337,7 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <label for="cliente_endest">Estado:</label>
+                                            <label for="cliente_endest">Estado:*</label>
                                             <select id="cliente_endest" name="cliente_endest"
                                                 class="form-control select2 select2-hidden-accessible"
                                                 data-placeholder="Pesquise o estado" style="width: 100%;"
@@ -351,7 +352,7 @@
                                         </div>
 
                                         <div class="form-group col-md-2">
-                                            <label for="cliente_endpais">Pais:</label>
+                                            <label for="cliente_endpais">Pais:*</label>
                                             <select id="cliente_endpais" name="cliente_endpais"
                                                 class="form-control select2 select2-hidden-accessible"
                                                 data-placeholder="Pesquise o País" style="width: 100%;"
@@ -383,7 +384,7 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
-                                            <label for="cliente_cep_s">CEP:</label>
+                                            <label for="cliente_cep_s">CEP:*</label>
                                             <input type="text" class="form-control" value="{{$cliente->cliente_cep_s}}"
                                                 id="cliente_cep_s" name="cliente_cep_s" disabled>
                                         </div>
@@ -692,8 +693,7 @@
                                     </div>
 
                                     <!-- TABELA -->
-                                    <table class="table-responsive">
-                                        <table id="gridtemplate" class="table table-striped table-bordered nowrap">
+                                        <table id="gridtemplate-cards" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>Ações</th>
@@ -710,68 +710,8 @@
                                                     <th>Saldo de Pontos</th>
                                                 </tr>
                                             </thead>
-
-                                            <!------------------------------------------------------------------------->
-                                            <!-- Exemplo de linha de compra. substituir por valores reais da pesquisa-->
-                                            <tbody>
-                                                <tr>
-                                                    <td class="d-flex" align="left">
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Resetar Senha"><i class="fas fa-key"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Editar"><i
-                                                                class="fas fa-edit"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Ativar"><i
-                                                                class="far fa-check-circle"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Bloquear"><i
-                                                                class="fas fa-ban"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Excluir"><i
-                                                                class="far fa-trash-alt"></i></button>
-                                                    </td>
-                                                    <td>Loja A</td>
-                                                    <td>**** **** **** 1234</td>
-                                                    <td>xx</td>
-                                                    <td>Ativo</td>
-                                                    <td>Pós-Pago</td>
-                                                    <td>Crédito</td>
-                                                    <td>Ouro</td>
-                                                    <td>Cartão de Crédito Loja A</td>
-                                                    <td>R$ 1.500,00</td>
-                                                    <td>R$ 2.000,00</td>
-                                                    <td>1.000</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="d-flex" align="left">
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Resetar Senha"><i class="fas fa-key"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Editar"><i
-                                                                class="fas fa-edit"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Ativar"><i
-                                                                class="far fa-check-circle"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Bloquear"><i
-                                                                class="fas fa-ban"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Excluir"><i
-                                                                class="far fa-trash-alt"></i></button>
-                                                    </td>
-                                                    <td>Loja B</td>
-                                                    <td>**** **** **** 5678</td>
-                                                    <td>xx</td>
-                                                    <td>Ativo</td>
-                                                    <td>Pré-Pago</td>
-                                                    <td>Fidelidade</td>
-                                                    <td>Prata</td>
-                                                    <td>Cartão de Fidelidade Loja B</td>
-                                                    <td>R$ 800,00</td>
-                                                    <td>R$ 1.500,00</td>
-                                                    <td>500</td>
-                                                </tr>
-
-                                            </tbody>
-                                            <!-- Exemplo de linha de compra. substituir por valores reais da pesquisa-->
-                                            <!------------------------------------------------------------------------->
-
                                         </table>
-                                    </table>
+
 
                                     AQUI PRECISAMOS FAZER COM QUE ESTES DADOS DIMINUAM A FONTE CONFORME O TAMANHO DA
                                     TELA</br>
@@ -1152,7 +1092,6 @@
             <form id="formCriarCartao">
                 @method('POST')
                 @csrf
-                <input type="hidden" id="cliente_id" name="cliente_id" value="{{$cliente->cliente_id}}" />
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="emp_id">Empresa:</label>
@@ -1330,6 +1269,11 @@
 <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/i18n/pt-BR.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- InputMask -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>

@@ -29,7 +29,7 @@ class CreateTbdmClientesGeralTable extends Migration
             $table->string('cliente_email_s', 255)->nullable();
             $table->string('cliente_cel', 25);
             $table->string('cliente_cel_s', 25)->nullable();
-            $table->string('cliente_telfixo', 25);
+            $table->string('cliente_telfixo', 25)->nullable();
             $table->decimal('cliente_rendam', 10, 2);
             $table->decimal('cliente_rdam_s', 10, 2)->nullable();
             $table->integer('cliente_dt_fech');

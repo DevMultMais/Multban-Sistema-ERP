@@ -43,7 +43,10 @@ function formatarParaQuantidade($valor)
 {
     return sprintf('%s', number_format($valor, 2, ',', '.'));
 }
-
+function formatarDecimalParaTexto($valor)
+{
+    return sprintf('%s', number_format($valor, 2, ',', '.'));
+}
 function formatarTextoParaDecimal($valor)
 {
     $valor = str_replace(["%", "R$", ".", ","], ["", "", "", "."], $valor);
@@ -163,6 +166,10 @@ function formatarCNPJCPF($cnpj_cpf)
 function formatarCNPJ($cnpj)
 {
     return mascaraGenerica($cnpj, "##.###.###/####-##");
+}
+function formatarCartaoCredito($card)
+{
+    return mascaraGenerica($card, "#### #### #### ####");
 }
 
 function formatarTelefone($phone)

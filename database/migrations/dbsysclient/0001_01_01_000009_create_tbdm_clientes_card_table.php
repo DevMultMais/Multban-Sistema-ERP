@@ -17,11 +17,11 @@ class CreateTbdmClientesCardTable extends Migration
             //PRIMARY KEY
             $table->foreignId('emp_id');
             $table->foreignId('cliente_id');
-            $table->string('cliente_doc')->length(14);
-            $table->string('cliente_pasprt')->lenght(15);
+            $table->string('cliente_doc', 14);
+            $table->string('cliente_pasprt', 15)->nullable();
             $table->uuid('card_uuid');
-            $table->integer('cliente_cardn')->length(16);
-            $table->integer('cliente_cardcv')->length(3);
+            $table->string('cliente_cardn', 16);
+            $table->string('cliente_cardcv', 3);
             //FIELDS
             $table->string('card_sts', 2);
             $table->string('card_tp', 4);
@@ -30,14 +30,14 @@ class CreateTbdmClientesCardTable extends Migration
             $table->string('card_desc', 100);
             $table->decimal('card_saldo_vlr', 10, 2);
             $table->decimal('card_limite', 10, 2);
-            $table->integer('card_saldo_pts')->length(10);
+            $table->decimal('card_saldo_pts', 10, 2);
             $table->text('card_pass')->nullable();
             $table->integer('criador');
             $table->timestamp('dthr_cr');
             $table->integer('modificador');
             $table->timestamp('dthr_ch')->useCurrent();
             //KEYS
-            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'cliente_pasprt', 'card_uuid', 'cliente_cardn', 'cliente_cardcv']);
+            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'card_uuid', 'cliente_cardn', 'cliente_cardcv']);
             //FOREIGN KEY
             $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
             $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
@@ -48,7 +48,7 @@ class CreateTbdmClientesCardTable extends Migration
             $table->foreignId('emp_id');
             $table->foreignId('cliente_id');
             $table->integer('cliente_doc')->length(14);
-            $table->string('cliente_pasprt')->lenght(15);
+            $table->string('cliente_pasprt', 15)->nullable();
             $table->uuid('protocolo');
             $table->string('protocolo_tp')->length(2);
             //FIELDS
@@ -61,7 +61,7 @@ class CreateTbdmClientesCardTable extends Migration
             $table->integer('modificador');
             $table->timestamp('dthr_ch')->useCurrent();
             //KEYS
-            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'cliente_pasprt', 'protocolo', 'protocolo_tp']);
+            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'protocolo', 'protocolo_tp']);
             //FOREIGN KEY
             $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
             $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
@@ -72,7 +72,7 @@ class CreateTbdmClientesCardTable extends Migration
             $table->foreignId('emp_id');
             $table->foreignId('cliente_id');
             $table->integer('cliente_doc')->length(14);
-            $table->string('cliente_pasprt')->lenght(15);
+            $table->string('cliente_pasprt', 15)->nullable();
             $table->uuid('protocolo');
             $table->string('protocolo_tp')->length(2);
             //FIELDS
@@ -85,7 +85,7 @@ class CreateTbdmClientesCardTable extends Migration
             $table->integer('modificador');
             $table->timestamp('dthr_ch')->useCurrent();
             //KEYS
-            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'cliente_pasprt', 'protocolo', 'protocolo_tp']);
+            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'protocolo', 'protocolo_tp']);
             //FOREIGN KEY
             $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
             $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');

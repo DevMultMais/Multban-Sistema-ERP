@@ -831,16 +831,16 @@ function notify(type, message) {
         },
         inicializarEventos: function () {
             // $("#formPrincipal").validate();
-            // shortcut.add("Enter", function (e) {
-            //     var elementoSelect2Fechado = !$(e.srcElement)
-            //         .attr("class")
-            //         .includes("select2");
-            //     var elementoSemFocus = !$(e.target).is(":focus");
-            //     var modalFechado = $(".modal.fade.in").length == 0;
+            shortcut.add("Enter", function (e) {
+                // var elementoSelect2Fechado = !$(e.srcElement)
+                //     .attr("class")
+                //     .includes("select2");
+                // var elementoSemFocus = !$(e.target).is(":focus");
+                // var modalFechado = $(".modal.fade.in").length == 0;
 
-            //     if (elementoSelect2Fechado && elementoSemFocus && modalFechado)
-            //         $("#btnSalvar").trigger("click");
-            // });
+                // if (elementoSelect2Fechado && elementoSemFocus && modalFechado)
+                //     $("#btnSalvar").trigger("click");
+            });
         },
         selectAll: function (e) {
             e.preventDefault();
@@ -1179,7 +1179,7 @@ function notify(type, message) {
                             toastr.error('Existem campos obrigatórios na aba "' + item.id + '" que não foram preenchidos.');
                         });
                     } else {
-                        toastr.error(xhr.responseJSON);
+                        toastr.error(xhr.responseJSON.message);
                     }
 
                     $("#btnSalvar").html('<i class="icon fas fa-save"></i> Salvar');
