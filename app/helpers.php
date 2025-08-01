@@ -102,7 +102,6 @@ function formatarData($data, $formato = 'd/m/Y')
 function formatarDataComHora($date, $date_format = 'd/m/Y H:i:s')
 {
     return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format($date_format);
-    //return date($formato, strtotime($data));
 }
 
 function formatarDataDes($data, $formato = 'd M Y H:m')
@@ -112,7 +111,6 @@ function formatarDataDes($data, $formato = 'd M Y H:m')
 
 function stringZero($string, $valorStr = 6)
 {
-    $quantidade = strlen($string);
     return str_pad("" . $string, $valorStr, "0", STR_PAD_LEFT);
 }
 

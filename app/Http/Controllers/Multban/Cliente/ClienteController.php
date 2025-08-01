@@ -911,8 +911,17 @@ class ClienteController extends Controller
                 return formatarDecimalParaTexto($row->card_saldo_pts);
             })->editColumn('card_desc', function ($row) {
                 return mb_strtoupper(rtrim($row->card_desc), 'UTF-8');
+            })->editColumn('card_categ', function ($row) {
+                $badge = '';
+                if (!empty($row->card_categ)) {
+                    $badge = CardCateg::where('card_categ', $row->card_categ)->first();
+                    if ($badge) {
+                        return '<span class="badge badge-info">' . $badge->card_categ_desc . '</span>';
+                    }
+                }
+                return $badge;
             })
-            ->rawColumns(['action', 'card_sts'])
+            ->rawColumns(['action', 'card_sts', 'card_categ'])
             ->make(true);
     }
 }
