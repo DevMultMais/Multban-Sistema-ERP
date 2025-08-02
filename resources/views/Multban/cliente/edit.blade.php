@@ -27,8 +27,9 @@
             @endif
             @include('Multban.template.updatetemplate')
 
-                <input type="hidden" id="cliente_id" name="cliente_id" value="{{$cliente->cliente_id}}" />
-             <input type="hidden" id="is_edit" value="1" />
+            <input type="hidden" id="cliente_id" name="cliente_id" value="{{$cliente->cliente_id}}" />
+            <input type="hidden" id="is_edit" value="1" />
+
             <div class="card card-primary card-outline card-outline-tabs">
                 <!-- MENU ABAS/TABS -->
                 <div class="card-header p-0 pt-1 border-bottom-0">
@@ -62,11 +63,6 @@
                         <li class="nav-item">
                             <a class="nav-link" id="tabs-prontuario-tab" data-toggle="pill" href="#tabs-prontuario"
                                 role="tab" aria-controls="tabs-prontuario" aria-selected="false">Prontuário</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabs-receituario-tab" data-toggle="pill" href="#tabs-receituario"
-                                role="tab" aria-controls="tabs-receituario" aria-selected="false">Receituário</a>
                         </li>
 
                         <li class="nav-item">
@@ -725,7 +721,13 @@
                         <div class="tab-pane fade" id="tabs-prontuario" role="tabpanel"
                             aria-labelledby="tabs-prontuario-tab">
 
+                            <!-- Seção Inicial: Linha do tempo -->
                             <div class="row">
+                                AQUI DEVEMOS COLOCAR A LINHA DO TEMPO
+                            </div>
+
+                            <div class="row">
+
                                 <!-- Seção Esquerda: Filtro e Lista -->
                                 <div class="col-md-4 border-right">
                                     <form class="mb-4">
@@ -744,6 +746,12 @@
                                                 <label for="protocolo">Protocolo:</label>
                                                 <input type="text" class="form-control  form-control-sm" id="protocolo" name="protocolo"
                                                     placeholder="Digite o Protocolo">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="user_id">Médico:</label>
+                                                <select id="user_id" name="user_id" class="form-control select2 select2-hidden-accessible"
+                                                    data-placeholder="Pesquise o Médico" style="width: 100%;" aria-hidden="true">
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-6 align-self-end">
                                                 <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"
@@ -795,49 +803,334 @@
                                     </table>
                                 </div>
 
-                                <!-- Seção Central: Editor e Anexos -->
-                                <div class="col-md-5">
-                                    <form>
-                                        <div class="form-group">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <label for="texto_prt" class="mb-0">Anotações:</label>
-                                                <input type="text" id="protocolo_atual"
-                                                    class="form-control form-control-sm font-weight-bold"
-                                                    style="width: 180px; font-size: 1.3rem; font-weight: bold;"
-                                                    readonly>
+                                <!-- Seção Direita: Abas de Atendimento -->
+
+                                <div class="card card-primary card-outline card-outline-tabs d-flex flex-column flex-grow-1" style="min-height: 0; margin-left: 1rem; height: 100%;">
+
+                                    <!-- CABEÇALHO DAS ABAS DE PRONTUÁRIO-->
+                                    <div class="card-header p-0 pt-1 border-bottom-0">
+
+                                        <!-- ABAS -->
+                                        <ul class="nav nav-tabs" id="custom-tabs-prt-tab" role="tablist">
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-anamnese-tab" data-toggle="pill" href="#tabs-anamnese" role="tab"
+                                                    aria-controls="tabs-anamnese" aria-selected="true">Anamnese</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="tabs-anotacao-tab" data-toggle="pill" href="#tabs-anotacao" role="tab"
+                                                    aria-controls="tabs-anotacao" aria-selected="true">Anotações</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-anotacao-priv-tab" data-toggle="pill" href="#tabs-anotacao-priv" role="tab"
+                                                    aria-controls="tabs-anotacao-priv" aria-selected="false">Anotações Privadas</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-receituario-tab" data-toggle="pill" href="#tabs-receituario" role="tab"
+                                                    aria-controls="tabs-receituario" aria-selected="false">Receituário</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-exames-tab" data-toggle="pill" href="#tabs-exames"
+                                                    role="tab" aria-controls="tabs-exames" aria-selected="false">Solic. de Exames</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-atestado-tab" data-toggle="pill" href="#tabs-atestado" role="tab"
+                                                    aria-controls="tabs-atestado" aria-selected="false">Atestado</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-fotos-tab" data-toggle="pill" href="#tabs-fotos" role="tab"
+                                                    aria-controls="tabs-fotos" aria-selected="false">Fotos</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-documentos-tab" data-toggle="pill" href="#tabs-documentos" role="tab"
+                                                    aria-controls="tabs-documentos" aria-selected="false">Documentos</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!--CONTEÚDO DAS ABAS-->
+                                    <div class="card-body">
+                                        <div class="tab-content" id="custom-tabs-prt-tabContent">
+
+                                            <!--CONTEÚDO DA ABA ANAMNESE-->
+                                            <div class="tab-pane fade show" id="tabs-anamnese" role="tabpanel"
+                                                aria-labelledby="tabs-anamnese-tab">
+
+                                                    <div class="card-body">
+                                                        <textarea id="texto_prt" class="form-control summernote" rows="8">Digite aqui suas anotações...</textarea>
+                                                    </div>
+
                                             </div>
-                                            <textarea id="texto_prt" class="form-control summernote"
-                                                rows="10"></textarea>
+
+                                            <!--CONTEÚDO DA ABA ANOTAÇÕES-->
+                                            <div class="tab-pane fade show active" id="tabs-anotacao" role="tabpanel"
+                                                aria-labelledby="tabs-anotacao-tab">
+
+                                                    <div class="card-body">
+                                                        <textarea id="texto_prt" class="form-control summernote" rows="8">Digite aqui suas anotações iniciais ou orientações...</textarea>
+                                                    </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA ANOTAÇÕES PRIVADAS-->
+                                            <div class="tab-pane fade" id="tabs-anotacao-priv" role="tabpanel"
+                                                aria-labelledby="tabs-anotacao-priv-tab">
+
+                                                    <div class="card-body">
+                                                        <textarea id="texto_prv" class="form-control summernote" rows="8">Digite aqui suas anotações privadas...</textarea>
+                                                    </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA RECEITUÁRIO-->
+                                            <div class="tab-pane fade" id="tabs-receituario" role="tabpanel"
+                                                aria-labelledby="tabs-receituario-tab">
+
+                                                <div class="container-fluid">
+                                                    <!-- Linha 1: Logo + Dados Empresa/Médico -->
+                                                    <div class="row align-items-center mb-3">
+                                                        <div class="col-md-2 text-center">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div>
+                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 2: Paciente -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label class="font-weight-bold">Paciente:</label>
+                                                            <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 3: Produto + Posologia -->
+                                                    <div class="form-row mb-3">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="produto_id">Medicamento:</label>
+                                                            <select id="produto_id" name="produto_id" class="form-control form-control-sm select2"
+                                                                data-placeholder="Pesquise o Medicamento" style="width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="detalhes_posologia">Detalhes da Posologia:</label>
+                                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm" placeholder="Digite os detalhes da posologia"
+                                                                name="detalhes_posologia" type="text" id="detalhes_posologia">
+                                                        </div>
+                                                        <div class="form-group col-md-3 d-flex align-items-end">
+                                                            <button id="btnAdicionar" type="button" class="btn btn-primary btn-sm w-100">
+                                                                <i class="icon fas fa-plus-square"></i> Adicionar Medicamento
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 4: Campo texto tipo anotações -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label for="texto_rec">Receituário:</label>
+                                                            <textarea id="texto_rec" class="form-control summernote" rows="8">Adicione os medicamentos ou digite manualmente...</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA SOLICITAÇÃO DE EXAMES-->
+                                            <div class="tab-pane fade" id="tabs-exames" role="tabpanel"
+                                                aria-labelledby="tabs-exames-tab">
+
+                                                <div class="container-fluid">
+                                                    <!-- Linha 1: Logo + Dados Empresa/Médico -->
+                                                    <div class="row align-items-center mb-3">
+                                                        <div class="col-md-2 text-center">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div>
+                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 2: Paciente -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label class="font-weight-bold">Paciente:</label>
+                                                            <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 3: Produto + Posologia -->
+                                                    <div class="form-row mb-3">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="produto_id">Exame:</label>
+                                                            <select id="produto_id" name="produto_id" class="form-control form-control-sm select2"
+                                                                data-placeholder="Pesquise o Medicamento" style="width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="detalhes_posologia">Detalhes do Exame:</label>
+                                                            <input autocomplete="off" maxlength="255" class="form-control form-control-sm" placeholder="Digite os detalhes da posologia"
+                                                                name="detalhes_posologia" type="text" id="detalhes_posologia">
+                                                        </div>
+                                                        <div class="form-group col-md-3 d-flex align-items-end">
+                                                            <button id="btnAdicionar" type="button" class="btn btn-primary btn-sm w-100">
+                                                                <i class="icon fas fa-plus-square"></i> Adicionar Exame
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 4: Campo texto tipo anotações -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label for="texto_exm">Exames:</label>
+                                                            <textarea id="texto_exm" class="form-control summernote" rows="8">Adicione os exames ou digite manualmente...</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA ATESTADO-->
+                                            <div class="tab-pane fade" id="tabs-atestado" role="tabpanel"
+                                                aria-labelledby="tabs-atestado-tab">
+
+                                                <div class="container-fluid">
+                                                    <!-- Linha 1: Logo + Dados Empresa/Médico -->
+                                                    <div class="row align-items-center mb-3">
+                                                        <div class="col-md-2 text-center">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div>
+                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 2: Paciente -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label class="font-weight-bold">Paciente:</label>
+                                                            <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Linha 3: Campo texto tipo anotações -->
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <label for="texto_atd">Atestado:</label>
+                                                            <textarea id="texto_atd" class="form-control summernote" rows="8">Digite aqui as informações do Atestado...</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA FOTOS-->
+                                            <div class="tab-pane fade" id="tabs-fotos" role="tabpanel"
+                                                aria-labelledby="tabs-fotos-tab">
+
+                                                <div class="form-row mb-3">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="fotoUpload">Selecionar Foto:</label>
+                                                        <input type="file" id="fotoUpload" name="fotoUpload" accept="image/*" class="form-control-file">
+                                                    </div>
+                                                    <div class="form-group col-md-3 d-flex align-items-end">
+                                                        <button id="btnAdFoto" type="button" class="btn btn-primary btn-sm" onclick="anexarFoto()">
+                                                            <i class="icon fas fa-plus-square"></i> Adicionar Foto
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Exemplo de exibição de fotos anexadas -->
+                                                <div class="mt-4">
+                                                    <label>Fotos Anexadas:</label>
+                                                    <div>
+                                                        <img src="https://via.placeholder.com/80"
+                                                            class="img-thumbnail atendimento-foto"
+                                                            style="cursor:pointer;max-width:80px;"
+                                                            title="Clique duas vezes para ampliar">
+                                                        <img src="https://via.placeholder.com/80"
+                                                            class="img-thumbnail atendimento-foto"
+                                                            style="cursor:pointer;max-width:80px;"
+                                                            title="Clique duas vezes para ampliar">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA DOCUMENTOS-->
+                                            <div class="tab-pane fade" id="tabs-documentos" role="tabpanel"
+                                                aria-labelledby="tabs-documentos-tab">
+
+                                                <div class="form-row mb-3">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="fotoUpload">Selecionar Documento:</label>
+                                                        <input type="file" id="fotoUpload" name="fotoUpload" accept="image/*" class="form-control-file">
+                                                    </div>
+                                                    <div class="form-group col-md-3 d-flex align-items-end">
+                                                        <button id="btnAdDocumento" type="button" class="btn btn-primary btn-sm" onclick="anexarDocumento()">
+                                                            <i class="icon fas fa-plus-square"></i> Adicionar Documento
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Exemplo de exibição de fotos anexadas -->
+                                                <div class="mt-4">
+                                                    <label>Fotos Anexadas:</label>
+                                                    <div>
+                                                        <img src="https://via.placeholder.com/80"
+                                                            class="img-thumbnail atendimento-foto"
+                                                            style="cursor:pointer;max-width:80px;"
+                                                            title="Clique duas vezes para ampliar">
+                                                        <img src="https://via.placeholder.com/80"
+                                                            class="img-thumbnail atendimento-foto"
+                                                            style="cursor:pointer;max-width:80px;"
+                                                            title="Clique duas vezes para ampliar">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
                                         </div>
-                                        <button id="btnSalvarPrt" type="button" class="btn btn-primary btn-sm"><i
-                                                class="icon fas fa-save"></i> Salvar</button>
-                                        <button id="btnReceituario" type="button" class="btn btn-primary btn-sm"><i
-                                                class="icon fas fa-files-medical"></i> Receituário</button>
-                                    </form>
+                                    </div>
+
+                                    <div class="mt-auto mb-2" id="container-botoes-prt" style="margin-left: 0.5rem;">
+                                        <button id="btnSalvarPrt" type="button" class="btn btn-primary btn-sm">
+                                            <i class="icon fas fa-save"></i> Salvar
+                                        </button>
+                                        <button id="btnImprimir" type="button" class="btn btn-primary btn-sm d-none" onclick="printCorpoReceita()">
+                                            <i class="fas fa-print"></i> Imprimir
+                                        </button>
+                                    </div>
+
                                 </div>
 
-                                <!-- Seção Esquerda: Imagens -->
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="anexos">Anexar Arquivos:</label>
-                                        <input type="file" id="anexos" name="anexos[]" class="form-control-file"
-                                            multiple>
-                                    </div>
-                                    <!-- Exemplo de exibição de fotos anexadas -->
-                                    <div class="mt-4">
-                                        <label>Fotos Anexadas:</label>
-                                        <div>
-                                            <img src="https://via.placeholder.com/80"
-                                                class="img-thumbnail atendimento-foto"
-                                                style="cursor:pointer;max-width:80px;"
-                                                title="Clique duas vezes para ampliar">
-                                            <img src="https://via.placeholder.com/80"
-                                                class="img-thumbnail atendimento-foto"
-                                                style="cursor:pointer;max-width:80px;"
-                                                title="Clique duas vezes para ampliar">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             A TABELA A SER UTILIZADA É A TBDM_CLIENTES_PRT</br>
@@ -850,117 +1143,6 @@
                             OS FILTROS DE DATA DE/ATÉ DEVEM UTILIZAR O CAMPO DTHR_CR DA TABELA TBDM_CLIENTES_REC</br>
                             ATENTAR PARA A NAVEGAÇÃO, POIS AO CLICAR EM RECEITUÁRIO, DEVEMOS LEVAR O PROTOCOLO QUE
                             ESTIVER SELECIONADO
-                        </div>
-
-                        <!--ABA RECEITUÁRIO-->
-                        <div class="tab-pane fade" id="tabs-receituario" role="tabpanel"
-                            aria-labelledby="tabs-receituario-tab">
-
-                            <div class="row">
-                                <!-- Seção Esquerda: Lista de Receitas -->
-                                <div class="col-md-4 border-right">
-                                    <form class="mb-4">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="data_de">De:</label>
-                                                <input type="date" class="form-control  form-control-sm" id="data_de" name="data_de">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="data_ate">Até:</label>
-                                                <input type="date" class="form-control  form-control-sm" id="data_ate" name="data_ate">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="protocolo">Protocolo:</label>
-                                                <input type="text" class="form-control  form-control-sm" id="protocolo" name="protocolo"
-                                                    placeholder="Digite o Protocolo">
-                                            </div>
-                                            <div class="form-group col-md-6 align-self-end">
-                                                <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"
-                                                    style=""><i class="fa fa-search"></i> Pesquisar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <table class="table table-sm table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Data</th>
-                                                <th>Protocolo</th>
-                                                <th>Médico</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="linha-protocolo-rec" data-protocolo="548965">
-                                                <td>01/06/2024</td>
-                                                <td>548965</td>
-                                                <td>Dr. João Silva</td>
-                                            </tr>
-                                            <tr class="linha-protocolo-rec" data-protocolo="983647">
-                                                <td>15/05/2024</td>
-                                                <td>983647</td>
-                                                <td>Dra. Maria Souza</td>
-                                            </tr>
-                                            <tr class="linha-protocolo-rec" data-protocolo="964872">
-                                                <td>10/05/2024</td>
-                                                <td>964872</td>
-                                                <td>Dr. Carlos Lima</td>
-                                            </tr>
-                                            <tr class="linha-protocolo-rec" data-protocolo="369872">
-                                                <td>25/04/2024</td>
-                                                <td>369872</td>
-                                                <td>Dra. Ana Paula</td>
-                                            </tr>
-                                            <tr class="linha-protocolo-rec" data-protocolo="329618">
-                                                <td>10/04/2024</td>
-                                                <td>329618</td>
-                                                <td>Dr. Pedro Alves</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- Seção Direita: Editor de Receita -->
-                                <div class="col-md-8">
-                                    <!-- Corpo da Receita -->
-                                    <div class="form-group">
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <label for="texto_rec" class="mb-0">Receita:</label>
-                                            <input type="text" id="protocolo_receita"
-                                                class="form-control form-control-sm font-weight-bold"
-                                                style="width: 180px; font-size: 1.3rem; font-weight: bold;" readonly>
-                                        </div>
-
-                                        <textarea id="texto_rec" class="form-control summernote" rows="8">
-                                            <div style="display: flex; align-items: flex-start;">
-                                                <img src="{{ asset('assets/dist/img/logo-amarela-min.png') }}" alt="Logo" style="height: 50px; margin-right: 15px;">
-                                                <div>
-                                                    <div style="font-size: 1.2em; font-weight: bold;">Nome da Clínica</div>
-                                                    <div style="font-size: 1em;">Dr. Nome do Médico - CRM 000000</div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <p><br></p>
-                                        </textarea>
-                                    </div>
-                                    <!-- Botões -->
-                                    <button id="btnSalvarRec" type="button" class="btn btn-primary btn-sm"><i
-                                            class="icon fas fa-save"></i> Salvar</button>
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="printCorpoReceita();"><i
-                                            class="far fa-print"></i> Imprimir</button>
-                                </div>
-                            </div>
-
-                            A TABELA A SER UTILIZADA É A TBDM_CLIENTES_REC
-                            SOMENTE USUÁRIO DO TIPO MÉDICO TERÃO ACESSO A ESTA ABA</br>
-                            TUDO O QUE FOR DIGITADO NO CAMPO TEXTO DEVERÁ SER GRAVADO EM UMA TABELA DO BANCO DE
-                            DADOS</br>
-                            O CAMPO TEXTO DEVERÁ TER UM CABEÇALHO ONDE O LOGO DEVERÁ SER CARREGADO DO CADASTRO DA
-                            EMPRESA</br>
-                            OS DADOS DA CLÍNICA SERÃO CARREGADOS DA EMPRESA QUE O USUÁRIO ESTIVER LOGADO</br>
-                            OS DADOS DO MÉDICO SERÃO CARREGADOS DO USUÁRIO QUE ESTIVER LOGADO</br>
-                            OS FILTROS DE DATA DE/ATÉ DEVEM UTILIZAR O CAMPO DTHR_CR DA TABELA TBDM_CLIENTES_REC</br>
-                            DO LADO ESQUERDO, TEMOS O HISTÓRICO DE TUDO O QUE FOI GRAVADO, SE CLICAR EM ALGUM HISTÓRICO,
-                            DEVEMOS CARREGAR O TEXTO DA RECEITA
                         </div>
 
                         <!--ABA ATENDIMENTO-->
@@ -1183,7 +1365,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-
          // Verifica o status do usuário e ajusta o texto do botão de ativação/inativação
         if ("{{$cliente->cliente_sts}}" == "EX" ) {
             $("#btnInativar").text("Ativar");
@@ -1236,6 +1417,27 @@
         $('.linha-protocolo-rec').on('click', function() {
             var protocolo = $(this).data('protocolo');
             $('#protocolo_receita').val(protocolo);
+        });
+
+        function toggleBtnImprimir() {
+            var activeTab = $('#custom-tabs-prt-tab .nav-link.active').attr('id');
+            if (
+                activeTab === 'tabs-receituario-tab' ||
+                activeTab === 'tabs-exames-tab' ||
+                activeTab === 'tabs-atestado-tab'
+            ) {
+                $('#btnImprimir').removeClass('d-none');
+            } else {
+                $('#btnImprimir').addClass('d-none');
+            }
+        }
+
+        // Chama ao carregar
+        toggleBtnImprimir();
+
+        // Chama ao trocar de aba
+        $('#custom-tabs-prt-tab .nav-link').on('shown.bs.tab', function () {
+            toggleBtnImprimir();
         });
 
     });

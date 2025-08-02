@@ -18,11 +18,11 @@ class CreateTbdmClientesCardTable extends Migration
             $table->foreignId('emp_id');
             $table->foreignId('cliente_id');
             $table->string('cliente_doc', 14);
-            $table->string('cliente_pasprt', 15)->nullable();
             $table->uuid('card_uuid');
             $table->string('cliente_cardn', 16);
             $table->string('cliente_cardcv', 3);
             //FIELDS
+            $table->string('cliente_pasprt', 15)->nullable();
             $table->string('card_sts', 2);
             $table->string('card_tp', 4);
             $table->string('card_mod', 4);
@@ -46,56 +46,67 @@ class CreateTbdmClientesCardTable extends Migration
         Schema::create('tbdm_clientes_prt', function (Blueprint $table) {
             //PRIMARY KEY
             $table->id('protocolo');
-            $table->foreignId('emp_id');
-            $table->foreignId('cliente_id');
-            $table->string('cliente_doc', 14);
-            $table->string('protocolo_tp')->length(2);
+            $table->string('protocolo_tp', 2);
             $table->date('protocolo_dt');
+            $table->primary(['protocolo', 'protocolo_tp', 'protocolo_dt']);
+
+            //FOREIGN KEYS
+            $table->foreignId('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
+            $table->foreignId('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
+            $table->integer('cliente_doc')->length(14);
+
             //FIELDS
-            $table->string('cliente_pasprt', 15);
-            $table->bigInteger('user_id');
-            $table->string('anexo', 1);
-            $table->string('doc_anexo_path', 255);
-            $table->string('foto_anexo_path', 255);
-            $table->longtext('texto_prt');
-            $table->longtext('texto_rec');
-            $table->longtext('texto_anm');
-            $table->longtext('texto_prv');
-            $table->longtext('texto_exm');
-            $table->longtext('texto_atd');
+            $table->integer('user_id');
+            $table->string('cliente_pasprt', 15)->nullable();
+            $table->string('anexo', 1)->nullable();
+            $table->string('doc_anexo_path', 255)->nullable();
+            $table->string('foto_anexo_path', 255)->nullable();
+            $table->longText('texto_prt')->nullable();
+            $table->longText('texto_rec')->nullable();
+            $table->longText('texto_anm')->nullable();
+            $table->longText('texto_prv')->nullable();
+            $table->longText('texto_exm')->nullable();
+            $table->longText('texto_atd')->nullable();
             $table->integer('criador');
             $table->timestamp('dthr_cr');
             $table->integer('modificador');
             $table->timestamp('dthr_ch');
-            //KEYS
-            //$table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'protocolo', 'protocolo_tp', 'protocolo_dt']);
-            //FOREIGN KEY
-            $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
-            $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
+
+            //INDEXES
+            $table->index('emp_id');
+            $table->index('cliente_id');
+            $table->index('cliente_doc');
+            $table->index('user_id');
         });
 
-        Schema::create('tbdm_clientes_rec', function (Blueprint $table) {
+        Schema::create('tbtr_clientes_orc', function (Blueprint $table) {
             //PRIMARY KEY
-            $table->foreignId('emp_id');
-            $table->foreignId('cliente_id');
-            $table->integer('cliente_doc')->length(14);
-            $table->string('cliente_pasprt', 15)->nullable();
-            $table->uuid('protocolo');
-            $table->string('protocolo_tp')->length(2);
+            $table->id('orcamento');
+            $table->date('orcamento_dt');
+            $table->integer('orcamento_sts');
+            $table->primary(['orcamento', 'orcamento_dt', 'orcamento_sts']);
+
+            //FOREIGN KEYS
+            $table->foreignid('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
+            $table->foreignid('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
+            $table->string('cliente_doc', 14);
+            $table->foreignid('produto_id')->references('produto_id')->on('tbdm_produtos_geral');
+
             //FIELDS
             $table->integer('user_id');
-            $table->string('anexo', 1);
-            $table->string('anexo_path', 255);
-            $table->longtext('texto_rec');
+            $table->integer('qtde_orc')->nullable();
+            $table->decimal('vlr_orc', 10, 2)->nullable();
             $table->integer('criador');
             $table->timestamp('dthr_cr');
             $table->integer('modificador');
-            $table->timestamp('dthr_ch')->useCurrent();
-            //KEYS
-            $table->primary(['emp_id', 'cliente_id', 'cliente_doc', 'protocolo', 'protocolo_tp']);
-            //FOREIGN KEY
-            $table->foreign('emp_id')->references('emp_id')->on('tbdm_empresa_geral');
-            $table->foreign('cliente_id')->references('cliente_id')->on('tbdm_clientes_geral');
+            $table->timestamp('dthr_ch');
+
+            //INDEXES
+            $table->index('emp_id');
+            $table->index('cliente_id');
+            $table->index('cliente_doc');
+            $table->index('user_id');
+            $table->index('produto_id');
         });
 
         Schema::create('tbdm_cartoes_pre', function (Blueprint $table) {
@@ -144,8 +155,7 @@ class CreateTbdmClientesCardTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tbdm_clientes_card');
-        Schema::dropIfExists('tbdm_clientes_prt');
-        Schema::dropIfExists('tbdm_clientes_rec');
+        Schema::dropIfExists('tbtr_clientes_prt');
         Schema::dropIfExists('tbdm_cartoes_pre');
         Schema::dropIfExists('tbdm_programa_pts');
     }
