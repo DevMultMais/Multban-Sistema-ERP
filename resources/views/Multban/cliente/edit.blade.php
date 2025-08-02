@@ -729,7 +729,7 @@
                             <div class="row">
 
                                 <!-- Seção Esquerda: Filtro e Lista -->
-                                <div class="col-md-4 border-right">
+                                <div class="col-md-3 border-right">
                                     <form class="mb-4">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -851,6 +851,11 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="tabs-documentos-tab" data-toggle="pill" href="#tabs-documentos" role="tab"
                                                     aria-controls="tabs-documentos" aria-selected="false">Documentos</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="tabs-orcamento-tab" data-toggle="pill" href="#tabs-orcamento" role="tab"
+                                                    aria-controls="tabs-orcamento" aria-selected="false">Orçamentos</a>
                                             </li>
 
                                         </ul>
@@ -1114,6 +1119,22 @@
                                                             title="Clique duas vezes para ampliar">
                                                     </div>
                                                 </div>
+
+                                            </div>
+
+                                            <!--CONTEÚDO DA ABA DOCUMENTOS-->
+                                            <div class="tab-pane fade" id="tabs-orcamento" role="tabpanel"
+                                                aria-labelledby="tabs-orcamento-tab">
+
+                                                ACRESCENTAR AQUI A LISTA DOS ORÇAMENTOS CRIADOS.
+                                                AQUI, PRECISAMOS CRIAR UM MODAL ONDE O ATENDENTE POSSA SELECIONAR O PRODUTOS, DIGITAR VALOR E QUANTIDADE,<br>
+                                                E CRIAR UMA LISTA DE VENDA QUE, POSTERIORMENTE, SERÁ UTILIZADA PELO PDV WEB PARA FECHAR A VENDA OFICIAL<br>
+                                                <br>
+                                                NESTA PARTE, TEREMOS UMA LINHA PARA CADA ORÇAMENTO CRIADO, ESTES ORÇAMENTOS SERÃO GRAVADOS NA TABELA<br>
+                                                TBTR_CLIENTES_ORC
+                                                <br>
+                                                NESTA RELA, EM CADA REGISTRO, DEVE TER UM BOTÃO, "FINALIZAR VENDA", AO CLICAR NESTE BOTÃO, DEVE DIRECIONAR<br>
+                                                PARA O PDV WEB JÁ COM OS DADOS DO CLIENTE PREENCHIDO, E OS ITENS INCLUÍDOS NO CARRINHO DE COMPRA
 
                                             </div>
 
