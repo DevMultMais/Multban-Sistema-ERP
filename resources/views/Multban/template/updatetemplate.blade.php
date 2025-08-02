@@ -27,12 +27,12 @@
 
 <div class="row" id="row-top" style="">
   <div class=" navbar-fixed-top fixed nav-opcoes">
-    <button id="btnSalvar" type="button" class="btn btn-primary"><i class="icon fas fa-save"></i> Salvar</button>
+    <button id="btnSalvar" type="button" class="btn btn-primary btn-sm"><i class="icon fas fa-save"></i> Salvar</button>
     @if (!request()->is('*/inserir'))
-    <button id="btnInativar" type="button" class="btn btn-primary"><i class="icon fas fa-times"></i> Inativar</button>
-    <button id="btnExcluir" type="button" class="btn btn-primary"><i class="icon fas fa-trash"></i> Exluir</button>
+    <button id="btnInativar" type="button" class="btn btn-primary btn-sm"><i class="icon fas fa-times"></i> Inativar</button>
+    <button id="btnExcluir" type="button" class="btn btn-primary btn-sm"><i class="icon fas fa-trash"></i> Exluir</button>
     @endif
-    <button id="btnCancelar" onclick="location.href='{{url($route)}}'" type="button" class="btnCancelar btn btn-secundary-multban"><i class="icon fas fa-arrow-left"></i> Voltar</button>
+    <button id="btnCancelar" onclick="location.href='{{url($route)}}'" type="button" class="btnCancelar btn btn-secundary-multban btn-sm"><i class="icon fas fa-arrow-left"></i> Voltar</button>
 
 
 

@@ -40,18 +40,18 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="produto_id">Código do Produto:</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="text" class="form-control" id="produto_id" name="produto_id" placeholder="Código do Produto" readonly>
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="text" class="form-control  form-control-sm" id="produto_id" name="produto_id" placeholder="Código do Produto" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="dthr_cr">Data de Cadastro:</label>
-                                            <input autocomplete="off" readonly class="form-control" placeholder="Data de cadastro" name="dthr_cr" type="text" id="dthr_cr"
+                                            <input autocomplete="off" readonly class="form-control  form-control-sm" placeholder="Data de cadastro" name="dthr_cr" type="text" id="dthr_cr"
                                             value="">
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="dthr_ch">Última atualização:</label>
-                                            <input autocomplete="off" readonly class="form-control" placeholder="Última atualização" name="dthr_ch" type="text" id="dthr_ch"
+                                            <input autocomplete="off" readonly class="form-control  form-control-sm" placeholder="Última atualização" name="dthr_ch" type="text" id="dthr_ch"
                                             value="">
                                         </div>
 
@@ -62,7 +62,7 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="produto_tipo">Tipo de Produto:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <select class="form-control select2" id="produto_tipo" name="produto_tipo" data-placeholder="Selecione o Status" style="width: 100%;">
                                                     <option></option>
                                                     <option value="op">Buscar dados da tabela TBDM_PRODUTO_TP</option>
@@ -75,7 +75,7 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="produto_sts">Status:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <select class="form-control select2" id="produto_sts" name="produto_sts" data-placeholder="Selecione o Status" style="width: 100%;">
                                                     <option></option>
                                                     <option value="op">Buscar dados da tabela TBDM_PRODUTO_STS</option>
@@ -85,11 +85,11 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="produto_vlr">Preço de Venda:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">R$</span>
                                                 </div>
-                                                <input type="text" class="form-control" id="produto_vlr" name="produto_vlr" placeholder="Valor de Venda" required>
+                                                <input type="text" class="form-control  form-control-sm" id="produto_vlr" name="produto_vlr" placeholder="Valor de Venda" required>
                                             </div>
                                         </div>
 
@@ -100,15 +100,15 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="produto_dc">Descrição Curta:</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="text" class="form-control" id="produto_dc" name="produto_dc" placeholder="Descrição Curta" required maxlength="15">
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="text" class="form-control  form-control-sm" id="produto_dc" name="produto_dc" placeholder="Descrição Curta" required maxlength="15">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="produto_dm">Descrição Média:</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="text" class="form-control" id="produto_dm" name="produto_dm" placeholder="Descrição Média" required maxlength="100">
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="text" class="form-control  form-control-sm" id="produto_dm" name="produto_dm" placeholder="Descrição Média" required maxlength="100">
                                             </div>
                                         </div>
 
@@ -118,15 +118,15 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="produto_dl">Descrição Longa:</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="text" class="form-control" id="produto_dl" name="produto_dl" placeholder="Descrição Longa" required maxlength="255">
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="text" class="form-control  form-control-sm" id="produto_dl" name="produto_dl" placeholder="Descrição Longa" required maxlength="255">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="produto_dt">Descrição Técnica:</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="text" class="form-control" id="produto_dt" name="produto_dt" placeholder="Descrição Técnica" maxlength="255">
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="text" class="form-control  form-control-sm" id="produto_dt" name="produto_dt" placeholder="Descrição Técnica" maxlength="255">
                                             </div>
                                         </div>
                                     </div>
@@ -144,12 +144,12 @@
                                             <div class="row">
                                                 <div class="form-group col-md-2">
                                                     <label for="partcp_pvlaor">% de Participação:</label>
-                                                    <input type="number" class="form-control" id="partcp_pvlaor" name="partcp_pvlaor" placeholder="% de Participação" step="0.01">
+                                                    <input type="number" class="form-control  form-control-sm" id="partcp_pvlaor" name="partcp_pvlaor" placeholder="% de Participação" step="0.01">
                                                 </div>
 
                                                 <div class="form-group col-md-3">
                                                     <label for="partcp_seller">Id de Integração - Seller:</label>
-                                                    <input type="text" class="form-control" id="partcp_seller" name="partcp_seller" placeholder="Id de Integração">
+                                                    <input type="text" class="form-control  form-control-sm" id="partcp_seller" name="partcp_seller" placeholder="Id de Integração">
                                                 </div>
 
                                                 <div class="form-group col-md-3">
@@ -177,17 +177,17 @@
 
                                                 <div class="form-group col-md-2" id="campoAgencia" style="display: none;">
                                                     <label for="partcp_agbc">Agência:</label>
-                                                    <input type="text" class="form-control" id="partcp_agbc" name="partcp_agbc" placeholder="Agência">
+                                                    <input type="text" class="form-control  form-control-sm" id="partcp_agbc" name="partcp_agbc" placeholder="Agência">
                                                 </div>
 
                                                 <div class="form-group col-md-2" id="campoConta" style="display: none;">
                                                     <label for="partcp_ccbc">Conta:</label>
-                                                    <input type="text" class="form-control" id="partcp_ccbc" name="partcp_ccbc" placeholder="Conta">
+                                                    <input type="text" class="form-control  form-control-sm" id="partcp_ccbc" name="partcp_ccbc" placeholder="Conta">
                                                 </div>
 
                                                 <div class="form-group col-md-3" id="campoChavePix" style="display: none;">
                                                     <label for="partcp_pix">Chave PIX:</label>
-                                                    <input type="text" class="form-control" id="partcp_pix" name="partcp_pix" placeholder="Chave PIX" maxlength="100">
+                                                    <input type="text" class="form-control  form-control-sm" id="partcp_pix" name="partcp_pix" placeholder="Chave PIX" maxlength="100">
                                                 </div>
                                             </div>
                                         </div>
@@ -197,15 +197,15 @@
                                             <div class="row">
                                                 <div class="form-group col-md-2">
                                                     <label for="produto_ncm">NCM:</label>
-                                                    <input type="text" class="form-control" id="produto_ncm" name="produto_ncm" placeholder="NCM" required maxlength="10">
+                                                    <input type="text" class="form-control  form-control-sm" id="produto_ncm" name="produto_ncm" placeholder="NCM" required maxlength="10">
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     <label for="produto_peso">Peso em Kg:</label>
-                                                    <input type="text" class="form-control" id="produto_peso" name="produto_peso" placeholder="Peso em Kg" required >
+                                                    <input type="text" class="form-control  form-control-sm" id="produto_peso" name="produto_peso" placeholder="Peso em Kg" required >
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="produto_cdgb">QR Code:</label>
-                                                    <input type="text" class="form-control" id="produto_cdgb" name="produto_cdgb" placeholder="Digite o QR Code" required maxlength="255">
+                                                    <input type="text" class="form-control  form-control-sm" id="produto_cdgb" name="produto_cdgb" placeholder="Digite o QR Code" required maxlength="255">
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     <label>Controlar Estoque:</label><br>

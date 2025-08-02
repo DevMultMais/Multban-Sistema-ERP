@@ -62,14 +62,14 @@
                             <div class="form-row" id="serachClient">
                                 <div class="form-group col-md-2">
                                     <label for="emp_id">Código:</label>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <span class="input-group-prepend">
                                             <a href="#" data-toggle="modal" data-target="#pesquisa-empresa-modal"
                                                 class="btn btn-default" data-placement="top"
                                                 title="Pesquisar empresa"><i class="fas fa-search text-primary"></i></a>
                                         </span>
                                         <input autocomplete="off" type="text" autofocus="autofocus"
-                                            class="form-control cep" id="emp_id" name="emp_id"
+                                            class="form-control cep form-control-sm" id="emp_id" name="emp_id"
                                             value="{{ str_pad($empresaGeral->emp_id, 5, "0", STR_PAD_LEFT) }}"
                                             placeholder="Código da Empresa">
                                         <span class="input-group-append">
@@ -104,7 +104,7 @@
                                 <div class="form-group col-md-3">
                                     <label for="emp_cnpj">CNPJ:*</label>
                                     <input autocomplete="off" type="text" autofocus="autofocus"
-                                        class="form-control cnpj" id="emp_cnpj" name="emp_cnpj"
+                                        class="form-control cnpj form-control-sm" id="emp_cnpj" name="emp_cnpj"
                                         value="{{$empresaGeral->emp_cnpj}}" required placeholder="00.000.000.0000/00">
                                     <span id="emp_cnpjError" class="text-danger text-sm"></span>
                                 </div>
@@ -125,7 +125,7 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="emp_wlde">White Label da Empresa:</label>
-                                    <input autocomplete="off" class="form-control" placeholder="White Label da Empresa"
+                                    <input autocomplete="off" class="form-control  form-control-sm" placeholder="White Label da Empresa"
                                         autofocus="autofocus" maxlength="60" name="emp_wlde" type="text" id="emp_wlde"
                                         value="{{ $empresaGeral->emp_wlde }}" readonly>
                                     <span id="emp_wldeError" class="text-danger text-sm"></span>
@@ -135,34 +135,34 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="emp_ie">Inscrição Estadual:</label>
-                                    <input autocomplete="off" type="text" class="form-control ie" id="emp_ie"
+                                    <input autocomplete="off" type="text" class="form-control ie form-control-sm" id="emp_ie"
                                         name="emp_ie" value="{{$empresaGeral->emp_ie}}"
                                         placeholder="Inscrição Estadual">
                                     <span id="emp_ieError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="emp_im">Inscrição Municipal:</label>
-                                    <input autocomplete="off" type="text" class="form-control" id="emp_im" name="emp_im"
+                                    <input autocomplete="off" type="text" class="form-control  form-control-sm" id="emp_im" name="emp_im"
                                         value="{{$empresaGeral->emp_im}}" placeholder="Inscrição Municipal">
                                     <span id="emp_imError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="emp_rzsoc">Razão Social:*</label>
-                                    <input autocomplete="off" type="text" maxlength="255" class="form-control"
+                                    <input autocomplete="off" type="text" maxlength="255" class="form-control  form-control-sm"
                                         id="emp_rzsoc" name="emp_rzsoc" value="{{$empresaGeral->emp_rzsoc}}"
                                         placeholder="Razão Social">
                                     <span id="emp_rzsocError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="emp_nfant">Nome Fantasia:*</label>
-                                    <input autocomplete="off" maxlength="255" type="text" class="form-control"
+                                    <input autocomplete="off" maxlength="255" type="text" class="form-control  form-control-sm"
                                         id="emp_nfant" name="emp_nfant" value="{{$empresaGeral->emp_nfant}}"
                                         placeholder="Nome Fantasia">
                                     <span id="emp_nfantError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="emp_nmult">Nome multmais:*</label>
-                                    <input autocomplete="off" maxlength="15" type="text" class="form-control"
+                                    <input autocomplete="off" maxlength="15" type="text" class="form-control  form-control-sm"
                                         id="emp_nmult" name="emp_nmult" value="{{$empresaGeral->emp_nmult}}"
                                         placeholder="Nome multmais">
                                     <span id="emp_nmultError" class="text-danger text-sm"></span>
@@ -355,13 +355,13 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="vlr_imp">Valor da Implantação:*</label>
-                                    <input autocomplete="off" type="text" class="form-control money" id="vlr_imp"
+                                    <input autocomplete="off" type="text" class="form-control money form-control-sm" id="vlr_imp"
                                         name="vlr_imp" value="{{$empresaGeral->vlr_imp}}" placeholder="0,00">
                                     <span id="vlr_impError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="dtvenc_imp">Data do vencimento da Implantação:*</label>
-                                    <input autocomplete="off" type="text" class="form-control datetimepicker-input"
+                                    <input autocomplete="off" type="text" class="form-control datetimepicker-input form-control-sm"
                                         id="dtvenc_imp" name="dtvenc_imp" value="{{$empresaGeral->dtvenc_imp}}"
                                         data-toggle="datetimepicker" placeholder="dd/mm/aaaa" data-target="#dtvenc_imp"
                                         placeholder="Data do vencimento da Implantação">
@@ -369,19 +369,19 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="cond_pgto">Condição de Pgto da Implantação:*</label>
-                                    <input autocomplete="off" type="number" class="form-control" id="cond_pgto"
+                                    <input autocomplete="off" type="number" class="form-control  form-control-sm" id="cond_pgto"
                                         name="cond_pgto" value="{{$empresaGeral->cond_pgto}}" placeholder="0">
                                     <span id="cond_pgtoError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="vlr_mens">Valor da Mensalidade:*</label>
-                                    <input autocomplete="off" type="text" class="form-control money" id="vlr_mens"
+                                    <input autocomplete="off" type="text" class="form-control money form-control-sm" id="vlr_mens"
                                         name="vlr_mens" value="{{$empresaGeral->vlr_mens}}" placeholder="0,00">
                                     <span id="vlr_mensError" class="text-danger text-sm"></span>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="dtvenc_mens">Data de Vencimento da Mensalidade:*</label>
-                                    <input autocomplete="off" type="text" class="form-control datetimepicker-input"
+                                    <input autocomplete="off" type="text" class="form-control datetimepicker-input form-control-sm"
                                         id="dtvenc_mens" name="dtvenc_mens" value="{{$empresaGeral->dtvenc_mens}}"
                                         data-toggle="datetimepicker" placeholder="dd/mm/aaaa" data-target="#dtvenc_mens"
                                         placeholder="Data de Vencimento da Mensalidade">
@@ -398,9 +398,9 @@
                                     <a href="#" data-toggle="modal" data-target="#cep-info-modal">
                                         <i class="far fa-question-circle"></i>
                                     </a>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 input-group-sm">
                                         <input autocomplete="off" type="text" autofocus="autofocus"
-                                            class="form-control cep" id="emp_cep" name="emp_cep"
+                                            class="form-control cep form-control-sm" id="emp_cep" name="emp_cep"
                                             value="{{$empresaGeral->emp_cep}}" placeholder="00000-000">
                                         <span class="input-group-append">
                                             <button type="button" id="btnPesquisarCep" class="btn btn-default"><i
@@ -413,21 +413,21 @@
                                 <div class="form-group col-md-4">
                                     <label for='emp_end'>Endereço (Logradouro):*</label>
                                     <input type="text" id='emp_end' name='emp_end' value="{{$empresaGeral->emp_end}}"
-                                        class='form-control' placeholder='Endereço' maxlength='60'>
+                                        class="form-control form-control-sm" placeholder='Endereço' maxlength='60'>
                                     <span id="emp_endError" class="text-danger text-sm"></span>
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for='emp_endnum'>Número:*</label>
                                     <input type="text" id='emp_endnum' name='emp_endnum'
-                                        value="{{$empresaGeral->emp_endnum}}" class='form-control' placeholder='Número'>
+                                        value="{{$empresaGeral->emp_endnum}}" class="form-control form-control-sm" placeholder='Número'>
                                     <span id="emp_endnumError" class="text-danger text-sm"></span>
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for='emp_endcmp'>Complemento:</label>
                                     <input type="text" id='emp_endcmp' name='emp_endcmp'
-                                        value="{{$empresaGeral->emp_endcmp}}" class='form-control'
+                                        value="{{$empresaGeral->emp_endcmp}}" class="form-control form-control-sm"
                                         placeholder='Complemento'>
                                     <span id="emp_endcmpError" class="text-danger text-sm"></span>
                                 </div>
@@ -437,7 +437,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_endbair'>Bairro:*</label>
                                     <input type="text" id='emp_endbair' name='emp_endbair'
-                                        value="{{$empresaGeral->emp_endbair}}" class='form-control'
+                                        value="{{$empresaGeral->emp_endbair}}" class="form-control form-control-sm"
                                         placeholder='Bairro'>
                                     <span id="emp_endbairError" class="text-danger text-sm"></span>
                                 </div>
@@ -493,7 +493,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_resplg'>Responsável Legal:*</label>
                                     <input type="text" id='emp_resplg' name='emp_resplg'
-                                        value="{{$empresaGeral->emp_resplg}}" class='form-control'
+                                        value="{{$empresaGeral->emp_resplg}}" class="form-control form-control-sm"
                                         placeholder='Responsável Legal' maxlength='60'>
                                     <span id="emp_resplgError" class="text-danger text-sm"></span>
                                 </div>
@@ -501,7 +501,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_emailrp'>E-mail Responsável Legal:*</label>
                                     <input type="email" id='emp_emailrp' name='emp_emailrp'
-                                        value="{{$empresaGeral->emp_emailrp}}" class='form-control'
+                                        value="{{$empresaGeral->emp_emailrp}}" class="form-control form-control-sm"
                                         placeholder='E-mail Responsável Legal'>
                                     <span id="emp_emailrpError" class="text-danger text-sm"></span>
                                 </div>
@@ -520,7 +520,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_respcm'>Contato Comercial:*</label>
                                     <input type="text" id='emp_respcm' name='emp_respcm'
-                                        value="{{$empresaGeral->emp_respcm}}" class='form-control'
+                                        value="{{$empresaGeral->emp_respcm}}" class="form-control form-control-sm"
                                         placeholder='Contato Comercial'>
                                     <span id="emp_respcmError" class="text-danger text-sm"></span>
                                 </div>
@@ -528,7 +528,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_emailcm'>E-mail Comercial:*</label>
                                     <input type="email" id='emp_emailcm' name='emp_emailcm'
-                                        value="{{$empresaGeral->emp_emailcm}}" class='form-control'
+                                        value="{{$empresaGeral->emp_emailcm}}" class="form-control form-control-sm"
                                         placeholder='E-mail Comercial'>
                                     <span id="emp_emailcmError" class="text-danger text-sm"></span>
                                 </div>
@@ -547,7 +547,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_respfi'>Contato Financeiro:*</label>
                                     <input type="text" id='emp_respfi' name='emp_respfi'
-                                        value="{{$empresaGeral->emp_respfi}}" class='form-control'
+                                        value="{{$empresaGeral->emp_respfi}}" class="form-control form-control-sm"
                                         placeholder='Contato Financeiro'>
                                     <span id="emp_respfiError" class="text-danger text-sm"></span>
                                 </div>
@@ -555,7 +555,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_emailfi'>E-mail Financeiro:*</label>
                                     <input type="email" id='emp_emailfi' name='emp_emailfi'
-                                        value="{{$empresaGeral->emp_emailfi}}" class='form-control'
+                                        value="{{$empresaGeral->emp_emailfi}}" class="form-control form-control-sm"
                                         placeholder='E-mail Financeiro'>
                                     <span id="emp_emailfiError" class="text-danger text-sm"></span>
                                 </div>
@@ -574,7 +574,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_pagweb'>Página Web:*</label>
                                     <input type="text" id='emp_pagweb' name='emp_pagweb'
-                                        value="{{$empresaGeral->emp_pagweb}}" class='form-control'
+                                        value="{{$empresaGeral->emp_pagweb}}" class="form-control form-control-sm"
                                         placeholder='Página Web'>
                                     <span id="emp_pagwebError" class="text-danger text-sm"></span>
                                 </div>
@@ -582,7 +582,7 @@
                                 <div class="form-group col-md-3">
                                     <label for='emp_rdsoc'>Redes Sociais:*</label>
                                     <input type="text" id='emp_rdsoc' name='emp_rdsoc'
-                                        value="{{$empresaGeral->emp_rdsoc}}" class='form-control'
+                                        value="{{$empresaGeral->emp_rdsoc}}" class="form-control form-control-sm"
                                         placeholder='Redes Sociais'>
                                     <span id="emp_rdsocError" class="text-danger text-sm"></span>
                                 </div>
@@ -633,7 +633,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_agbc'>Agência:</label>
                                                     <input type="text" maxlength="20" id='emp_agbc' name='emp_agbc'
-                                                        value="{{$empresaParam->emp_agbc}}" class='form-control'
+                                                        value="{{$empresaParam->emp_agbc}}" class="form-control form-control-sm"
                                                         placeholder='Agência'>
                                                     <span id="emp_agbcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -641,7 +641,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_ccbc'>Conta Corrente:</label>
                                                     <input type="text" id='emp_ccbc' name='emp_ccbc'
-                                                        value="{{$empresaParam->emp_ccbc}}" class='form-control'
+                                                        value="{{$empresaParam->emp_ccbc}}" class="form-control form-control-sm"
                                                         placeholder='Conta Corrente'>
                                                     <span id="emp_ccbcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -649,7 +649,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_pix'>Chave PIX:</label>
                                                     <input type="text" id='emp_pix' name='emp_pix'
-                                                        value="{{$empresaParam->emp_pix}}" class='form-control'
+                                                        value="{{$empresaParam->emp_pix}}" class="form-control form-control-sm"
                                                         placeholder='Chave PIX'>
                                                     <span id="emp_pixError" class="text-danger text-sm"></span>
                                                 </div>
@@ -657,7 +657,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_seller'>Seller:</label>
                                                     <input type="text" id='emp_seller' name='emp_seller'
-                                                        value="{{$empresaParam->emp_seller}}" class='form-control'
+                                                        value="{{$empresaParam->emp_seller}}" class="form-control form-control-sm"
                                                         placeholder='Seller'>
                                                     <span id="emp_sellerError" class="text-danger text-sm"></span>
                                                 </div>
@@ -685,7 +685,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_agbcs'>Agência:</label>
                                                     <input type="text" maxlength="20" id='emp_agbcs' name='emp_agbcs'
-                                                        value="{{$empresaParam->emp_agbcs}}" class='form-control'
+                                                        value="{{$empresaParam->emp_agbcs}}" class="form-control form-control-sm"
                                                         placeholder='Agência'>
                                                     <span id="emp_agbcsError" class="text-danger text-sm"></span>
                                                 </div>
@@ -693,7 +693,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_ccbcs'>Conta Corrente:</label>
                                                     <input type="text" id='emp_ccbcs' name='emp_ccbcs'
-                                                        value="{{$empresaParam->emp_ccbcs}}" class='form-control'
+                                                        value="{{$empresaParam->emp_ccbcs}}" class="form-control form-control-sm"
                                                         placeholder='Conta Corrente'>
                                                     <span id="emp_ccbcsError" class="text-danger text-sm"></span>
                                                 </div>
@@ -701,7 +701,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_pixs'>Chave PIX:</label>
                                                     <input type="text" id='emp_pixs' name='emp_pixs'
-                                                        value="{{$empresaParam->emp_pixs}}" class='form-control'
+                                                        value="{{$empresaParam->emp_pixs}}" class="form-control form-control-sm"
                                                         placeholder='Chave PIX'>
                                                     <span id="emp_pixsError" class="text-danger text-sm"></span>
                                                 </div>
@@ -709,7 +709,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='emp_sellers'>Seller:</label>
                                                     <input type="text" id='emp_sellers' name='emp_sellers'
-                                                        value="{{$empresaParam->emp_sellers}}" class='form-control'
+                                                        value="{{$empresaParam->emp_sellers}}" class="form-control form-control-sm"
                                                         placeholder='Seller'>
                                                     <span id="emp_sellersError" class="text-danger text-sm"></span>
                                                 </div>
@@ -730,14 +730,14 @@
                                                 <div class="form-group col-md-2">
                                                     <label for='vlr_pix'>Valor PIX:*</label>
                                                     <input type="text" id='vlr_pix' name='vlr_pix'
-                                                        value="{{$empresaParam->vlr_pix}}" class='form-control money'
+                                                        value="{{$empresaParam->vlr_pix}}" class="form-control money form-control-sm"
                                                         placeholder='0,00'>
                                                     <span id="vlr_pixError" class="text-danger text-sm"></span>
                                                 </div>
                                                 <div class="form-group col-md-2">
                                                     <label for='vlr_boleto'>Valor Boleto:*</label>
                                                     <input type="text" id='vlr_boleto' name='vlr_boleto'
-                                                        value="{{$empresaParam->vlr_boleto}}" class='form-control money'
+                                                        value="{{$empresaParam->vlr_boleto}}" class="form-control money form-control-sm"
                                                         placeholder='0,00'>
                                                     <span id="vlr_boletoError" class="text-danger text-sm"></span>
                                                 </div>
@@ -745,7 +745,7 @@
                                                     <label for='vlr_bolepix'>Valor BolePIX:*</label>
                                                     <input type="text" id='vlr_bolepix' name='vlr_bolepix'
                                                         value="{{$empresaParam->vlr_bolepix}}"
-                                                        class='form-control money' placeholder='0,00'>
+                                                        class="form-control money form-control-sm" placeholder='0,00'>
                                                     <span id="vlr_bolepixError" class="text-danger text-sm"></span>
                                                 </div>
 
@@ -753,7 +753,7 @@
                                                     <label for='dias_inat_card'>Dias de atraso para inativação do
                                                         cartão:*</label>
                                                     <input type="number" id='dias_inat_card' name='dias_inat_card'
-                                                        value="{{$empresaParam->dias_inat_card}}" class='form-control'
+                                                        value="{{$empresaParam->dias_inat_card}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="dias_inat_cardError" class="text-danger text-sm"></span>
                                                 </div>
@@ -763,7 +763,7 @@
                                                         de:*</label>
                                                     <input type="text" id='isnt_pixblt' name='isnt_pixblt'
                                                         value="{{$empresaParam->isnt_pixblt}}"
-                                                        class='form-control money' placeholder='0,00'>
+                                                        class="form-control money form-control-sm" placeholder='0,00'>
                                                     <span id="isnt_pixbltError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -796,7 +796,7 @@
                                                     <label for='tax_blt'>Taxa:*</label>
                                                     <input type="text" id='tax_blt' name='tax_blt'
                                                         value="{{$empresaParam->tax_blt}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_bltError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -831,7 +831,7 @@
                                                     <label for='intervalo_mes'>Intervalo de meses entre
                                                         Consultas:</label>
                                                     <input type="number" id='intervalo_mes' name='intervalo_mes'
-                                                        value="{{$empresaParam->intervalo_mes}}" class='form-control'
+                                                        value="{{$empresaParam->intervalo_mes}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="intervalo_mesError" class="text-danger text-sm"></span>
                                                 </div>
@@ -839,7 +839,7 @@
                                                     <label for='qtde_cns_freem'>Qtde de Consultas Mensal
                                                         Gratuítas:*</label>
                                                     <input type="number" id='qtde_cns_freem' name='qtde_cns_freem'
-                                                        value="{{$empresaParam->qtde_cns_freem}}" class='form-control'
+                                                        value="{{$empresaParam->qtde_cns_freem}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="qtde_cns_freemError" class="text-danger text-sm"></span>
                                                 </div>
@@ -847,7 +847,7 @@
                                                     <label for='qtde_cns_cntrm'>Qtde de Consultas Mensal
                                                         Contratadas:*</label>
                                                     <input type="number" id='qtde_cns_cntrm' name='qtde_cns_cntrm'
-                                                        value="{{$empresaParam->qtde_cns_cntrm}}" class='form-control'
+                                                        value="{{$empresaParam->qtde_cns_cntrm}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="qtde_cns_cntrmError" class="text-danger text-sm"></span>
                                                 </div>
@@ -856,7 +856,7 @@
                                                         Pré-Pagas:</label>
                                                     <input type="number" id='qtde_cns_prem' readonly disabled='disabled'
                                                         name='qtde_cns_prem' value="{{$empresaParam->qtde_cns_prem}}"
-                                                        class='form-control' placeholder='0'>
+                                                        class="form-control form-control-sm" placeholder='0'>
                                                     <span id="qtde_cns_premError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -865,7 +865,7 @@
                                                     <label for='qtde_cns_totm'>Qtde Total de Consultas Mensal:</label>
                                                     <input type="number" id='qtde_cns_totm' name='qtde_cns_totm'
                                                         readonly disabled='disabled'
-                                                        value="{{$empresaParam->qtde_cns_totm}}" class='form-control'
+                                                        value="{{$empresaParam->qtde_cns_totm}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="qtde_cns_totmError" class="text-danger text-sm"></span>
                                                 </div>
@@ -873,7 +873,7 @@
                                                     <label for='qtde_cns_utlxm'>Qtde Utilizada no Mês:</label>
                                                     <input type="number" id='qtde_cns_utlxm' name='qtde_cns_utlxm'
                                                         readonly disabled='disabled'
-                                                        value="{{$empresaParam->qtde_cns_utlxm}}" class='form-control'
+                                                        value="{{$empresaParam->qtde_cns_utlxm}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="qtde_cns_utlxmError" class="text-danger text-sm"></span>
                                                 </div>
@@ -881,7 +881,7 @@
                                                     <label for='qtde_cns_dispm'>Qtde Disponível no Mês:</label>
                                                     <input type="number" id='qtde_cns_dispm' name='qtde_cns_dispm'
                                                         readonly disabled='disabled'
-                                                        value="{{$empresaParam->qtde_cns_dispm}}" class='form-control'
+                                                        value="{{$empresaParam->qtde_cns_dispm}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="qtde_cns_dispmError" class="text-danger text-sm"></span>
                                                 </div>
@@ -919,7 +919,7 @@
                                                 <div class="form-group col-md-2">
                                                     <label for='card_posparc'>Quantidade de Parcelas liberadas:*</label>
                                                     <input type="number" id='card_posparc' name='card_posparc'
-                                                        value="{{$empresaParam->card_posparc}}" class='form-control'
+                                                        value="{{$empresaParam->card_posparc}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="card_posparcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -1000,7 +1000,7 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-2">
                                                             <button type="button"
-                                                                class="btn btn-primary incluir_taxa_btn"
+                                                                class="btn btn-primary btn-sm incluir_taxa_btn"
                                                                 data-categ="avista" data-tipo="VISTA">
                                                                 <i class="fas fa-plus"></i> Incluir Taxa
                                                             </button>
@@ -1082,7 +1082,7 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-2">
                                                             <button type="button"
-                                                                class="btn btn-primary incluir_taxa_btn" data-categ="30"
+                                                                class="btn btn-primary btn-sm incluir_taxa_btn" data-categ="30"
                                                                 data-tipo="PRM_30">
                                                                 <i class="fas fa-plus"></i> Incluir Taxa
                                                             </button>
@@ -1163,7 +1163,7 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-2">
                                                             <button type="button"
-                                                                class="btn btn-primary incluir_taxa_btn" data-categ="60"
+                                                                class="btn btn-primary btn-sm incluir_taxa_btn" data-categ="60"
                                                                 data-tipo="PRM_60">
                                                                 <i class="fas fa-plus"></i> Incluir Taxa
                                                             </button>
@@ -1244,7 +1244,7 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-2">
                                                             <button type="button"
-                                                                class="btn btn-primary incluir_taxa_btn" data-categ="90"
+                                                                class="btn btn-primary btn-sm incluir_taxa_btn" data-categ="90"
                                                                 data-tipo="PRM_90">
                                                                 <i class="fas fa-plus"></i> Incluir Taxa
                                                             </button>
@@ -1281,21 +1281,21 @@
                                                     <label for='perc_mlt_atr'>Percentual de Multa:*</label>
                                                     <input type="text" id='perc_mlt_atr' name='perc_mlt_atr'
                                                         value="{{$empresaParam->perc_mlt_atr}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="perc_mlt_atrError" class="text-danger text-sm"></span>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for='perc_jrs_atr'>Percentual de Juros:*</label>
                                                     <input type="text" id='perc_jrs_atr' name='perc_jrs_atr'
                                                         value="{{$empresaParam->perc_jrs_atr}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="perc_jrs_atrError" class="text-danger text-sm"></span>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for='perc_com_mltjr'>Comissão:*</label>
                                                     <input type="text" id='perc_com_mltjr' name='perc_com_mltjr'
                                                         value="{{$empresaParam->perc_com_mltjr}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="perc_com_mltjrError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -1331,7 +1331,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='parc_jr_deprc'>A Partir da Parcela:*</label>
                                                     <input type="number" id='parc_jr_deprc' name='parc_jr_deprc'
-                                                        value="{{$empresaParam->parc_jr_deprc}}" class='form-control'
+                                                        value="{{$empresaParam->parc_jr_deprc}}" class="form-control form-control-sm"
                                                         placeholder='0'>
                                                     <span id="parc_jr_deprcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -1339,14 +1339,14 @@
                                                     <label for='tax_jrsparc'>Taxa de Juros:*</label>
                                                     <input type="text" id='tax_jrsparc' name='tax_jrsparc'
                                                         value="{{$empresaParam->tax_jrsparc}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_jrsparcError" class="text-danger text-sm"></span>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for='parc_com_jrs'>Comissão:*</label>
                                                     <input type="text" id='parc_com_jrs' name='parc_com_jrs'
                                                         value="{{$empresaParam->parc_com_jrs}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="parc_com_jrsError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -1382,7 +1382,7 @@
                                                     <label for='tax_pre'>Taxa Pré-Pago:*</label>
                                                     <input type="text" id='tax_pre' name='tax_pre'
                                                         value="{{$empresaParam->tax_pre}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_preError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -1418,7 +1418,7 @@
                                                     <label for='tax_gift'>Taxa Gift Card:*</label>
                                                     <input type="text" id='tax_gift' name='tax_gift'
                                                         value="{{$empresaParam->tax_gift}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_giftError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -1453,7 +1453,7 @@
                                                     <label for='tax_fid'>Taxa Fidelidade:*</label>
                                                     <input type="text" id='tax_fid' name='tax_fid'
                                                         value="{{$empresaParam->tax_fid}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_fidError" class="text-danger text-sm"></span>
                                                 </div>
                                             </div>
@@ -1499,8 +1499,7 @@
                                                         <input class="custom-control-input"
                                                             {{$empresaParam->pp_multmais == 'x' ? 'checked' : ''}}
                                                             type="checkbox" name="pp_multmais" id="pp_multmais">
-                                                        <label for="pp_multmais" class="custom-control-label">multmais
-                                                            Pontos:</label>
+                                                        <label for="pp_multmais" class="custom-control-label">Multmais Pontos:</label>
                                                     </div>
                                                     <span id="pp_multmaisError" class="text-danger text-sm"></span>
                                                 </div>
@@ -1509,8 +1508,7 @@
                                                         <input class="custom-control-input"
                                                             {{$empresaParam->pp_cashback == 'x' ? 'checked' : ''}}
                                                             type="checkbox" name="pp_cashback" id="pp_cashback">
-                                                        <label for="pp_cashback" class="custom-control-label">multmais
-                                                            Valor:</label>
+                                                        <label for="pp_cashback" class="custom-control-label">Multmais Valor:</label>
                                                     </div>
                                                     <span id="pp_cashbackError" class="text-danger text-sm"></span>
                                                 </div>
@@ -1553,7 +1551,7 @@
                                                     <label for='tax_antmult'>Taxa Multban:*</label>
                                                     <input type="text" id='tax_antmult' name='tax_antmult'
                                                         value="{{$empresaParam->tax_antmult}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_antmultError" class="text-danger text-sm"></span>
 
                                                 </div>
@@ -1562,7 +1560,7 @@
                                                     <label for='tax_antfundo'>Taxa Fundo:*</label>
                                                     <input type="text" id='tax_antfundo' name='tax_antfundo'
                                                         value="{{$empresaParam->tax_antfundo}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_antfundoError" class="text-danger text-sm"></span>
 
                                                 </div>
@@ -1571,7 +1569,7 @@
                                                     <label for='perc_rec_ant'>% Dos Recebíveis para Antecipar:*</label>
                                                     <input type="text" id='perc_rec_ant' name='perc_rec_ant'
                                                         value="{{$empresaParam->perc_rec_ant}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="perc_rec_antError" class="text-danger text-sm"></span>
                                                 </div>
 
@@ -1636,7 +1634,7 @@
                                                                     <input type="text" maxlength="20" id='fndant_agbc'
                                                                         name='fndant_agbc'
                                                                         value="{{$empresaParam->fndant_agbc}}"
-                                                                        class='form-control' placeholder='Agência'>
+                                                                        class="form-control form-control-sm" placeholder='Agência'>
                                                                     <span id="fndant_agbcError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1646,7 +1644,7 @@
                                                                     <input type="text" id='fndant_ccbc'
                                                                         name='fndant_ccbc'
                                                                         value="{{$empresaParam->fndant_ccbc}}"
-                                                                        class='form-control'
+                                                                        class="form-control form-control-sm"
                                                                         placeholder='Conta Corrente'>
                                                                     <span id="fndant_ccbcError"
                                                                         class="text-danger text-sm"></span>
@@ -1656,7 +1654,7 @@
                                                                     <label for="fndant_pix">Chave PIX:</label>
                                                                     <input type="text" id='fndant_pix' name='fndant_pix'
                                                                         value="{{$empresaParam->fndant_pix}}"
-                                                                        class='form-control' placeholder='Chave PIX'>
+                                                                        class="form-control form-control-sm" placeholder='Chave PIX'>
                                                                     <span id="fndant_pixError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1666,7 +1664,7 @@
                                                                     <input type="text" id='fndant_seller'
                                                                         name='fndant_seller'
                                                                         value="{{$empresaParam->fndant_seller}}"
-                                                                        class='form-control' placeholder='Seller'>
+                                                                        class="form-control form-control-sm" placeholder='Seller'>
                                                                     <span id="fndant_sellerError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1720,7 +1718,7 @@
                                                                     <input type="number" id='ant_auto_srvd'
                                                                         name='ant_auto_srvd'
                                                                         value="{{$empresaParam->ant_auto_srvd}}"
-                                                                        class='form-control col-md-4' placeholder='0'>
+                                                                        class="form-control col-md-4 form-control-sm" placeholder='0'>
                                                                     <span id="ant_auto_srvdError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1745,7 +1743,7 @@
                                                                     <input type="number" id='ant_auto_prdvo'
                                                                         name='ant_auto_prdvo'
                                                                         value="{{$empresaParam->ant_auto_prdvo}}"
-                                                                        class='form-control col-md-4' placeholder='0'>
+                                                                        class="form-control col-md-4 form-control-sm" placeholder='0'>
                                                                     <span id="ant_auto_prdvoError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1755,7 +1753,7 @@
                                                                     <input type="number" id='ant_auto_prdvd'
                                                                         name='ant_auto_prdvd'
                                                                         value="{{$empresaParam->ant_auto_prdvd}}"
-                                                                        class='form-control col-md-4' placeholder='0'>
+                                                                        class="form-control col-md-4 form-control-sm" placeholder='0'>
                                                                     <span id="ant_auto_prdvdError"
                                                                         class="text-danger text-sm"></span>
                                                                 </div>
@@ -1824,7 +1822,7 @@
                                                     <label for='tax_rebate'>% pago sobre as taxas aplicadas:*</label>
                                                     <input type="text" id='tax_rebate' name='tax_rebate'
                                                         value="{{$empresaParam->tax_rebate}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_rebateError" class="text-danger text-sm"></span>
 
                                                 </div>
@@ -1889,7 +1887,7 @@
                                                     <label for='tax_royalties'>% pago sobre as taxas aplicadas:*</label>
                                                     <input type="text" id='tax_royalties' name='tax_royalties'
                                                         value="{{$empresaParam->tax_royalties}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_royaltiesError" class="text-danger text-sm"></span>
 
                                                 </div>
@@ -1954,7 +1952,7 @@
                                                     <label for='tax_comiss'>% pago sobre as taxas aplicadas:*</label>
                                                     <input type="text" id='tax_comiss' name='tax_comiss'
                                                         value="{{$empresaParam->tax_comiss}}"
-                                                        class='form-control porcentagem' placeholder='0,00'>
+                                                        class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                                     <span id="tax_comissError" class="text-danger text-sm"></span>
 
                                                 </div>
@@ -2015,21 +2013,21 @@
                                             <label for='cobsrv_diasatr'>Dias de atraso para Iniciar fluxo de
                                                 cobrança:*</label>
                                             <input type="number" id='cobsrv_diasatr' name='cobsrv_diasatr'
-                                                value="{{$empresaParam->cobsrv_diasatr}}" class='form-control'
+                                                value="{{$empresaParam->cobsrv_diasatr}}" class="form-control form-control-sm"
                                                 placeholder='0'>
                                             <span id="cobsrv_diasatrError" class="text-danger text-sm"></span>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for='cobsrv_multa'>Percentual de Multa:*</label>
                                             <input type="text" id='cobsrv_multa' name='cobsrv_multa'
-                                                value="{{$empresaParam->cobsrv_multa}}" class='form-control porcentagem'
+                                                value="{{$empresaParam->cobsrv_multa}}" class="form-control porcentagem form-control-sm"
                                                 placeholder='0,00'>
                                             <span id="cobsrv_multaError" class="text-danger text-sm"></span>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for='cobsrv_juros'>Percentual de Juros:*</label>
                                             <input type="text" id='cobsrv_juros' name='cobsrv_juros'
-                                                value="{{$empresaParam->cobsrv_juros}}" class='form-control porcentagem'
+                                                value="{{$empresaParam->cobsrv_juros}}" class="form-control porcentagem form-control-sm"
                                                 placeholder='0,00'>
                                             <span id="cobsrv_jurosError" class="text-danger text-sm"></span>
                                         </div>
@@ -2037,7 +2035,7 @@
                                             <label for='tax_cobsrv_adm'>Taxa Administrativa:*</label>
                                             <input type="text" id='tax_cobsrv_adm' name='tax_cobsrv_adm'
                                                 value="{{$empresaParam->tax_cobsrv_adm}}"
-                                                class='form-control porcentagem' placeholder='0,00'>
+                                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                             <span id="tax_cobsrv_admError" class="text-danger text-sm"></span>
                                         </div>
                                     </div>
@@ -2046,7 +2044,7 @@
                                             <label for='tax_cobsrv_juss'>Taxa Jurídica:*</label>
                                             <input type="text" id='tax_cobsrv_juss' name='tax_cobsrv_juss'
                                                 value="{{$empresaParam->tax_cobsrv_juss}}"
-                                                class='form-control porcentagem' placeholder='0,00'>
+                                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                                             <span id="tax_cobsrv_jussError" class="text-danger text-sm"></span>
                                         </div>
                                     </div>

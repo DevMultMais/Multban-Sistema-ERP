@@ -32,8 +32,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="id">ID:</label>
-                                    <div class="input-group">
-                                        <input type="number" disabled name="id" value="{{$usuario->id ?? ''}}" placeholder="0" disabled class="form-control">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" disabled name="id" value="{{$usuario->id ?? ''}}" placeholder="0" disabled class="form-control  form-control-sm">
                                     </div>
                                 </div>
 
@@ -42,18 +42,18 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="name">Nome:</label>
-                                    <input class="form-control" placeholder="Digite o nome du usuário" autofocus="autofocus" maxlength="60" name="name" type="text" id="name" value="{{$usuario->name}}">
+                                    <input class="form-control  form-control-sm" placeholder="Digite o nome du usuário" autofocus="autofocus" maxlength="60" name="name" type="text" id="name" value="{{$usuario->name}}">
                                 </div>
 
 
                                 <div class="form-group col-md-4">
                                     <label for="username">Username:</label>
-                                    <input class="form-control" placeholder="Digite o nome du usuário" autofocus="autofocus" maxlength="60" name="username" type="text" id="username" value="{{$usuario->username}}">
+                                    <input class="form-control  form-control-sm" placeholder="Digite o nome du usuário" autofocus="autofocus" maxlength="60" name="username" type="text" id="username" value="{{$usuario->username}}">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="email">E-mail:</label>
-                                    <input class="form-control" placeholder="Digite o nome Fantasia" autofocus="autofocus" name="email" type="email" id="email" value="{{$usuario->email}}">
+                                    <input class="form-control  form-control-sm" placeholder="Digite o nome Fantasia" autofocus="autofocus" name="email" type="email" id="email" value="{{$usuario->email}}">
                                 </div>
                             </div>
 
@@ -61,8 +61,8 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="password">Senha:</label>
-                                    <div class="input-group mb-3">
-                                        <input type="password" autofocus="autofocus" class="form-control" id="password" name="password" required placeholder="Digite a senha">
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <input type="password" autofocus="autofocus" class="form-control  form-control-sm" id="password" name="password" required placeholder="Digite a senha">
                                         <span class="input-group-append">
                                             <button type="button" id="showPassword" class="btn btn-default"><i class="fa fa-eye-slash"></i></button>
                                         </span>
@@ -71,8 +71,8 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="confirm-password">Confirmar senha:</label>
-                                    <div class="input-group mb-3">
-                                        <input type="password" autofocus="autofocus" class="form-control" id="confirm-password" name="confirm-password" required placeholder="Confirme a senha">
+                                    <div class="input-group mb-3 input-group-sm">
+                                        <input type="password" autofocus="autofocus" class="form-control  form-control-sm" id="confirm-password" name="confirm-password" required placeholder="Confirme a senha">
                                         <span class="input-group-append">
                                             <button type="button" id="showConfirmPassword" class="btn btn-default"><i class="fa fa-eye-slash"></i></button>
                                         </span>

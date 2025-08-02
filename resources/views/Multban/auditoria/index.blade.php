@@ -58,17 +58,17 @@
                 <div class="col-md-2 pesquisaData" style="display:none">
                     <label>Data inicial</label>
                     <input type="date" value="{{$dataInicial == '' ? date('Y-m-d') : $dataInicial}}"
-                        class="form-control" id="dataInicial" />
+                        class="form-control  form-control-sm" id="dataInicial" />
                 </div>
                 <div class="col-md-2 pesquisaData" style="display:none">
                     <label>Data final</label>
-                    <input type="date" value="{{$dataFinal == '' ? date('Y-m-d') : $dataFinal}}" class="form-control"
+                    <input type="date" value="{{$dataFinal == '' ? date('Y-m-d') : $dataFinal}}" class="form-control  form-control-sm"
                         id="dataFinal" />
                 </div>
                 <div class="col-md-3">
                     <label id="pesquisaData">&nbsp;</label>
-                    <div class="input-group mb-3">
-                        <input type="text" id="inputPesquisa" class="form-control">
+                    <div class="input-group mb-3 input-group-sm">
+                        <input type="text" id="inputPesquisa" class="form-control  form-control-sm">
                         <span class="input-group-append">
                             <button type="button" id="btnPesquisar" class="btn btn-default"><i
                                     class="fa fa-search"></i></button>

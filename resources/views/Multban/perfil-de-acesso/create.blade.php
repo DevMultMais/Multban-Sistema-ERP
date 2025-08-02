@@ -30,7 +30,7 @@
                     <label for="name" class="form-label">Name</label>
                     <input value="{{ old('name') }}"
                         type="text"
-                        class="form-control"
+                        class="form-control  form-control-sm"
                         name="name"
                         placeholder="Name" required>
                 </div>
@@ -54,9 +54,9 @@
 
                                 <ul>
                         @foreach($permission->childs as $submenu)
-                        
+
                         @if (!Str::contains($submenu->name, array(".index", ".store", ".update")))
-                        
+
                             <li>
                                 <input type="checkbox"
                                 name="permission[{{ $submenu->name }}]"
@@ -65,14 +65,14 @@
                                 id="{{$submenu->name}}">
                                 <label for="{{$submenu->name}}">{{$submenu->name}}</label>
                             </li>
-                        
+
                         @endif
-                        
+
                         @endforeach</ul>
                     </li>
                     @endforeach
                 </ul>
-                <button type="submit" class="btn btn-primary">Save user</button>
+                <button type="submit" class="btn btn-primary btn-sm">Save user</button>
                 <a href="{{ route('permissao.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>

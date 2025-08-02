@@ -1580,7 +1580,7 @@ class SistemaMultMaisController extends Controller
             $form .= '<div class="form-group col-md-12"><label for="' . $value['name'] . '">' . $value['name'] . '</label>';
             $form .= '<input ';
             $form .= ' maxlength="' . str_replace(["varchar(", ")"], ["", ""], $value['type']) . '"';
-            $form .= ' class="form-control" type="text" id="' . $value['name'] . '" name="' . $value['name'] . '" value=""/></div>';
+            $form .= ' class="form-control  form-control-sm" type="text" id="' . $value['name'] . '" name="' . $value['name'] . '" value=""/></div>';
 
             if ($count % 3 == 0) {
 
@@ -1615,7 +1615,7 @@ class SistemaMultMaisController extends Controller
             $form = '<div class="form-row">';
 
             foreach ($tbdm as $key => $value) {
-                $form .= '<div class="form-group col-md-12"><label for="' . $key . '">' . $key . '</label><input class="form-control" type="text" id="' . $key . '" name="' . $key . '" value="' . $value . '"/></div>';
+                $form .= '<div class="form-group col-md-12"><label for="' . $key . '">' . $key . '</label><input class="form-control  form-control-sm" type="text" id="' . $key . '" name="' . $key . '" value="' . $value . '"/></div>';
 
                 if ($count % 3 == 0) {
 

@@ -75,13 +75,13 @@
 
                 <div class="form-group col-md-2">
                     <label for="cliente_doc">CPF/CNPJ:</label>
-                    <div class="input-group">
-                        <input type="text" id="cliente_doc" name="cliente_doc" class="form-control" placeholder="Digite o CPF ou CNPJ">
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="cliente_doc" name="cliente_doc" class="form-control  form-control-sm" placeholder="Digite o CPF ou CNPJ">
                     </div>
                 </div>
 
                 <div class="form-group col-md-3 d-flex align-items-end">
-                    <button type="button" id="btnPesquisar" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
+                    <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Pesquisar</button>
                 </div>
 
             </div>
@@ -95,7 +95,7 @@
         <!-- BOTÃO PARA CRIAR NOVO CLIENTE -->
         @can('usuario.create')
             <div class="card-header">
-                <a href="/cliente/inserir" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+                <a href="/cliente/inserir" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
             </div>
         @endcan
 

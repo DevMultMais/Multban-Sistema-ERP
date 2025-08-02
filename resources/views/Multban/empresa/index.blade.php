@@ -75,7 +75,7 @@
                     <!-- FILTRO DO CNPJ -->
                     <div class="form-group col-md-3">
                         <label for="empresa_cnpj">CNPJ:</label>
-                        <input type="text" id="empresa_cnpj" name="empresa_cnpj" class="form-control cnpj"
+                        <input type="text" id="empresa_cnpj" name="empresa_cnpj" class="form-control cnpj form-control-sm"
                             placeholder="Digite o CNPJ" />
                     </div>
 
@@ -97,7 +97,7 @@
             <!-- BOTÃO PARA CRIAR NOVA EMPRESA -->
             @can('empresa.create')
                 <div class="card-header">
-                    <a href="/empresa/inserir" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+                    <a href="/empresa/inserir" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
                 </div>
             @endcan
 

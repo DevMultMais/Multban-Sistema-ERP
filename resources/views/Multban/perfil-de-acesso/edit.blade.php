@@ -34,7 +34,7 @@
                             <label for="name" class="form-label">Nome da Permissão</label>
                             <input value="{{ $role->name }}"
                                 type="text"
-                                class="form-control"
+                                class="form-control  form-control-sm"
                                 name="name"
                                 id="name"
                                 placeholder="Nome da Permissão" required>

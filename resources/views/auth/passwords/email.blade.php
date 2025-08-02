@@ -67,7 +67,7 @@
                     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 input-group-sm">
             <input id="user_email" type="email" class="form-control @error('user_email') is-invalid @enderror" name="user_email" value="{{ old('user_email') }}" required autocomplete="email" autofocus>
 
             @error('email')

@@ -57,7 +57,7 @@
 
                 <div class="form-group col-md-2">
                     <label>CPF do Usuário:</label>
-                    <input type="text" id="cpf" name="cpf" class="form-control cpf" placeholder="000.000.000-00" maxlength="11">
+                    <input type="text" id="cpf" name="cpf" class="form-control cpf form-control-sm" placeholder="000.000.000-00" maxlength="11">
                 </div>
 
                 <div class="form-group col-md-3 align-self-end">
@@ -70,7 +70,7 @@
     <div class="card card-outline card-primary">
         @can('usuario.create')
             <div class="card-header">
-                <a href="/usuario/inserir" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+                <a href="/usuario/inserir" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
             </div>
         @endcan
         <div class="card-body">

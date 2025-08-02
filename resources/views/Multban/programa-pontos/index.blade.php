@@ -53,7 +53,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-3 align-self-end d-flex">
-                    <button type="button" id="btnPesquisar" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
+                    <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Pesquisar</button>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
     <div class="card card-outline card-primary">
         @can('programa-de-pontos.create')
         <div class="card-header">
-            <a href="#" data-toggle="modal" data-target="#modalCriarPrograma" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+            <a href="#" data-toggle="modal" data-target="#modalCriarPrograma" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
         </div>
         @endcan
         <div class="card-body">
@@ -118,16 +118,16 @@
                         </div>
                         <div class="form-group">
                             <label for="prgpts_valor">Valor Gasto:</label>
-                            <div class="input-group">
+                            <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
                                 </div>
-                                <input type="text" class="form-control" id="prg_valor" name="prg_valor" placeholder="Digite o valor do programa" required>
+                                <input type="text" class="form-control  form-control-sm" id="prg_valor" name="prg_valor" placeholder="Digite o valor do programa" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prgpts_eq">Equivale a:</label>
-                            <input type="text" class="form-control" id="prgpts_eq" name="prgpts_eq" placeholder="Digite o que equivale" required>
+                            <input type="text" class="form-control  form-control-sm" id="prgpts_eq" name="prgpts_eq" placeholder="Digite o que equivale" required>
                         </div>
                         <div class="form-group">
                             <label for="prgpts_sts">Status:</label>
@@ -140,8 +140,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal"><i class="icon fas fa-times"></i> Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnSalvarCartao"><i class="icon fas fa-save"></i> Salvar Cartão</button>
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal"><i class="icon fas fa-times"></i> Fechar</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSalvarCartao"><i class="icon fas fa-save"></i> Salvar Cartão</button>
 
                 </div>
             </div>

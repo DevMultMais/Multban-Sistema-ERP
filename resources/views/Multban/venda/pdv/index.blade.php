@@ -127,7 +127,7 @@
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <label for="getCliente">CPF / CNPJ do Cliente: (F6)</label>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3 input-group-sm">
                                             <input autocomplete="off" type="text" autofocus="autofocus"
                                                 class="form-control form-control-lg" id="getCliente" name="getCliente"
                                                 value="" placeholder="CPF / CNPJ do Cliente">
@@ -161,7 +161,7 @@
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <label for="getProduto">Código do produto: (F1)</label>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3 input-group-sm">
                                             <input autocomplete="off" type="text" autofocus="autofocus"
                                                 class="form-control form-control-lg" id="getProduto" name="getProduto"
                                                 value="" placeholder="Código do produto">
@@ -190,7 +190,7 @@
                             </div>
                             <div class="form-group col">
                                 <label>Desconto: (F3)</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 input-group-sm">
                                      <input autocomplete="off" type="text" class="form-control form-control-sm money"
                                 id="item-discount" value="0,00" placeholder="1">
                                     <span class="input-group-append">
@@ -396,10 +396,10 @@
             </div>
             <div class="modal-body clearfix">
 
-                <input type="hidden" id="taxa" class="form-control" value="0.00">
-                <input type="hidden" id="delivery_cost" class="form-control" value="0">
-                <input type="hidden" id="total_amount" class="form-control" value="0.00">
-                <input type="hidden" id="idcliente" class="form-control" value="">
+                <input type="hidden" id="taxa" class="form-control  form-control-sm" value="0.00">
+                <input type="hidden" id="delivery_cost" class="form-control  form-control-sm" value="0">
+                <input type="hidden" id="total_amount" class="form-control  form-control-sm" value="0.00">
+                <input type="hidden" id="idcliente" class="form-control  form-control-sm" value="">
 
                 <div class="row">
                     <div class="col-md-6">
@@ -407,7 +407,7 @@
                         <p class="text-bold">Pontos / CashBack: <span class="text-multban-bold-secundary">800</span></p>
                     </div>
                      <div class="col-md-6 text-right">
-                        <button type="button" id="" class="btn btn-primary">Resgatar Pontos/Cash Back</button>
+                        <button type="button" id="" class="btn btn-primary btn-sm">Resgatar Pontos/Cash Back</button>
                     </div>
                 </div>
 
@@ -510,21 +510,21 @@
                         <div class="form-group">
                             <label for="valorDescCento">Desconto %:</label>
                             <input type="text"id="valorDescCento" placeholder="Desconto%"
-                                class="form-control money">
+                                class="form-control money form-control-sm">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="valorDesconto">Desconto R$:</label>
                             <input type="text" id="valorDesconto" placeholder="Valor desconto"
-                                class="form-control money">
+                                class="form-control money form-control-sm">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="valorDesconto">Valor a pagar R$:</label>
                             <input type="text" id="valorAPagar" readonly="" placeholder="Valor desconto"
-                                class="form-control money">
+                                class="form-control money form-control-sm">
                         </div>
                     </div>
                 </div>
@@ -532,14 +532,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="valortotalpago">Valor Pago:</label>
-                            <input type="text" id="valortotalpago" placeholder="Valor pago" class="form-control money">
+                            <input type="text" id="valortotalpago" placeholder="Valor pago" class="form-control money form-control-sm">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="valortroco">Troco:</label>
                             <input type="text" id="valortroco" readonly="" placeholder="Troco"
-                                class="form-control money">
+                                class="form-control money form-control-sm">
                         </div>
                     </div>
                 </div>
@@ -548,7 +548,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <textarea id="observacao" value="" placeholder="Observações"
-                                class="form-control"></textarea>
+                                class="form-control  form-control-sm"></textarea>
                         </div>
                     </div>
                 </div>
@@ -558,7 +558,7 @@
                     </button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar </button>
                     <input type="hidden" value="" id="id">
-                    <button type="button" id="finalizarPedido" class="btn btn-primary">Finalizar</button>
+                    <button type="button" id="finalizarPedido" class="btn btn-primary btn-sm">Finalizar</button>
                 </div>-->
 
             </div>
@@ -659,22 +659,22 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="razaosocial" id="labelrazaosocial">Nome:</label>
-                        <input class="form-control" placeholder="Digite o nome" name="razaosocial" type="text"
+                        <input class="form-control  form-control-sm" placeholder="Digite o nome" name="razaosocial" type="text"
                             id="razaosocial" value="">
 
-                        <input class="form-control" placeholder="Digite o nome" name="nomefantasia" type="hidden"
+                        <input class="form-control  form-control-sm" placeholder="Digite o nome" name="nomefantasia" type="hidden"
                             id="nomefantasia" value="">
 
                     </div>
                     <div class="form-group col-md-4">
                         <label for="celular" id="labelcelular">Celular:</label>
-                        <input class="form-control cell_with_ddd" placeholder="Digite o celular" name="celular"
+                        <input class="form-control cell_with_ddd form-control-sm" placeholder="Digite o celular" name="celular"
                             type="text" id="celular" value="">
 
                     </div>
                     <div class="form-group col-md-4">
                         <label for="telefone" id="labeltelefone">Telefone:</label>
-                        <input class="form-control phone_with_ddd" placeholder="Digite o telefone" name="telefone"
+                        <input class="form-control phone_with_ddd form-control-sm" placeholder="Digite o telefone" name="telefone"
                             type="text" id="telefone" value="">
 
                     </div>
@@ -683,8 +683,8 @@
                 <div class="form-row">
                     <div class="form-goup col-md-3">
                         <label for='cep'>CEP</label>
-                        <div class="input-group mb-3">
-                            <input type="text" autofocus="autofocus" class="form-control cep" id="cep" name="cep"
+                        <div class="input-group mb-3 input-group-sm">
+                            <input type="text" autofocus="autofocus" class="form-control cep form-control-sm" id="cep" name="cep"
                                 value="" placeholder="Digite o CEP">
                             <span class="input-group-append">
                                 <button type="button" id="btnPesquisarCep" class="btn btn-default"><i
@@ -694,29 +694,29 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for='endereco'>Endereço (Logradouro)</label>
-                        <input class="form-control" placeholder="Digite o Endereço" name="endereco" type="text"
+                        <input class="form-control  form-control-sm" placeholder="Digite o Endereço" name="endereco" type="text"
                             id="endereco" value="">
                     </div>
                     <div class="form-group col-md-3">
                         <label for='numero'>Número</label>
-                        <input class="form-control" placeholder="Digite o Número" name="numero" type="text" id="numero"
+                        <input class="form-control  form-control-sm" placeholder="Digite o Número" name="numero" type="text" id="numero"
                             value="">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for='complemento'>Complemento</label>
-                        <input class="form-control" placeholder="Digite o Complemento" name="complemento" type="text"
+                        <input class="form-control  form-control-sm" placeholder="Digite o Complemento" name="complemento" type="text"
                             id="complemento" value="">
                     </div>
                     <div class="form-group col-md-4">
                         <label for='bairro'>Bairro</label>
-                        <input class="form-control" placeholder="Digite o Bairro" name="bairro" type="text" id="bairro"
+                        <input class="form-control  form-control-sm" placeholder="Digite o Bairro" name="bairro" type="text" id="bairro"
                             value="">
                     </div>
                     <div class="form-group col-md-4">
                         <label for='pontoreferencia'>Ponto de referência</label>
-                        <input class="form-control" placeholder="Digite o Ponto de referência" name="pontoreferencia"
+                        <input class="form-control  form-control-sm" placeholder="Digite o Ponto de referência" name="pontoreferencia"
                             type="text" id="pontoreferencia" value="">
                     </div>
                 </div>
@@ -749,7 +749,7 @@
 
                 <div class="col-sm-12 text-right">
                     <button type="button" id="ClearForm" class="btn btn-danger">Cancelar</button>
-                    <button type="button" id="salvarCliente" class="btn btn-primary">OK</button>
+                    <button type="button" id="salvarCliente" class="btn btn-primary btn-sm">OK</button>
                     <span id="errorMessage" style="color:red"> </span>
                 </div>
             </div>
@@ -2029,7 +2029,7 @@ function show_cart() {
             cart_html += '<td><h5 style="margin:0px;">' + value.name + '</h5></td>';
             cart_html += '<td width="15%"><input type="text" value="' + $.toMoneySimples(value.quantity) + '" id="item-quantity-'+value.id+'" class="form-control form-control-sm money IncOrDecToCart" data-id=' + value.id + '></td>';
             cart_html += '<td width="15%"><input type="text" value="' + $.toMoneySimples(value.price) + '" id="item-price-'+value.id+'" class="form-control form-control-sm money priceToCart" data-id=' + value.id + '></td>';
-            cart_html += '<td width="15%"><div class="input-group">';
+            cart_html += '<td width="15%"><div class="input-group input-group-sm">';
             cart_html += '<input type="text" value="' + $.toMoneySimples(value.discount) + '" id="item-discount-'+value.id+'" class="form-control form-control-sm money discountToCart" data-id=' + value.id + '>';
             cart_html += '<span class="input-group-append"><button type="button" data-id=' + value.id + ' class="btn btn-primary btn-sm btn-change-discount">'+value.discountType+'</button>';
             cart_html += '</span></div></td>';

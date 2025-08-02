@@ -342,7 +342,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="msg_text">Mensagem:</label>
-                                    <textarea id="msg_text" name="msg_text" class="form-control"></textarea>
+                                    <textarea id="msg_text" name="msg_text" class="form-control  form-control-sm"></textarea>
                                 </div>
 
                                 <button type="button" id="btnSalvarMensagem" class="btn btn-primary mt-2" style=""><i

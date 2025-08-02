@@ -73,9 +73,9 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3" id="serachClient">
                                             <label for="user_id">Código do Usuário:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <!--O código tem que ser registrado automaticamnete após a criação do usuário-->
-                                                <input autocomplete="off" class="form-control"
+                                                <input autocomplete="off" class="form-control  form-control-sm"
                                                     id="user_id" name="user_id" value="{{$usuario->user_id}}"
                                                     placeholder="Código do Usuário" readonly="">
                                             </div>
@@ -83,7 +83,7 @@
 
                                         <div class="form-group col-md-3">
                                             <label for="user_logon">Usuário de Logon:*</label>
-                                            <input autocomplete="off" type="text" class="form-control" id="user_logon"
+                                            <input autocomplete="off" type="text" class="form-control  form-control-sm" id="user_logon"
                                                 name="user_logon" value="{{$usuario->user_logon}}"
                                                 placeholder="Digite o Usuário">
                                         </div>
@@ -108,7 +108,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="user_name">Nome Completo:*</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Digite o nome"
+                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Digite o nome"
                                                 name="user_name" type="text" id="user_name"
                                                 value="{{$usuario->user_name}}">
                                         </div>
@@ -116,7 +116,7 @@
                                         <div class="form-group col-md-3">
                                             <label for="user_cpf">CPF do Usuário:*</label>
                                             <input autocomplete="off" type="text"
-                                                class="form-control cpf" id="user_cpf" name="user_cpf"
+                                                class="form-control cpf form-control-sm" id="user_cpf" name="user_cpf"
                                                 value="{{$usuario->user_cpf}}" placeholder="CPF" maxlength="14">
 
                                         </div>
@@ -124,7 +124,7 @@
                                         <div class="form-group col-md-3">
                                             <label for="user_crm">CRM do Usuário:</label>
                                             <input autocomplete="off" type="text"
-                                                class="form-control" id="user_crm" name="user_crm"
+                                                class="form-control  form-control-sm" id="user_crm" name="user_crm"
                                                 value="{{$usuario->user_crm}}" placeholder="CRM" maxlength="14">
 
                                         </div>
@@ -133,7 +133,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="user_email">E-mail:*</label>
-                                            <input autocomplete="off" type="email" class="form-control" id="user_email"
+                                            <input autocomplete="off" type="email" class="form-control  form-control-sm" id="user_email"
                                                 name="user_email" value="{{$usuario->user_email}}"
                                                 placeholder="Digite o E-mail">
                                         </div>
@@ -156,14 +156,14 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="user_cel">Número de Celular:*</label>
-                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd"
+                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
                                                 id="user_cel" name="user_cel" value="{{$usuario->user_cel}}"
                                                 placeholder="Digite o Celular">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="user_tfixo">Telefone Fixo:</label>
-                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd"
+                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
                                                 id="user_tfixo" name="user_tfixo" value="{{$usuario->user_tfixo}}"
                                                 placeholder="Digite o Telefone Fixo">
                                         </div>
@@ -221,7 +221,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="user_pass">Senha do Usuário:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <input type="password" class="form-control custom-input" id="user_pass"
                                                     name="user_pass" required placeholder="Digite sua senha">
                                                 <span class="input-group-append">
@@ -233,7 +233,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="confirm_password">Repetir Senha:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <input type="password" class="form-control custom-input"
                                                     id="confirm_password" name="confirm_password" required
                                                     placeholder="Repita sua senha">
@@ -247,7 +247,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <button type="button" class="btn btn-primary" id="btnEnviarSenha">Enviar
+                                            <button type="button" class="btn btn-primary btn-sm" id="btnEnviarSenha">Enviar
                                                 Solicitação de Cadastro por Email</button>
                                         </div>
                                     </div>
@@ -296,7 +296,7 @@
 
                                         <div class="form-group col-md-3">
                                             <label for="user_pcomis">Percentual de Comissão:</label>
-                                            <input type="text" value="{{$usuario->user_pcomis}}" class="form-control porcentagem" id="user_pcomis" name="user_pcomis"
+                                            <input type="text" value="{{$usuario->user_pcomis}}" class="form-control porcentagem form-control-sm" id="user_pcomis" name="user_pcomis"
                                                 placeholder="%" min="0" max="100">
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='user_agbc'>Agência:</label>
                                                     <input type="text" maxlength="20" id='user_agbc' name='user_agbc'
-                                                        value="{{ $usuario->user_agbc ?? '' }}" class='form-control'
+                                                        value="{{ $usuario->user_agbc ?? '' }}" class="form-control form-control-sm"
                                                         placeholder='Agência'>
                                                     <span id="user_agbcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -334,7 +334,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='user_ccbc'>Conta Corrente:</label>
                                                     <input type="text" id='user_ccbc' name='user_ccbc'
-                                                        value="{{$usuario->user_ccbc ?? '' }}" class='form-control'
+                                                        value="{{$usuario->user_ccbc ?? '' }}" class="form-control form-control-sm"
                                                         placeholder='Conta Corrente'>
                                                     <span id="user_ccbcError" class="text-danger text-sm"></span>
                                                 </div>
@@ -342,7 +342,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='user_pix'>Chave PIX:</label>
                                                     <input type="text" id='user_pix' name='user_pix'
-                                                        value="{{$usuario->user_pix ?? '' }}" class='form-control'
+                                                        value="{{$usuario->user_pix ?? '' }}" class="form-control form-control-sm"
                                                         placeholder='Chave PIX'>
                                                     <span id="user_pixError" class="text-danger text-sm"></span>
                                                 </div>
@@ -350,7 +350,7 @@
                                                 <div class="form-group col-md-3">
                                                     <label for='user_seller'>Seller:</label>
                                                     <input type="text" id='user_seller' name='user_seller'
-                                                        value="{{$usuario->user_seller ?? '' }}" class='form-control'
+                                                        value="{{$usuario->user_seller ?? '' }}" class="form-control form-control-sm"
                                                         placeholder='Seller'>
                                                     <span id="user_sellerError" class="text-danger text-sm"></span>
                                                 </div>

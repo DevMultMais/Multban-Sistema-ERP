@@ -155,7 +155,7 @@
                         <!-- BOTÃO PARA CRIAR CONEXÃO DB -->
                         <div class="form-group col-md-3 mt-4">
                             <button type="button" id="btnCriarConexaoDB" data-modal="modalConexaoDB" data-toggle="modal"
-                                data-target="#modalConexaoDB" class="btn btn-primary">
+                                data-target="#modalConexaoDB" class="btn btn-primary btn-sm">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
                     </div>
@@ -183,14 +183,14 @@
                     <div class="form-row d-flex align-items-end mb-3">
                         <!-- BOTÃO PESQUISAR -->
                         <div class="mr-2">
-                            <button type="button" id="btnPesquisarAlias" class="btn btn-primary" style=""><i
+                            <button type="button" id="btnPesquisarAlias" class="btn btn-primary btn-sm" style=""><i
                                     class="fa fa-search"></i> Carregar Dados</button>
                         </div>
 
                         <!-- BOTÃO PARA CRIAR ALIAS -->
                         <div>
 
-                            <button type="button" id="btnCriarAlias" data-modal="modalAlias" class="btn btn-primary"
+                            <button type="button" id="btnCriarAlias" data-modal="modalAlias" class="btn btn-primary btn-sm"
                                 data-toggle="modal" data-target="#modalAlias">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
@@ -275,7 +275,7 @@
                         <!-- BOTÃO PARA CRIAR CONEXÃO API -->
                         <div class="form-group col-md-3 mt-4">
                             <button type="button" id="btnCriarConexaoAPI" data-modal="modalCriarConexaoAPI"
-                                class="btn btn-primary" data-toggle="modal" data-target="#modalCriarConexaoAPI">
+                                class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCriarConexaoAPI">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
                     </div>
@@ -329,7 +329,7 @@
                         <!-- BOTÃO PARA CRIAR CONEXÃO API -->
                         <div class="form-group col-md-3 mt-4">
                             <button type="button" id="btnCriarPadroesPlano" data-modal="modalPadroesPlano"
-                                class="btn btn-primary" data-toggle="modal" data-target="#modalPadroesPlano">
+                                class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalPadroesPlano">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
                     </div>
@@ -355,12 +355,12 @@
                     <div class="form-row d-flex align-items-start mb-3">
 
                         <div class="mr-2">
-                            <button type="button" id="btnPesquisarWl" class="btn btn-primary" style=""><i
+                            <button type="button" id="btnPesquisarWl" class="btn btn-primary btn-sm" style=""><i
                                     class="fa fa-search"></i> Carregar Dados</button>
 
                         </div>
                         <div>
-                            <button type="button" id="btnCriarWl" data-modal="modalWl" class="btn btn-primary"
+                            <button type="button" id="btnCriarWl" data-modal="modalWl" class="btn btn-primary btn-sm"
                                 data-toggle="modal" data-target="#modalWl">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
@@ -408,7 +408,7 @@
                     <div class="form-row">
                         <!-- BOTÃO PARA CRIAR NOVO WORKFLOW -->
                         <div class="form-group col-md-3 mt-4">
-                            <button type="button" id="btnCriarWorkFlow" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" id="btnCriarWorkFlow" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#modalWorkFlow" data-modal="modalWorkFlow">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
@@ -477,7 +477,7 @@
                     <div class="form-row">
                         <!-- BOTÃO PARA CRIAR NOVA MENSAGEM -->
                         <div class="form-group col-md-3 mt-4">
-                            <button type="button" id="btnCriarMsg" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" id="btnCriarMsg" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-modal="modalMensagem" data-target="#modalMensagem">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
@@ -538,7 +538,7 @@
                     <div class="form-row">
                         <!-- BOTÃO PARA CRIAR NOVA TBDM -->
                         <div class="form-group col-md-3 mt-4">
-                            <button type="button" id="btnCriarTbDm" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" id="btnCriarTbDm" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#modalTbDm">
                                 <i class="fa fa-plus"></i> Criar novo</button>
                         </div>
@@ -689,17 +689,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for='intervalo_mes'>Intervalo de meses entre Consultas:*</label>
-                            <input type="number" id='intervalo_mes' name='intervalo_mes' value="" class='form-control'
+                            <input type="number" id='intervalo_mes' name='intervalo_mes' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='qtde_cns_freem'>Qtde de Consultas Mensal Gratuítas:*</label>
-                            <input type="number" id='qtde_cns_freem' name='qtde_cns_freem' value="" class='form-control'
+                            <input type="number" id='qtde_cns_freem' name='qtde_cns_freem' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='qtde_cns_cntrm'>Qtde de Consultas Mensal Contratadas:*</label>
-                            <input type="number" id='qtde_cns_cntrm' name='qtde_cns_cntrm' value="" class='form-control'
+                            <input type="number" id='qtde_cns_cntrm' name='qtde_cns_cntrm' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                     </div>
@@ -717,22 +717,22 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for='card_posparc'>Quantidade de Parcelas liberadas:*</label>
-                            <input type="number" id='card_posparc' name='card_posparc' value="" class='form-control'
+                            <input type="number" id='card_posparc' name='card_posparc' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                         <div class="form-group col-md-2">
                             <label for='vlr_pix'>Valor PIX:*</label>
-                            <input type="text" id='vlr_pix' name='vlr_pix' value="" class='form-control money'
+                            <input type="text" id='vlr_pix' name='vlr_pix' value="" class="form-control money form-control-sm"
                                 placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-2">
                             <label for='vlr_boleto'>Valor Boleto:*</label>
-                            <input type="text" id='vlr_boleto' name='vlr_boleto' value="" class='form-control money'
+                            <input type="text" id='vlr_boleto' name='vlr_boleto' value="" class="form-control money form-control-sm"
                                 placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-2">
                             <label for='vlr_bolepix'>Valor BolePIX:*</label>
-                            <input type="text" id='vlr_bolepix' name='vlr_bolepix' value="" class='form-control money'
+                            <input type="text" id='vlr_bolepix' name='vlr_bolepix' value="" class="form-control money form-control-sm"
                                 placeholder='0,00'>
                         </div>
                     </div>
@@ -765,17 +765,17 @@
                         <div class="form-group col-md-4">
                             <label for='tax_pre'>Taxa Pré:*</label>
                             <input type="text" id='tax_pre' name='tax_pre' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='tax_gift'>Taxa Gift:*</label>
                             <input type="text" id='tax_gift' name='tax_gift' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='tax_fid'>Taxa Fidelidade:*</label>
                             <input type="text" id='tax_fid' name='tax_fid' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                     </div>
 
@@ -794,29 +794,29 @@
                         <div class="form-group col-md-4">
                             <label for='perc_mlt_atr'>Percentual de Multa:*</label>
                             <input type="text" id='perc_mlt_atr' name='perc_mlt_atr' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='perc_jrs_atr'>Percentual de Juros:*</label>
                             <input type="text" id='perc_jrs_atr' name='perc_jrs_atr' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='perc_com_mltjr'>Comissão:*</label>
                             <input type="text" id='perc_com_mltjr' name='perc_com_mltjr' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for='dias_inat_card'>Dias de atraso para inativação do cartão:*</label>
-                            <input type="number" id='dias_inat_card' name='dias_inat_card' value="" class='form-control'
+                            <input type="number" id='dias_inat_card' name='dias_inat_card' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='isnt_pixblt'>Isentar PIX / Boleto para parcelas acima de:*</label>
-                            <input type="text" id='isnt_pixblt' name='isnt_pixblt' value="" class='form-control money'
+                            <input type="text" id='isnt_pixblt' name='isnt_pixblt' value="" class="form-control money form-control-sm"
                                 placeholder='0,00'>
                         </div>
                     </div>
@@ -833,18 +833,18 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for='parc_jr_deprc'>A Partir da Parcela:*</label>
-                            <input type="number" id='parc_jr_deprc' name='parc_jr_deprc' value="" class='form-control'
+                            <input type="number" id='parc_jr_deprc' name='parc_jr_deprc' value="" class="form-control form-control-sm"
                                 placeholder='0'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='tax_jrsparc'>Taxa de Juros:*</label>
                             <input type="text" id='tax_jrsparc' name='tax_jrsparc' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                         <div class="form-group col-md-4">
                             <label for='parc_com_jrs'>Comissão:*</label>
                             <input type="text" id='parc_com_jrs' name='parc_com_jrs' value=""
-                                class='form-control porcentagem' placeholder='0,00'>
+                                class="form-control porcentagem form-control-sm" placeholder='0,00'>
                         </div>
                     </div>
 
@@ -879,9 +879,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="fas fa-times"></i> Fechar</button>
-                    <button type="submit" class="btn btn-primary" data-emp-id="" id="btnSalvarPadroesPlano"><i
+                    <button type="submit" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarPadroesPlano"><i
                             class="fas fa-save"></i>
                         Salvar</button>
                 </div>
@@ -920,13 +920,13 @@
                     <div class="form-group">
                         <label for="emp_tab_alias">Alias</label>
                         <input type="text" id="emp_tab_alias" name="emp_tab_alias" placeholder="Digite o End Point"
-                            class="form-control" />
+                            class="form-control  form-control-sm" />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="icon fas fa-times"></i> Fechar</button>
-                    <button type="submit" class="btn btn-primary" data-emp-id="" id="btnSalvarAlias"><i
+                    <button type="submit" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarAlias"><i
                             class="fas fa-save"></i>
                         Salvar</button>
                 </div>
@@ -964,20 +964,20 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="bc_emp_ident">Identificação da Conexão:</label>
-                            <input type="text" class="form-control" id="bc_emp_ident" name="bc_emp_ident"
+                            <input type="text" class="form-control  form-control-sm" id="bc_emp_ident" name="bc_emp_ident"
                                 placeholder="Identificação da Conexão" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_host">Host</label>
-                            <input type="text" class="form-control" id="bc_emp_host" name="bc_emp_host"
+                            <input type="text" class="form-control  form-control-sm" id="bc_emp_host" name="bc_emp_host"
                                 placeholder="Host" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_porta">Porta</label>
                             <input type="text" id="bc_emp_porta" name="bc_emp_porta" placeholder="Porta"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -986,19 +986,19 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_nome">Nome do Bando de Dados</label>
                             <input type="text" id="bc_emp_nome" name="bc_emp_nome" placeholder="Nome do Bando de Dados"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_user">Usuário</label>
                             <input type="text" id="bc_emp_user" name="bc_emp_user" placeholder="Usuário"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_pass">Senha</label>
                             <input type="text" id="bc_emp_pass" name="bc_emp_pass" placeholder="Senha"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1006,19 +1006,19 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_token">Token - Autenticação</label>
                             <input type="text" id="bc_emp_token" name="bc_emp_token" placeholder="Token - Autenticação"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_sslmo">SSL Mode</label>
                             <input type="text" id="bc_emp_sslmo" name="bc_emp_sslmo" placeholder="SSL Mode"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_sslce">SSL Certificate</label>
                             <input type="text" id="bc_emp_sslce" name="bc_emp_sslce" placeholder="SSL Certificate"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1027,19 +1027,19 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_sslky">SSL Key</label>
                             <input type="text" id="bc_emp_sslky" name="bc_emp_sslky" placeholder="SSL Key"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_sslca">SSL CA</label>
                             <input type="text" id="bc_emp_sslca" name="bc_emp_sslca" placeholder="SSL CA"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_toconex">Timeout de conexão</label>
                             <input type="text" id="bc_emp_toconex" name="bc_emp_toconex"
-                                placeholder="Timeout de conexão" class="form-control" />
+                                placeholder="Timeout de conexão" class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1047,19 +1047,19 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_tocons">Timeout de consulta</label>
                             <input type="text" id="bc_emp_tocons" name="bc_emp_tocons" placeholder="Timeout de consulta"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_pooling">Pooling de conexão</label>
                             <input type="text" id="bc_emp_pooling" name="bc_emp_pooling"
-                                placeholder="Pooling de conexão" class="form-control" />
+                                placeholder="Pooling de conexão" class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_charset">Charset</label>
                             <input type="text" id="bc_emp_charset" name="bc_emp_charset" placeholder="Charset"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1068,19 +1068,19 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_tzone">Time Zone</label>
                             <input type="text" id="bc_emp_tzone" name="bc_emp_tzone" placeholder="Time Zone"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_appname">Application Name</label>
                             <input type="text" id="bc_emp_appname" name="bc_emp_appname" placeholder="Application Name"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_keepalv">Keep Alive</label>
                             <input type="text" id="bc_emp_keepalv" name="bc_emp_keepalv" placeholder="Keep Alive"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1088,22 +1088,22 @@
                         <div class="form-group col-md-4">
                             <label for="bc_emp_compress">Compression</label>
                             <input type="text" id="bc_emp_compress" name="bc_emp_compress" placeholder="Compression"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="bc_emp_readonly">Read Only</label>
                             <input type="text" id="bc_emp_readonly" name="bc_emp_readonly" placeholder="Read Only"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="fas fa-times"></i> Fechar</button>
-                    <button type="submit" class="btn btn-primary" data-emp-id="" id="btnSalvarConexaoDB"><i
+                    <button type="submit" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarConexaoDB"><i
                             class="fas fa-save"></i>
                         Salvar</button>
                 </div>
@@ -1169,7 +1169,7 @@
                         <div class="form-group col-md-6">
                             <label for="api_emp_endpoint">End Point</label>
                             <input type="text" id="api_emp_endpoint" name="api_emp_endpoint"
-                                placeholder="Digite o End Point" class="form-control" />
+                                placeholder="Digite o End Point" class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-6">
@@ -1189,13 +1189,13 @@
                         <div class="form-group col-md-6">
                             <label for="api_emp_token">Token de Autenticação</label>
                             <input type="text" id="api_emp_token" name="api_emp_token"
-                                placeholder="Digite o Token de Autenticação" class="form-control" />
+                                placeholder="Digite o Token de Autenticação" class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="api_emp_tpde">Tipo de Dados Enviados</label>
                             <input type="text" id="api_emp_tpde" name="api_emp_tpde"
-                                placeholder="Tipo de Dados Enviados" class="form-control" />
+                                placeholder="Tipo de Dados Enviados" class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1203,13 +1203,13 @@
                         <div class="form-group col-md-6">
                             <label for="api_emp_tpda">Tipo de Dados Aceitos</label>
                             <input type="text" id="api_emp_tpda" name="api_emp_tpda" placeholder="Tipo de Dados Aceitos"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="api_emp_user">Usuário</label>
                             <input type="text" id="api_emp_user" name="api_emp_user" placeholder="Usuário"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
 
@@ -1217,21 +1217,21 @@
                         <div class="form-group col-md-6">
                             <label for="api_emp_pass">Senha</label>
                             <input type="text" id="api_emp_pass" name="api_emp_pass" placeholder="Senha"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="api_emp_key">API Key</label>
                             <input type="text" id="api_emp_key" name="api_emp_key" placeholder="API Key"
-                                class="form-control" />
+                                class="form-control  form-control-sm" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                     <i class="icon fas fa-times"></i> Fechar</button>
-                <button type="button" class="btn btn-primary" data-emp-id="" id="btnSalvarAPI">
+                <button type="button" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarAPI">
                     <i calss="icon fas fa-save"></i> Salvar</button>
             </div>
         </div>
@@ -1284,7 +1284,7 @@
                             <label for="text_color_df">Cor Padrão do Texto:</label>
 
                             <div class="input-group text_color_df">
-                                <input type="text" class="form-control" id="text_color_df" name="text_color_df">
+                                <input type="text" class="form-control  form-control-sm" id="text_color_df" name="text_color_df">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1296,7 +1296,7 @@
                             <label for="fd_color">Cor Primária:</label>
 
                             <div class="input-group fd_color">
-                                <input type="text" class="form-control" id="fd_color" name="fd_color">
+                                <input type="text" class="form-control  form-control-sm" id="fd_color" name="fd_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1308,7 +1308,7 @@
                             <label for="fdsel_color">Hover/Active Botão Cor Primária:</label>
 
                             <div class="input-group fdsel_color">
-                                <input type="text" class="form-control" id="fdsel_color" name="fdsel_color">
+                                <input type="text" class="form-control  form-control-sm" id="fdsel_color" name="fdsel_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1324,7 +1324,7 @@
                             <label for="ft_color">Cor Secundária:</label>
 
                             <div class="input-group ft_color">
-                                <input type="text" class="form-control" id="ft_color" name="ft_color">
+                                <input type="text" class="form-control  form-control-sm" id="ft_color" name="ft_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1336,7 +1336,7 @@
                             <label for="ftsel_color">Hover/Active Botão Cor Secundária:</label>
 
                             <div class="input-group ftsel_color">
-                                <input type="text" class="form-control" id="ftsel_color" name="ftsel_color">
+                                <input type="text" class="form-control  form-control-sm" id="ftsel_color" name="ftsel_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1352,7 +1352,7 @@
                             <label for="bg_menu_ac_color">Background Menu active:</label>
 
                             <div class="input-group bg_menu_ac_color">
-                                <input type="text" class="form-control" id="bg_menu_ac_color" name="bg_menu_ac_color">
+                                <input type="text" class="form-control  form-control-sm" id="bg_menu_ac_color" name="bg_menu_ac_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1364,7 +1364,7 @@
                             <label for="bg_item_menu_ac_color">Bg Item Menu active:</label>
 
                             <div class="input-group bg_item_menu_ac_color">
-                                <input type="text" class="form-control" id="bg_item_menu_ac_color"
+                                <input type="text" class="form-control  form-control-sm" id="bg_item_menu_ac_color"
                                     name="bg_item_menu_ac_color">
 
                                 <div class="input-group-append">
@@ -1377,7 +1377,7 @@
                             <label for="menu_ac_color">Texto Menu active:</label>
 
                             <div class="input-group menu_ac_color">
-                                <input type="text" class="form-control" id="menu_ac_color" name="menu_ac_color">
+                                <input type="text" class="form-control  form-control-sm" id="menu_ac_color" name="menu_ac_color">
 
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-square fa-lg"></i></span>
@@ -1390,9 +1390,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="icon fas fa-times"></i> Fechar</button>
-                    <button type="submit" class="btn btn-primary" data-emp-id="" id="btnSalvarWl"><i
+                    <button type="submit" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarWl"><i
                             class="fas fa-save"></i>
                         Salvar</button>
                 </div>
@@ -1448,9 +1448,9 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                     <i class="fas fa-times"></i> Fechar</button>
-                <button type="button" class="btn btn-primary" data-emp-id="" id="btnSalvarWorkFlow">
+                <button type="button" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarWorkFlow">
                     <i class="fas fa-save"></i> Salvar</button>
             </div>
         </div>
@@ -1496,16 +1496,16 @@
 
                     <div class="form-group">
                         <label for="msg_text">Mensagem</label>
-                        <textarea id="msg_text" name="msg_text" class="form-control"></textarea>
+                        <textarea id="msg_text" name="msg_text" class="form-control  form-control-sm"></textarea>
                     </div>
 
                 </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                     <i class="fas fa-times"></i> Fechar</button>
-                <button type="button" class="btn btn-primary" data-emp-id="" id="btnSalvarMensagem">
+                <button type="button" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarMensagem">
                     <i class="fas fa-save"></i> Salvar</button>
             </div>
         </div>
@@ -1529,9 +1529,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                    <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="icon fas fa-times"></i> Fechar</button>
-                    <button type="submit" class="btn btn-primary" data-emp-id="" id="btnSalvarTbDm"><i
+                    <button type="submit" class="btn btn-primary btn-sm" data-emp-id="" id="btnSalvarTbDm"><i
                             class="fas fa-save"></i>
                         Salvar</button>
                 </div>

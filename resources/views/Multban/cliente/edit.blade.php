@@ -123,17 +123,17 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_doc" id="labelcliente_doc">CPF/CNPJ:*</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <input type="text" id="cliente_doc" name="cliente_doc"
-                                                    class="form-control" placeholder="Digite o CPF ou CNPJ"
+                                                    class="form-control  form-control-sm" placeholder="Digite o CPF ou CNPJ"
                                                     value="{{$cliente->cliente_doc}}">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="cliente_pasprt">Número do Passaporte:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <input type="text" maxlength="15" id="cliente_pasprt" name="cliente_pasprt"
-                                                    class="form-control" placeholder="Digite o Número do Passaporte"
+                                                    class="form-control  form-control-sm" placeholder="Digite o Número do Passaporte"
                                                     value="{{$cliente->cliente_pasprt}}">
                                             </div>
                                         </div>
@@ -143,21 +143,21 @@
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nome">Nome:*</label>
-                                            <input autocomplete="off" maxlength="255" class="form-control" placeholder="Digite o nome"
+                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm" placeholder="Digite o nome"
                                                 name="cliente_nome" type="text" id="cliente_nome"
                                                 value="{{$cliente->cliente_nome}}">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nm_alt">Nome Alternativo:</label>
-                                            <input autocomplete="off" maxlength="255" class="form-control"
+                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm"
                                                 placeholder="Digite o nome alternativo" name="cliente_nm_alt"
                                                 type="text" id="cliente_nm_alt" value="{{$cliente->cliente_nm_alt}}">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nm_card">Nome Impresso no Cartão:</label>
-                                            <input autocomplete="off" class="form-control"
+                                            <input autocomplete="off" class="form-control  form-control-sm"
                                                 placeholder="Digite o nome impresso no cartão" name="cliente_nm_card"
                                                 type="text" id="cliente_nm_card" value="{{$cliente->cliente_nm_card}}">
                                         </div>
@@ -166,15 +166,15 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="cliente_email">E-mail:*</label>
-                                            <div class="input-group">
-                                                <input autocomplete="off" type="email" class="form-control"
+                                            <div class="input-group input-group-sm">
+                                                <input autocomplete="off" type="email" class="form-control  form-control-sm"
                                                     id="cliente_email" name="cliente_email"
                                                     value="{{$cliente->cliente_email}}" placeholder="Digite o E-mail">
                                             </div>
                                         </div>
 
                                         <div class="form-group align-self-end">
-                                            <button type="button" class="btn btn-primary" id="btnReenviarSolicitacao">
+                                            <button type="button" class="btn btn-primary btn-sm" id="btnReenviarSolicitacao">
                                                 Reenviar Solicitação de Autorização
                                             </button>
                                         </div>
@@ -183,25 +183,25 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="cliente_cel">Celular:*</label>
-                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd"
+                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
                                                 id="cliente_cel" name="cliente_cel" value="{{$cliente->cliente_cel}}"
                                                 placeholder="Digite o Celular">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_telfixo">Telefone Fixo:</label>
-                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd"
+                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
                                                 id="cliente_telfixo" name="cliente_telfixo"
                                                 value="{{$cliente->cliente_telfixo}}" placeholder="Digite o Telefone">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_rendam">Renda Mensal Aprox.:*</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">R$</span>
                                                 </div>
-                                                <input autocomplete="off" class="form-control money"
+                                                <input autocomplete="off" class="form-control money form-control-sm"
                                                     placeholder="Digite a renda mensal aproximada" name="cliente_rendam"
                                                     type="text" id="cliente_rendam" value="{{$cliente->cliente_rendam}}"
                                                     required>
@@ -210,7 +210,7 @@
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_dt_fech">Dia para Fech.:*</label>
-                                            <input class="form-control"
+                                            <input class="form-control  form-control-sm"
                                                 placeholder="Digite o melhor dia para fechamento" name="cliente_dt_fech"
                                                 type="number" id="cliente_dt_fech" value="{{$cliente->cliente_dt_fech}}"
                                                 required>
@@ -237,18 +237,18 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="cliente_cel_s">Telefone Celular Saneado:</label>
-                                            <input type="text" class="form-control cell_with_ddd"
+                                            <input type="text" class="form-control cell_with_ddd form-control-sm"
                                                 value="{{$cliente->cliente_cel_s}}" id="cliente_cel_s"
                                                 name="cliente_cel_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_rdam_s">Renda Mensal Saneada:</label>
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">R$</span>
                                                 </div>
-                                                <input type="text" class="form-control money"
+                                                <input type="text" class="form-control money form-control-sm"
                                                     value="{{$cliente->cliente_rdam_s}}" id="cliente_rdam_s"
                                                     name="cliente_rdam_s" disabled>
                                             </div>
@@ -256,7 +256,7 @@
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_email_s">E-mail Saneado:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_email_s}}" id="cliente_email_s"
                                                 name="cliente_email_s" disabled>
                                         </div>
@@ -281,9 +281,9 @@
                                                 <i class="far fa-question-circle"></i>
                                             </a>
 
-                                            <div class="input-group">
+                                            <div class="input-group input-group-sm">
                                                 <input autocomplete="off" type="text" autofocus="autofocus"
-                                                    class="form-control cep" id="cliente_cep" name="cliente_cep"
+                                                    class="form-control cep form-control-sm" id="cliente_cep" name="cliente_cep"
                                                     value="{{$cliente->cliente_cep}}" placeholder="CEP">
                                                 <span class="input-group-append">
                                                     <button type="button" id="btnPesquisarCep"
@@ -294,21 +294,21 @@
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_end">Endereço (Logradouro):*</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Endereço"
+                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Endereço"
                                                 value="{{$cliente->cliente_end}}" name="cliente_end" type="text"
                                                 id="cliente_end">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_endnum">Número:*</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Número"
+                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Número"
                                                 value="{{$cliente->cliente_endnum}}" name="cliente_endnum" type="text"
                                                 id="cliente_endnum">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_endcmp">Complemento:</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Complemento"
+                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Complemento"
                                                 value="{{$cliente->cliente_endcmp}}" name="cliente_endcmp" type="text"
                                                 id="cliente_endcmp">
                                         </div>
@@ -317,7 +317,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="cliente_endbair">Bairro:*</label>
-                                            <input autocomplete="off" class="form-control" placeholder="Bairro"
+                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Bairro"
                                                 value="{{$cliente->cliente_endbair}}" name="cliente_endbair" type="text"
                                                 id="cliente_endbair">
                                         </div>
@@ -385,26 +385,26 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="cliente_cep_s">CEP:*</label>
-                                            <input type="text" class="form-control" value="{{$cliente->cliente_cep_s}}"
+                                            <input type="text" class="form-control  form-control-sm" value="{{$cliente->cliente_cep_s}}"
                                                 id="cliente_cep_s" name="cliente_cep_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_end_s">Endereço:</label>
-                                            <input type="text" class="form-control" value="{{$cliente->cliente_end_s}}"
+                                            <input type="text" class="form-control  form-control-sm" value="{{$cliente->cliente_end_s}}"
                                                 id="cliente_end_s" name="cliente_end_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_endnum_s">Número:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endnum_s}}" id="cliente_endnum_s"
                                                 name="cliente_endnum_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_endcmp_s">Complemento:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endcmp_s}}" id="cliente_endcmp_s"
                                                 name="cliente_endcmp_s" disabled>
                                         </div>
@@ -414,28 +414,28 @@
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_endbair_s">Bairro:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endbair_s}}" id="cliente_endbair_s"
                                                 name="cliente_endbair_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_endcid_s">Cidade:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endcid_s}}" id="cliente_endcid_s"
                                                 name="cliente_endcid_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="cliente_endest_s">Estado:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endest_s}}" id="cliente_endest_s"
                                                 name="cliente_endest_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_endpais_s">Pais:</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control  form-control-sm"
                                                 value="{{$cliente->cliente_endpais_s}}" id="cliente_endpais_s"
                                                 name="cliente_endpais_s" disabled>
                                         </div>
@@ -454,20 +454,20 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="dt_movimento">Data da Compra:</label>
-                                            <input type="date" class="form-control" id="dt_movimento"
+                                            <input type="date" class="form-control  form-control-sm" id="dt_movimento"
                                                 name="dt_movimento">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="dt_vencimento">Data de Vencimento:</label> <input type="date"
-                                                class="form-control" id="dt_vencimento" name="dt_vencimento">
+                                                class="form-control  form-control-sm" id="dt_vencimento" name="dt_vencimento">
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="dt_vencimento">Data de Pagamento:</label>
-                                            <input type="date" class="form-control" id="dt_vencimento"
+                                            <input type="date" class="form-control  form-control-sm" id="dt_vencimento"
                                                 name="dt_vencimento">
                                         </div>
 
@@ -481,7 +481,7 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <button type="button" id="btnPesquisar" class="btn btn-primary" style=""><i
+                                            <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm" style=""><i
                                                     class="fa fa-search"></i> Pesquisar</button>
                                         </div>
                                     </div>
@@ -589,8 +589,8 @@
                             </div>
 
                             <div>
-                                <button class="btn btn-primary">Enviar Link de Pagto da Compra</button>
-                                <button class="btn btn-primary">Enviar Link de Pagto da Fatura</button>
+                                <button class="btn btn-primary btn-sm">Enviar Link de Pagto da Compra</button>
+                                <button class="btn btn-primary btn-sm">Enviar Link de Pagto da Fatura</button>
                             </div>
                         </div>
 
@@ -602,7 +602,7 @@
                                     <!-- AÇÕES -->
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
-                                            <button type="button" class="btn btn-primary"
+                                            <button type="button" class="btn btn-primary btn-sm"
                                                 id="btnConsultarScore">Consultar SCORE</button>
                                         </div>
                                         <div class="form-group col-md-2">
@@ -671,7 +671,7 @@
                                     <!-- AÇÕES -->
                                     <div class="form-row">
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-primary" data-modal="modalCriarCartao" id="btnCriarCartao">Criar Novo
+                                            <button type="button" class="btn btn-primary btn-sm" data-modal="modalCriarCartao" id="btnCriarCartao">Criar Novo
                                                 Cartão</button>
                                         </div>
 
@@ -732,21 +732,21 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="data_de">De:</label>
-                                                <input type="date" class="form-control" id="data_de" name="data_de">
+                                                <input type="date" class="form-control  form-control-sm" id="data_de" name="data_de">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="data_ate">Até:</label>
-                                                <input type="date" class="form-control" id="data_ate" name="data_ate">
+                                                <input type="date" class="form-control  form-control-sm" id="data_ate" name="data_ate">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="protocolo">Protocolo:</label>
-                                                <input type="text" class="form-control" id="protocolo" name="protocolo"
+                                                <input type="text" class="form-control  form-control-sm" id="protocolo" name="protocolo"
                                                     placeholder="Digite o Protocolo">
                                             </div>
                                             <div class="form-group col-md-6 align-self-end">
-                                                <button type="button" id="btnPesquisar" class="btn btn-primary"
+                                                <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"
                                                     style=""><i class="fa fa-search"></i> Pesquisar</button>
                                             </div>
                                         </div>
@@ -809,9 +809,9 @@
                                             <textarea id="texto_prt" class="form-control summernote"
                                                 rows="10"></textarea>
                                         </div>
-                                        <button id="btnSalvarPrt" type="button" class="btn btn-primary"><i
+                                        <button id="btnSalvarPrt" type="button" class="btn btn-primary btn-sm"><i
                                                 class="icon fas fa-save"></i> Salvar</button>
-                                        <button id="btnReceituario" type="button" class="btn btn-primary"><i
+                                        <button id="btnReceituario" type="button" class="btn btn-primary btn-sm"><i
                                                 class="icon fas fa-files-medical"></i> Receituário</button>
                                     </form>
                                 </div>
@@ -863,21 +863,21 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="data_de">De:</label>
-                                                <input type="date" class="form-control" id="data_de" name="data_de">
+                                                <input type="date" class="form-control  form-control-sm" id="data_de" name="data_de">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="data_ate">Até:</label>
-                                                <input type="date" class="form-control" id="data_ate" name="data_ate">
+                                                <input type="date" class="form-control  form-control-sm" id="data_ate" name="data_ate">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="protocolo">Protocolo:</label>
-                                                <input type="text" class="form-control" id="protocolo" name="protocolo"
+                                                <input type="text" class="form-control  form-control-sm" id="protocolo" name="protocolo"
                                                     placeholder="Digite o Protocolo">
                                             </div>
                                             <div class="form-group col-md-6 align-self-end">
-                                                <button type="button" id="btnPesquisar" class="btn btn-primary"
+                                                <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"
                                                     style=""><i class="fa fa-search"></i> Pesquisar</button>
                                             </div>
                                         </div>
@@ -943,9 +943,9 @@
                                         </textarea>
                                     </div>
                                     <!-- Botões -->
-                                    <button id="btnSalvarRec" type="button" class="btn btn-primary"><i
+                                    <button id="btnSalvarRec" type="button" class="btn btn-primary btn-sm"><i
                                             class="icon fas fa-save"></i> Salvar</button>
-                                    <button type="button" class="btn btn-primary" onclick="printCorpoReceita();"><i
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="printCorpoReceita();"><i
                                             class="far fa-print"></i> Imprimir</button>
                                 </div>
                             </div>
@@ -1131,21 +1131,21 @@
                     </div>
                     <div class="form-group">
                         <label for="card_desc">Descrição do Cartão:</label>
-                        <input type="text" class="form-control" id="card_desc" name="card_desc"
+                        <input type="text" class="form-control  form-control-sm" id="card_desc" name="card_desc"
                             placeholder="Descrição do Cartão">
                     </div>
                     <div class="form-group">
                         <label for="card_limite">Limite do Cartão:</label>
-                        <input type="text" class="form-control money" id="card_limite" name="card_limite"
+                        <input type="text" class="form-control money form-control-sm" id="card_limite" name="card_limite"
                             placeholder="Limite do Cartão">
                     </div>
                 </div>
 
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secundary-multban" data-dismiss="modal">
+                <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
                         <i class="fas fa-times"></i> Fechar</button>
-                <button type="submit" class="btn btn-primary" id="btnSalvarCartao"><i class="fas fa-save"></i> Salvar</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="btnSalvarCartao"><i class="fas fa-save"></i> Salvar</button>
             </div>
         </div>
     </div>

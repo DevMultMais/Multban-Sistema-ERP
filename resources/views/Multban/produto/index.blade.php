@@ -40,8 +40,8 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label id="produto_id">Código do Produto:</label>
-                        <div class="input-group">
-                            <input type="text" id="produto_id" class="form-control"
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="produto_id" class="form-control  form-control-sm"
                                 placeholder="Digite o código do produto">
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3 align-self-end d-flex">
-                        <button type="button" id="btnPesquisar" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
+                        <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Pesquisar</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
         <div class="card card-outline card-primary">
             @can('usuario.create')
                 <div class="card-header">
-                    <a href="/produtos/inserir" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+                    <a href="/produtos/inserir" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
                 </div>
             @endcan
 

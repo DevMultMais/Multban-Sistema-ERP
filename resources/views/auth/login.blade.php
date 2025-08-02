@@ -57,8 +57,8 @@
       <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <div class="input-group mb-3">
-          <input id="user_email" type="email" name="user_email" value="{{old('user_email')}}" required autofocus class="form-control" placeholder="Email">
+        <div class="input-group mb-3 input-group-sm">
+          <input id="user_email" type="email" name="user_email" value="{{old('user_email')}}" required autofocus class="form-control  form-control-sm" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -66,9 +66,9 @@
           </div>
         </div>
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 input-group-sm">
           <input type="password" id="user_pass"
-          class="form-control"
+          class="form-control  form-control-sm"
           name="user_pass"
           required autocomplete="current-password"
           placeholder="{{__('Password')}}">

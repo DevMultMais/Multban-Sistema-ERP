@@ -59,12 +59,12 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="prg_nome">Nome do Programa:</label>
-                    <div class="input-group">
-                        <input type="text" id="prg_nome" class="form-control" placeholder="Digite o nome do programa">
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="prg_nome" class="form-control  form-control-sm" placeholder="Digite o nome do programa">
                     </div>
                 </div>
                 <div class="form-group col-md-3 align-self-end d-flex">
-                    <button type="button" id="btnPesquisar" class="btn btn-primary"><i class="fa fa-search"></i> Pesquisar</button>
+                    <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Pesquisar</button>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
         <!-- BOTÃO PARA CRIAR NOVO PROGRAMA -->
         @can('usuario.create')
             <div class="card-header">
-                <a href="#" data-toggle="modal" data-target="#modalCriarCartao" class="btn btn-primary"><i class="fa fa-plus"></i> Criar novo</a>
+                <a href="#" data-toggle="modal" data-target="#modalCriarCartao" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Criar novo</a>
             </div>
         @endcan
 
@@ -135,20 +135,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="prg_nome">Nome do Programa:</label>
-                                <input type="text" class="form-control" id="prg_nome" name="prg_nome" placeholder="Digite o nome do programa" required>
+                                <input type="text" class="form-control  form-control-sm" id="prg_nome" name="prg_nome" placeholder="Digite o nome do programa" required>
                             </div>
                             <div class="form-group">
                                 <label for="prg_valor">Valor do Programa:</label>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="text" class="form-control" id="prg_valor" name="prg_valor" placeholder="Digite o valor do programa" required>
+                                    <input type="text" class="form-control  form-control-sm" id="prg_valor" name="prg_valor" placeholder="Digite o valor do programa" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="card_sts">Status:</label>
-                                <select class="form-control" id="card_sts" name="card_sts" required>
+                                <select class="form-control  form-control-sm" id="card_sts" name="card_sts" required>
                                     <option value="" disabled selected>Selecione o status</option>
                                     <option value="ativo">Ativo</option>
                                     <option value="inativo">Inativo</option>
@@ -157,8 +157,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secundary-multban" data-dismiss="modal"><i class="icon fas fa-times"></i> Fechar</button>
-                        <button type="button" class="btn btn-primary" id="btnSalvarPrograma"><i class="icon fas fa-save"></i> Salvar Cartão</button>
+                        <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal"><i class="icon fas fa-times"></i> Fechar</button>
+                        <button type="button" class="btn btn-primary btn-sm" id="btnSalvarPrograma"><i class="icon fas fa-save"></i> Salvar Cartão</button>
                     </div>
                 </div>
             </div>
