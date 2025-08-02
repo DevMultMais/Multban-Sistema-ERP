@@ -842,10 +842,10 @@ function notify(type, message) {
                 //     $("#btnSalvar").trigger("click");
             });
 
-            $('body').css({
-                'zoom': '80%',
-                'transform-origin': 'bottom center' // Ensures scaling originates from the top-left corner
-            });
+            // $('body').css({
+            //     'zoom': '80%',
+            //     'transform-origin': 'bottom center' // Ensures scaling originates from the top-left corner
+            // });
         },
         selectAll: function (e) {
             e.preventDefault();

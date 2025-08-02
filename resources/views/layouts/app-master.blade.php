@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('page.title', 'Multban') | {{$empresa->emp_rzsoc}}</title>
@@ -40,7 +39,7 @@
 </head>
 
 <body
-    class="hold-transition sidebar-mini layout-fixed pace-primary layout-footer-fixed {!! $minimizarMenu ? 'sidebar-collapse' : '' !!}">
+    class="hold-transition sidebar-mini layout-fixed pace-primary layout-footer-fixed text-sm {!! $minimizarMenu ? 'sidebar-collapse' : '' !!}">
     <div class="se-pre-con"></div>
     <div class="wrapper">
 
