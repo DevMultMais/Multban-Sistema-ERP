@@ -111,13 +111,21 @@ class ClienteController extends Controller
             $input['cliente_doc'] = removerCNPJ($request->cliente_doc);
             $input['cliente_rendam'] = formatarTextoParaDecimal($request->cliente_rendam);
 
+            $cliente = Cliente::where('cliente_doc', removerCNPJ($request->cliente_doc))->first();
+            if ($cliente) {
+                return response()->json([
+                    'message_type' => 'Já existe um cliente cadastrado com esse CPF/CNPJ.',
+                    'message' => ['cliente_doc' => ['Já existe um cliente cadastrado com esse CPF/CNPJ.']],
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
             $validator = Validator::make($input, $cliente->rules(), $cliente->messages(), $cliente->attributes());
 
             if ($validator->fails()) {
                 return response()->json([
                     'message'   => $validator->errors(),
 
-                ], 422);
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
 
             $cliente->cliente_tipo       = $request->cliente_tipo;
@@ -570,8 +578,16 @@ class ClienteController extends Controller
     {
         try {
 
+            if(empty($request->cliente_id)){
+              return response()->json([
+                    'message_type' => 'Cliente ainda não cadatrado, favor cadastrar o cliente antes de criar o cartão.',
+                    'message' => []
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
             $validator = Validator::make($request->all(), [
                 'emp_id' => 'required',
+                'cliente_id' => 'required',
                 'card_tp' => 'required',
                 'card_mod' => 'required',
                 'card_categ' => 'required',

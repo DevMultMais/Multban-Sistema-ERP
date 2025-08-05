@@ -106,11 +106,11 @@
                                                 data-placeholder="Selecione o Status" style="width: 100%;">
                                                 <option></option>
                                                 @if ($canChangeStatus)
-                                                    @foreach($status as $key => $sta)
-                                                        <option value="{{$sta->cliente_sts}}" {{$cliente->cliente_sts ==
-                                                            $sta->cliente_sts ? 'selected': ''}}>{{$sta->cliente_sts_desc}}
-                                                        </option>
-                                                    @endforeach
+                                                @foreach($status as $key => $sta)
+                                                <option value="{{$sta->cliente_sts}}" {{$cliente->cliente_sts ==
+                                                    $sta->cliente_sts ? 'selected': ''}}>{{$sta->cliente_sts_desc}}
+                                                </option>
+                                                @endforeach
                                                 @else
                                                 <option value="NA" selected>Em análise</option>
                                                 @endif
@@ -121,15 +121,17 @@
                                             <label for="cliente_doc" id="labelcliente_doc">CPF/CNPJ:*</label>
                                             <div class="input-group input-group-sm">
                                                 <input type="text" id="cliente_doc" name="cliente_doc"
-                                                    class="form-control  form-control-sm" placeholder="Digite o CPF ou CNPJ"
+                                                    class="form-control  form-control-sm"
+                                                    placeholder="Digite o CPF ou CNPJ"
                                                     value="{{$cliente->cliente_doc}}">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="cliente_pasprt">Número do Passaporte:</label>
                                             <div class="input-group input-group-sm">
-                                                <input type="text" maxlength="15" id="cliente_pasprt" name="cliente_pasprt"
-                                                    class="form-control  form-control-sm" placeholder="Digite o Número do Passaporte"
+                                                <input type="text" maxlength="15" id="cliente_pasprt"
+                                                    name="cliente_pasprt" class="form-control  form-control-sm"
+                                                    placeholder="Digite o Número do Passaporte"
                                                     value="{{$cliente->cliente_pasprt}}">
                                             </div>
                                         </div>
@@ -139,14 +141,16 @@
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nome">Nome:*</label>
-                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm" placeholder="Digite o nome"
+                                            <input autocomplete="off" maxlength="255"
+                                                class="form-control  form-control-sm" placeholder="Digite o nome"
                                                 name="cliente_nome" type="text" id="cliente_nome"
                                                 value="{{$cliente->cliente_nome}}">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_nm_alt">Nome Alternativo:</label>
-                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm"
+                                            <input autocomplete="off" maxlength="255"
+                                                class="form-control  form-control-sm"
                                                 placeholder="Digite o nome alternativo" name="cliente_nm_alt"
                                                 type="text" id="cliente_nm_alt" value="{{$cliente->cliente_nm_alt}}">
                                         </div>
@@ -163,14 +167,16 @@
                                         <div class="form-group col-md-4">
                                             <label for="cliente_email">E-mail:*</label>
                                             <div class="input-group input-group-sm">
-                                                <input autocomplete="off" type="email" class="form-control  form-control-sm"
-                                                    id="cliente_email" name="cliente_email"
-                                                    value="{{$cliente->cliente_email}}" placeholder="Digite o E-mail">
+                                                <input autocomplete="off" type="email"
+                                                    class="form-control  form-control-sm" id="cliente_email"
+                                                    name="cliente_email" value="{{$cliente->cliente_email}}"
+                                                    placeholder="Digite o E-mail">
                                             </div>
                                         </div>
 
                                         <div class="form-group align-self-end">
-                                            <button type="button" class="btn btn-primary btn-sm" id="btnReenviarSolicitacao">
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                id="btnReenviarSolicitacao">
                                                 Reenviar Solicitação de Autorização
                                             </button>
                                         </div>
@@ -179,16 +185,18 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="cliente_cel">Celular:*</label>
-                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
-                                                id="cliente_cel" name="cliente_cel" value="{{$cliente->cliente_cel}}"
+                                            <input autocomplete="off" type="text"
+                                                class="form-control cell_with_ddd form-control-sm" id="cliente_cel"
+                                                name="cliente_cel" value="{{$cliente->cliente_cel}}"
                                                 placeholder="Digite o Celular">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_telfixo">Telefone Fixo:</label>
-                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
-                                                id="cliente_telfixo" name="cliente_telfixo"
-                                                value="{{$cliente->cliente_telfixo}}" placeholder="Digite o Telefone">
+                                            <input autocomplete="off" type="text"
+                                                class="form-control phone_with_ddd form-control-sm" id="cliente_telfixo"
+                                                name="cliente_telfixo" value="{{$cliente->cliente_telfixo}}"
+                                                placeholder="Digite o Telefone">
                                         </div>
 
                                         <div class="form-group col-md-3">
@@ -219,16 +227,16 @@
                             </div>
 
                             <!--Campo para os Dados Saneados-->
-                            <div class="card card-primary">
+                            <div class="card card-default">
+
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Dados Saneados
+                                    </h3>
+                                </div>
 
                                 <div class="card-body">
-
-                                    <div class="card-header ui-sortable-handle header-dadosSaneados py-1">
-                                        <h3 class="card-title">
-                                            <i class="fas fa-chart-pie mr-1"></i>
-                                            Dados Saneados
-                                        </h3>
-                                    </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
@@ -279,8 +287,9 @@
 
                                             <div class="input-group input-group-sm">
                                                 <input autocomplete="off" type="text" autofocus="autofocus"
-                                                    class="form-control cep form-control-sm" id="cliente_cep" name="cliente_cep"
-                                                    value="{{$cliente->cliente_cep}}" placeholder="CEP">
+                                                    class="form-control cep form-control-sm" id="cliente_cep"
+                                                    name="cliente_cep" value="{{$cliente->cliente_cep}}"
+                                                    placeholder="CEP">
                                                 <span class="input-group-append">
                                                     <button type="button" id="btnPesquisarCep"
                                                         class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -290,32 +299,32 @@
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_end">Endereço (Logradouro):*</label>
-                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Endereço"
-                                                value="{{$cliente->cliente_end}}" name="cliente_end" type="text"
-                                                id="cliente_end">
+                                            <input autocomplete="off" class="form-control  form-control-sm"
+                                                placeholder="Endereço" value="{{$cliente->cliente_end}}"
+                                                name="cliente_end" type="text" id="cliente_end">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="cliente_endnum">Número:*</label>
-                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Número"
-                                                value="{{$cliente->cliente_endnum}}" name="cliente_endnum" type="text"
-                                                id="cliente_endnum">
+                                            <input autocomplete="off" class="form-control  form-control-sm"
+                                                placeholder="Número" value="{{$cliente->cliente_endnum}}"
+                                                name="cliente_endnum" type="text" id="cliente_endnum">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_endcmp">Complemento:</label>
-                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Complemento"
-                                                value="{{$cliente->cliente_endcmp}}" name="cliente_endcmp" type="text"
-                                                id="cliente_endcmp">
+                                            <input autocomplete="off" class="form-control  form-control-sm"
+                                                placeholder="Complemento" value="{{$cliente->cliente_endcmp}}"
+                                                name="cliente_endcmp" type="text" id="cliente_endcmp">
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="cliente_endbair">Bairro:*</label>
-                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Bairro"
-                                                value="{{$cliente->cliente_endbair}}" name="cliente_endbair" type="text"
-                                                id="cliente_endbair">
+                                            <input autocomplete="off" class="form-control  form-control-sm"
+                                                placeholder="Bairro" value="{{$cliente->cliente_endbair}}"
+                                                name="cliente_endbair" type="text" id="cliente_endbair">
                                         </div>
 
                                         <div class="form-group col-md-3">
@@ -366,29 +375,29 @@
                             </div><!-- card Endereço -->
 
                             <!--Campo para os Dados Saneados-->
-                            <div class="card card-primary">
+                            <div class="card card-default">
 
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Dados Saneados
+                                    </h3>
+                                </div>
                                 <div class="card-body">
-
-                                    <div class="card-header ui-sortable-handle header-dadosSaneados py-1">
-                                        <h3 class="card-title">
-                                            <i class="fas fa-chart-pie mr-1"></i>
-                                            Dados Saneados
-                                        </h3>
-                                    </div>
-
 
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label for="cliente_cep_s">CEP:*</label>
-                                            <input type="text" class="form-control  form-control-sm" value="{{$cliente->cliente_cep_s}}"
-                                                id="cliente_cep_s" name="cliente_cep_s" disabled>
+                                            <input type="text" class="form-control  form-control-sm"
+                                                value="{{$cliente->cliente_cep_s}}" id="cliente_cep_s"
+                                                name="cliente_cep_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-4">
                                             <label for="cliente_end_s">Endereço:</label>
-                                            <input type="text" class="form-control  form-control-sm" value="{{$cliente->cliente_end_s}}"
-                                                id="cliente_end_s" name="cliente_end_s" disabled>
+                                            <input type="text" class="form-control  form-control-sm"
+                                                value="{{$cliente->cliente_end_s}}" id="cliente_end_s"
+                                                name="cliente_end_s" disabled>
                                         </div>
 
                                         <div class="form-group col-md-2">
@@ -456,7 +465,8 @@
 
                                         <div class="form-group col-md-2">
                                             <label for="dt_vencimento">Data de Vencimento:</label> <input type="date"
-                                                class="form-control  form-control-sm" id="dt_vencimento" name="dt_vencimento">
+                                                class="form-control  form-control-sm" id="dt_vencimento"
+                                                name="dt_vencimento">
                                         </div>
                                     </div>
 
@@ -477,8 +487,8 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm" style=""><i
-                                                    class="fa fa-search"></i> Pesquisar</button>
+                                            <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"
+                                                style=""><i class="fa fa-search"></i> Pesquisar</button>
                                         </div>
                                     </div>
 
@@ -667,7 +677,8 @@
                                     <!-- AÇÕES -->
                                     <div class="form-row">
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-primary btn-sm" data-modal="modalCriarCartao" id="btnCriarCartao">Criar Novo
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-modal="modalCriarCartao" id="btnCriarCartao">Criar Novo
                                                 Cartão</button>
                                         </div>
 
@@ -689,24 +700,24 @@
                                     </div>
 
                                     <!-- TABELA -->
-                                        <table id="gridtemplate-cards" class="table table-striped table-bordered nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Ações</th>
-                                                    <th>Empresa</th>
-                                                    <th>Número do Cartão</th>
-                                                    <th>CV</th>
-                                                    <th>Status</th>
-                                                    <th>Tipo do Cartão</th>
-                                                    <th>Modalidade do Cartão</th>
-                                                    <th>Categoria</th>
-                                                    <th>Descrição do Cartão</th>
-                                                    <th>Saldo do Cartão</th>
-                                                    <th>Limite do Cartão</th>
-                                                    <th>Saldo de Pontos</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                    <table id="gridtemplate-cards" class="table table-striped table-bordered nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>Ações</th>
+                                                <th>Empresa</th>
+                                                <th>Número do Cartão</th>
+                                                <th>CV</th>
+                                                <th>Status</th>
+                                                <th>Tipo do Cartão</th>
+                                                <th>Modalidade do Cartão</th>
+                                                <th>Categoria</th>
+                                                <th>Descrição do Cartão</th>
+                                                <th>Saldo do Cartão</th>
+                                                <th>Limite do Cartão</th>
+                                                <th>Saldo de Pontos</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
 
 
                                     AQUI PRECISAMOS FAZER COM QUE ESTES DADOS DIMINUAM A FONTE CONFORME O TAMANHO DA
@@ -734,23 +745,27 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="data_de">De:</label>
-                                                <input type="date" class="form-control  form-control-sm" id="data_de" name="data_de">
+                                                <input type="date" class="form-control  form-control-sm" id="data_de"
+                                                    name="data_de">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="data_ate">Até:</label>
-                                                <input type="date" class="form-control  form-control-sm" id="data_ate" name="data_ate">
+                                                <input type="date" class="form-control  form-control-sm" id="data_ate"
+                                                    name="data_ate">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="protocolo">Protocolo:</label>
-                                                <input type="text" class="form-control  form-control-sm" id="protocolo" name="protocolo"
-                                                    placeholder="Digite o Protocolo">
+                                                <input type="text" class="form-control  form-control-sm" id="protocolo"
+                                                    name="protocolo" placeholder="Digite o Protocolo">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="user_id">Médico:</label>
-                                                <select id="user_id" name="user_id" class="form-control select2 select2-hidden-accessible"
-                                                    data-placeholder="Pesquise o Médico" style="width: 100%;" aria-hidden="true">
+                                                <select id="user_id" name="user_id"
+                                                    class="form-control select2 select2-hidden-accessible"
+                                                    data-placeholder="Pesquise o Médico" style="width: 100%;"
+                                                    aria-hidden="true">
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6 align-self-end">
@@ -805,7 +820,8 @@
 
                                 <!-- Seção Direita: Abas de Atendimento -->
 
-                                <div class="card card-primary card-outline card-outline-tabs d-flex flex-column flex-grow-1" style="min-height: 0; margin-left: 1rem; height: 100%;">
+                                <div class="card card-primary card-outline card-outline-tabs d-flex flex-column flex-grow-1"
+                                    style="min-height: 0; margin-left: 1rem; height: 100%;">
 
                                     <!-- CABEÇALHO DAS ABAS DE PRONTUÁRIO-->
                                     <div class="card-header p-0 pt-1 border-bottom-0">
@@ -814,48 +830,58 @@
                                         <ul class="nav nav-tabs" id="custom-tabs-prt-tab" role="tablist">
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-anamnese-tab" data-toggle="pill" href="#tabs-anamnese" role="tab"
-                                                    aria-controls="tabs-anamnese" aria-selected="true">Anamnese</a>
+                                                <a class="nav-link" id="tabs-anamnese-tab" data-toggle="pill"
+                                                    href="#tabs-anamnese" role="tab" aria-controls="tabs-anamnese"
+                                                    aria-selected="true">Anamnese</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="tabs-anotacao-tab" data-toggle="pill" href="#tabs-anotacao" role="tab"
-                                                    aria-controls="tabs-anotacao" aria-selected="true">Anotações</a>
+                                                <a class="nav-link active" id="tabs-anotacao-tab" data-toggle="pill"
+                                                    href="#tabs-anotacao" role="tab" aria-controls="tabs-anotacao"
+                                                    aria-selected="true">Anotações</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-anotacao-priv-tab" data-toggle="pill" href="#tabs-anotacao-priv" role="tab"
-                                                    aria-controls="tabs-anotacao-priv" aria-selected="false">Anotações Privadas</a>
+                                                <a class="nav-link" id="tabs-anotacao-priv-tab" data-toggle="pill"
+                                                    href="#tabs-anotacao-priv" role="tab"
+                                                    aria-controls="tabs-anotacao-priv" aria-selected="false">Anotações
+                                                    Privadas</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-receituario-tab" data-toggle="pill" href="#tabs-receituario" role="tab"
-                                                    aria-controls="tabs-receituario" aria-selected="false">Receituário</a>
+                                                <a class="nav-link" id="tabs-receituario-tab" data-toggle="pill"
+                                                    href="#tabs-receituario" role="tab" aria-controls="tabs-receituario"
+                                                    aria-selected="false">Receituário</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-exames-tab" data-toggle="pill" href="#tabs-exames"
-                                                    role="tab" aria-controls="tabs-exames" aria-selected="false">Solic. de Exames</a>
+                                                <a class="nav-link" id="tabs-exames-tab" data-toggle="pill"
+                                                    href="#tabs-exames" role="tab" aria-controls="tabs-exames"
+                                                    aria-selected="false">Solic. de Exames</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-atestado-tab" data-toggle="pill" href="#tabs-atestado" role="tab"
-                                                    aria-controls="tabs-atestado" aria-selected="false">Atestado</a>
+                                                <a class="nav-link" id="tabs-atestado-tab" data-toggle="pill"
+                                                    href="#tabs-atestado" role="tab" aria-controls="tabs-atestado"
+                                                    aria-selected="false">Atestado</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-fotos-tab" data-toggle="pill" href="#tabs-fotos" role="tab"
-                                                    aria-controls="tabs-fotos" aria-selected="false">Fotos</a>
+                                                <a class="nav-link" id="tabs-fotos-tab" data-toggle="pill"
+                                                    href="#tabs-fotos" role="tab" aria-controls="tabs-fotos"
+                                                    aria-selected="false">Fotos</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-documentos-tab" data-toggle="pill" href="#tabs-documentos" role="tab"
-                                                    aria-controls="tabs-documentos" aria-selected="false">Documentos</a>
+                                                <a class="nav-link" id="tabs-documentos-tab" data-toggle="pill"
+                                                    href="#tabs-documentos" role="tab" aria-controls="tabs-documentos"
+                                                    aria-selected="false">Documentos</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tabs-orcamento-tab" data-toggle="pill" href="#tabs-orcamento" role="tab"
-                                                    aria-controls="tabs-orcamento" aria-selected="false">Orçamentos</a>
+                                                <a class="nav-link" id="tabs-orcamento-tab" data-toggle="pill"
+                                                    href="#tabs-orcamento" role="tab" aria-controls="tabs-orcamento"
+                                                    aria-selected="false">Orçamentos</a>
                                             </li>
 
                                         </ul>
@@ -869,9 +895,10 @@
                                             <div class="tab-pane fade show" id="tabs-anamnese" role="tabpanel"
                                                 aria-labelledby="tabs-anamnese-tab">
 
-                                                    <div class="card-body">
-                                                        <textarea id="texto_prt" class="form-control summernote" rows="8">Digite aqui suas anotações...</textarea>
-                                                    </div>
+                                                <div class="card-body">
+                                                    <textarea id="texto_prt" class="form-control summernote"
+                                                        rows="8">Digite aqui suas anotações...</textarea>
+                                                </div>
 
                                             </div>
 
@@ -879,9 +906,10 @@
                                             <div class="tab-pane fade show active" id="tabs-anotacao" role="tabpanel"
                                                 aria-labelledby="tabs-anotacao-tab">
 
-                                                    <div class="card-body">
-                                                        <textarea id="texto_prt" class="form-control summernote" rows="8">Digite aqui suas anotações iniciais ou orientações...</textarea>
-                                                    </div>
+                                                <div class="card-body">
+                                                    <textarea id="texto_prt" class="form-control summernote"
+                                                        rows="8">Digite aqui suas anotações iniciais ou orientações...</textarea>
+                                                </div>
 
                                             </div>
 
@@ -889,9 +917,10 @@
                                             <div class="tab-pane fade" id="tabs-anotacao-priv" role="tabpanel"
                                                 aria-labelledby="tabs-anotacao-priv-tab">
 
-                                                    <div class="card-body">
-                                                        <textarea id="texto_prv" class="form-control summernote" rows="8">Digite aqui suas anotações privadas...</textarea>
-                                                    </div>
+                                                <div class="card-body">
+                                                    <textarea id="texto_prv" class="form-control summernote"
+                                                        rows="8">Digite aqui suas anotações privadas...</textarea>
+                                                </div>
 
                                             </div>
 
@@ -903,16 +932,22 @@
                                                     <!-- Linha 1: Logo + Dados Empresa/Médico -->
                                                     <div class="row align-items-center mb-3">
                                                         <div class="col-md-2 text-center">
-                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}"
+                                                                alt="Logo" style="max-width: 80px;">
                                                         </div>
                                                         <div class="col-md-10">
                                                             <div>
-                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
-                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                                <span class="font-weight-bold"
+                                                                    style="font-size: 1.1rem;">{{ $empresa->nome ??
+                                                                    'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ??
+                                                                    '00.000.000/0000-00' }}</span>
                                                             </div>
                                                             <div>
-                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
-                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico'
+                                                                    }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000'
+                                                                    }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -921,25 +956,34 @@
                                                         <div class="col">
                                                             <label class="font-weight-bold">Paciente:</label>
                                                             <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
-                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ??
+                                                                '000.000.000-00' }}</span>
                                                         </div>
                                                     </div>
                                                     <!-- Linha 3: Produto + Posologia -->
                                                     <div class="form-row mb-3">
                                                         <div class="form-group col-md-4">
                                                             <label for="produto_id">Medicamento:</label>
-                                                            <select id="produto_id" name="produto_id" class="form-control form-control-sm select2"
-                                                                data-placeholder="Pesquise o Medicamento" style="width: 100%;">
+                                                            <select id="produto_id" name="produto_id"
+                                                                class="form-control form-control-sm select2"
+                                                                data-placeholder="Pesquise o Medicamento"
+                                                                style="width: 100%;">
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="detalhes_posologia">Detalhes da Posologia:</label>
-                                                            <input autocomplete="off" maxlength="255" class="form-control  form-control-sm" placeholder="Digite os detalhes da posologia"
-                                                                name="detalhes_posologia" type="text" id="detalhes_posologia">
+                                                            <label for="detalhes_posologia">Detalhes da
+                                                                Posologia:</label>
+                                                            <input autocomplete="off" maxlength="255"
+                                                                class="form-control  form-control-sm"
+                                                                placeholder="Digite os detalhes da posologia"
+                                                                name="detalhes_posologia" type="text"
+                                                                id="detalhes_posologia">
                                                         </div>
                                                         <div class="form-group col-md-3 d-flex align-items-end">
-                                                            <button id="btnAdicionar" type="button" class="btn btn-primary btn-sm w-100">
-                                                                <i class="icon fas fa-plus-square"></i> Adicionar Medicamento
+                                                            <button id="btnAdicionar" type="button"
+                                                                class="btn btn-primary btn-sm w-100">
+                                                                <i class="icon fas fa-plus-square"></i> Adicionar
+                                                                Medicamento
                                                             </button>
                                                         </div>
                                                     </div>
@@ -947,7 +991,8 @@
                                                     <div class="row mb-3">
                                                         <div class="col">
                                                             <label for="texto_rec">Receituário:</label>
-                                                            <textarea id="texto_rec" class="form-control summernote" rows="8">Adicione os medicamentos ou digite manualmente...</textarea>
+                                                            <textarea id="texto_rec" class="form-control summernote"
+                                                                rows="8">Adicione os medicamentos ou digite manualmente...</textarea>
                                                         </div>
                                                     </div>
 
@@ -963,16 +1008,22 @@
                                                     <!-- Linha 1: Logo + Dados Empresa/Médico -->
                                                     <div class="row align-items-center mb-3">
                                                         <div class="col-md-2 text-center">
-                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}"
+                                                                alt="Logo" style="max-width: 80px;">
                                                         </div>
                                                         <div class="col-md-10">
                                                             <div>
-                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
-                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                                <span class="font-weight-bold"
+                                                                    style="font-size: 1.1rem;">{{ $empresa->nome ??
+                                                                    'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ??
+                                                                    '00.000.000/0000-00' }}</span>
                                                             </div>
                                                             <div>
-                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
-                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico'
+                                                                    }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000'
+                                                                    }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -981,24 +1032,31 @@
                                                         <div class="col">
                                                             <label class="font-weight-bold">Paciente:</label>
                                                             <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
-                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ??
+                                                                '000.000.000-00' }}</span>
                                                         </div>
                                                     </div>
                                                     <!-- Linha 3: Produto + Posologia -->
                                                     <div class="form-row mb-3">
                                                         <div class="form-group col-md-4">
                                                             <label for="produto_id">Exame:</label>
-                                                            <select id="produto_id" name="produto_id" class="form-control form-control-sm select2"
-                                                                data-placeholder="Pesquise o Medicamento" style="width: 100%;">
+                                                            <select id="produto_id" name="produto_id"
+                                                                class="form-control form-control-sm select2"
+                                                                data-placeholder="Pesquise o Medicamento"
+                                                                style="width: 100%;">
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label for="detalhes_posologia">Detalhes do Exame:</label>
-                                                            <input autocomplete="off" maxlength="255" class="form-control form-control-sm" placeholder="Digite os detalhes da posologia"
-                                                                name="detalhes_posologia" type="text" id="detalhes_posologia">
+                                                            <input autocomplete="off" maxlength="255"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Digite os detalhes da posologia"
+                                                                name="detalhes_posologia" type="text"
+                                                                id="detalhes_posologia">
                                                         </div>
                                                         <div class="form-group col-md-3 d-flex align-items-end">
-                                                            <button id="btnAdicionar" type="button" class="btn btn-primary btn-sm w-100">
+                                                            <button id="btnAdicionar" type="button"
+                                                                class="btn btn-primary btn-sm w-100">
                                                                 <i class="icon fas fa-plus-square"></i> Adicionar Exame
                                                             </button>
                                                         </div>
@@ -1007,7 +1065,8 @@
                                                     <div class="row mb-3">
                                                         <div class="col">
                                                             <label for="texto_exm">Exames:</label>
-                                                            <textarea id="texto_exm" class="form-control summernote" rows="8">Adicione os exames ou digite manualmente...</textarea>
+                                                            <textarea id="texto_exm" class="form-control summernote"
+                                                                rows="8">Adicione os exames ou digite manualmente...</textarea>
                                                         </div>
                                                     </div>
 
@@ -1023,16 +1082,22 @@
                                                     <!-- Linha 1: Logo + Dados Empresa/Médico -->
                                                     <div class="row align-items-center mb-3">
                                                         <div class="col-md-2 text-center">
-                                                            <img src="{{ asset('assets/dist/img/logo.png') }}" alt="Logo" style="max-width: 80px;">
+                                                            <img src="{{ asset('assets/dist/img/logo.png') }}"
+                                                                alt="Logo" style="max-width: 80px;">
                                                         </div>
                                                         <div class="col-md-10">
                                                             <div>
-                                                                <span class="font-weight-bold" style="font-size: 1.1rem;">{{ $empresa->nome ?? 'Nome da Empresa' }}</span>
-                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ?? '00.000.000/0000-00' }}</span>
+                                                                <span class="font-weight-bold"
+                                                                    style="font-size: 1.1rem;">{{ $empresa->nome ??
+                                                                    'Nome da Empresa' }}</span>
+                                                                <span class="ml-3">CNPJ: {{ $empresa->cnpj ??
+                                                                    '00.000.000/0000-00' }}</span>
                                                             </div>
                                                             <div>
-                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico' }}</span>
-                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000' }}</span>
+                                                                <span>Médico: {{ $medico->nome ?? 'Nome do Médico'
+                                                                    }}</span>
+                                                                <span class="ml-3">CRM: {{ $medico->crm ?? '000000'
+                                                                    }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1041,14 +1106,16 @@
                                                         <div class="col">
                                                             <label class="font-weight-bold">Paciente:</label>
                                                             <span>{{ $paciente->nome ?? 'Nome do Paciente' }}</span>
-                                                            <span class="ml-3">CPF: {{ $paciente->cpf ?? '000.000.000-00' }}</span>
+                                                            <span class="ml-3">CPF: {{ $paciente->cpf ??
+                                                                '000.000.000-00' }}</span>
                                                         </div>
                                                     </div>
                                                     <!-- Linha 3: Campo texto tipo anotações -->
                                                     <div class="row mb-3">
                                                         <div class="col">
                                                             <label for="texto_atd">Atestado:</label>
-                                                            <textarea id="texto_atd" class="form-control summernote" rows="8">Digite aqui as informações do Atestado...</textarea>
+                                                            <textarea id="texto_atd" class="form-control summernote"
+                                                                rows="8">Digite aqui as informações do Atestado...</textarea>
                                                         </div>
                                                     </div>
 
@@ -1063,10 +1130,12 @@
                                                 <div class="form-row mb-3">
                                                     <div class="form-group col-md-4">
                                                         <label for="fotoUpload">Selecionar Foto:</label>
-                                                        <input type="file" id="fotoUpload" name="fotoUpload" accept="image/*" class="form-control-file">
+                                                        <input type="file" id="fotoUpload" name="fotoUpload"
+                                                            accept="image/*" class="form-control-file">
                                                     </div>
                                                     <div class="form-group col-md-3 d-flex align-items-end">
-                                                        <button id="btnAdFoto" type="button" class="btn btn-primary btn-sm" onclick="anexarFoto()">
+                                                        <button id="btnAdFoto" type="button"
+                                                            class="btn btn-primary btn-sm" onclick="anexarFoto()">
                                                             <i class="icon fas fa-plus-square"></i> Adicionar Foto
                                                         </button>
                                                     </div>
@@ -1096,10 +1165,12 @@
                                                 <div class="form-row mb-3">
                                                     <div class="form-group col-md-4">
                                                         <label for="fotoUpload">Selecionar Documento:</label>
-                                                        <input type="file" id="fotoUpload" name="fotoUpload" accept="image/*" class="form-control-file">
+                                                        <input type="file" id="fotoUpload" name="fotoUpload"
+                                                            accept="image/*" class="form-control-file">
                                                     </div>
                                                     <div class="form-group col-md-3 d-flex align-items-end">
-                                                        <button id="btnAdDocumento" type="button" class="btn btn-primary btn-sm" onclick="anexarDocumento()">
+                                                        <button id="btnAdDocumento" type="button"
+                                                            class="btn btn-primary btn-sm" onclick="anexarDocumento()">
                                                             <i class="icon fas fa-plus-square"></i> Adicionar Documento
                                                         </button>
                                                     </div>
@@ -1127,14 +1198,19 @@
                                                 aria-labelledby="tabs-orcamento-tab">
 
                                                 ACRESCENTAR AQUI A LISTA DOS ORÇAMENTOS CRIADOS.
-                                                AQUI, PRECISAMOS CRIAR UM MODAL ONDE O ATENDENTE POSSA SELECIONAR O PRODUTOS, DIGITAR VALOR E QUANTIDADE,<br>
-                                                E CRIAR UMA LISTA DE VENDA QUE, POSTERIORMENTE, SERÁ UTILIZADA PELO PDV WEB PARA FECHAR A VENDA OFICIAL<br>
+                                                AQUI, PRECISAMOS CRIAR UM MODAL ONDE O ATENDENTE POSSA SELECIONAR O
+                                                PRODUTOS, DIGITAR VALOR E QUANTIDADE,<br>
+                                                E CRIAR UMA LISTA DE VENDA QUE, POSTERIORMENTE, SERÁ UTILIZADA PELO PDV
+                                                WEB PARA FECHAR A VENDA OFICIAL<br>
                                                 <br>
-                                                NESTA PARTE, TEREMOS UMA LINHA PARA CADA ORÇAMENTO CRIADO, ESTES ORÇAMENTOS SERÃO GRAVADOS NA TABELA<br>
+                                                NESTA PARTE, TEREMOS UMA LINHA PARA CADA ORÇAMENTO CRIADO, ESTES
+                                                ORÇAMENTOS SERÃO GRAVADOS NA TABELA<br>
                                                 TBTR_CLIENTES_ORC
                                                 <br>
-                                                NESTA RELA, EM CADA REGISTRO, DEVE TER UM BOTÃO, "FINALIZAR VENDA", AO CLICAR NESTE BOTÃO, DEVE DIRECIONAR<br>
-                                                PARA O PDV WEB JÁ COM OS DADOS DO CLIENTE PREENCHIDO, E OS ITENS INCLUÍDOS NO CARRINHO DE COMPRA
+                                                NESTA RELA, EM CADA REGISTRO, DEVE TER UM BOTÃO, "FINALIZAR VENDA", AO
+                                                CLICAR NESTE BOTÃO, DEVE DIRECIONAR<br>
+                                                PARA O PDV WEB JÁ COM OS DADOS DO CLIENTE PREENCHIDO, E OS ITENS
+                                                INCLUÍDOS NO CARRINHO DE COMPRA
 
                                             </div>
 
@@ -1145,7 +1221,8 @@
                                         <button id="btnSalvarPrt" type="button" class="btn btn-primary btn-sm">
                                             <i class="icon fas fa-save"></i> Salvar
                                         </button>
-                                        <button id="btnImprimir" type="button" class="btn btn-primary btn-sm d-none" onclick="printCorpoReceita()">
+                                        <button id="btnImprimir" type="button" class="btn btn-primary btn-sm d-none"
+                                            onclick="printCorpoReceita()">
                                             <i class="fas fa-print"></i> Imprimir
                                         </button>
                                     </div>
@@ -1304,7 +1381,8 @@
                     </div>
                     <div class="form-group">
                         <label for="card_tp">Tipo do Cartão:</label>
-                        <select class="form-control select2" style="width: 100%;" data-placeholder="Selecione o Tipo" id="card_tp" name="card_tp">
+                        <select class="form-control select2" style="width: 100%;" data-placeholder="Selecione o Tipo"
+                            id="card_tp" name="card_tp">
                             <option></option>
                             @foreach($cardTipos as $key => $card)
                             <option value="{{$card->card_tp}}">{{$card->card_tp_desc}}
@@ -1314,7 +1392,8 @@
                     </div>
                     <div class="form-group">
                         <label for="card_mod">Modalidade do Cartão:</label>
-                        <select class="form-control select2" style="width: 100%;" data-placeholder="Selecione a Modalidade" id="card_mod" name="card_mod">
+                        <select class="form-control select2" style="width: 100%;"
+                            data-placeholder="Selecione a Modalidade" id="card_mod" name="card_mod">
                             <option></option>
                             @foreach($cardMod as $key => $card)
                             <option value="{{$card->card_mod}}">{{$card->card_mod_desc}}
@@ -1324,7 +1403,8 @@
                     </div>
                     <div class="form-group">
                         <label for="card_categ">Categoria:</label>
-                        <select class="form-control select2" style="width: 100%;" data-placeholder="Selecione a Categoria" id="card_categ" name="card_categ">
+                        <select class="form-control select2" style="width: 100%;"
+                            data-placeholder="Selecione a Categoria" id="card_categ" name="card_categ">
                             <option></option>
                             @foreach($cardCateg as $key => $card)
                             <option value="{{$card->card_categ}}">{{$card->card_categ_desc}}
@@ -1339,16 +1419,17 @@
                     </div>
                     <div class="form-group">
                         <label for="card_limite">Limite do Cartão:</label>
-                        <input type="text" class="form-control money form-control-sm" id="card_limite" name="card_limite"
-                            placeholder="Limite do Cartão">
+                        <input type="text" class="form-control money form-control-sm" id="card_limite"
+                            name="card_limite" placeholder="Limite do Cartão">
                     </div>
                 </div>
 
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secundary-multban btn-sm" data-dismiss="modal">
-                        <i class="fas fa-times"></i> Fechar</button>
-                <button type="submit" class="btn btn-primary btn-sm" id="btnSalvarCartao"><i class="fas fa-save"></i> Salvar</button>
+                    <i class="fas fa-times"></i> Fechar</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnSalvarCartao"><i class="fas fa-save"></i>
+                    Salvar</button>
             </div>
         </div>
     </div>
@@ -1492,11 +1573,11 @@
 <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/i18n/pt-BR.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- InputMask -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>

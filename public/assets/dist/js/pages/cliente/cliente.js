@@ -83,7 +83,12 @@ $(function () {
                                     .addClass("text-danger");
                             });
 
-                            Swal.fire("Erro", "Existem um ou mais campos obrigatórios não preenchidos.", "error");
+                            if(xhr.responseJSON.message_type) {
+                                Swal.fire("Erro", xhr.responseJSON.message_type, "error");
+                            } else {
+                                Swal.fire("Erro", "Existem um ou mais campos obrigatórios não preenchidos.", "error");
+                            }
+
                         }
 
                         else if (XMLHttpRequest.status == 401) {
@@ -360,15 +365,8 @@ $(function () {
         ns.cepOnClickS("cliente_cep_s");
     });
 
-    $('#btnCriarCartao').click(function () {
-        $('#tabelaCartoes').hide(); // Oculta a tabela
-        $('#modalCriarCartao').modal('show'); // Exibe o modal
-    });
-
-    $('#btnSalvarCartao').click(function () {
-        // Aqui você pode adicionar a lógica para salvar o cartão
-        $('#modalCriarCartao').modal('hide'); // Fecha o modal
-        $('#tabelaCartoes').show(); // Exibe a tabela novamente
+    $('body').on('click','#btnCriarCartao',function () {
+        $('#modalCriarCartao').modal('show');
     });
 
 

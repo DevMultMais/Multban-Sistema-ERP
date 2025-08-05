@@ -1178,11 +1178,17 @@ function notify(type, message) {
                             }
                         });
 
-                        $.each(abaComErro, function (key, item) {
+                        if (xhr.responseJSON.message_type) {
+                            Swal.fire("Erro", xhr.responseJSON.message_type, "error");
+                        } else {
+                            $.each(abaComErro, function (key, item) {
                             console.log(item);
                             $("#errors").append("<li>" + item + "</li>");
                             toastr.error('Existem campos obrigatórios na aba "' + item.id + '" que não foram preenchidos.');
                         });
+                        }
+
+
                     } else {
                         toastr.error(xhr.responseJSON.message);
                     }
