@@ -35,7 +35,7 @@
         <!-- QUADRO DO FORMULÁRIO DE PESQUISA -->
         <div class="card card-outline card-primary">
 
-            <div class="card-body">
+            <div class="card-body" id="filtro-pesquisa">
 
                 <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
                 <div class="form-row">
@@ -46,6 +46,25 @@
                         <select id="empresa_id" name="empresa_id" class="form-control select2 select2-hidden-accessible"
                             data-placeholder="Pesquise a Empresa" style="width: 100%;" aria-hidden="true">
                         </select>
+                    </div>
+
+                </div>
+
+                <!-- SEGUNDA LINHA DO FORMULÁRIO DE PESQUISA -->
+                <div class="form-row">
+
+                    <div class="form-group col-md-3">
+                        <label id="cliente">Nome do Cliente:</label>
+                        <select id="cliente_id" name="cliente_id" class="form-control select2 select2-hidden-accessible"
+                            data-placeholder="Pesquise o Cliente" style="width: 100%;" aria-hidden="true">
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="cliente_doc">CPF/CNPJ:</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="cliente_doc" name="cliente_doc" class="form-control  form-control-sm" placeholder="Digite o CPF ou CNPJ">
+                        </div>
                     </div>
 
                 </div>
@@ -62,39 +81,15 @@
 
                 <!-- ABAS -->
                 <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+
                     <li class="nav-item">
-                        <a class="nav-link active" id="tabs-conexao-tab" data-toggle="pill" href="#tabs-conexao" role="tab"
-                            aria-controls="tabs-conexao" aria-selected="true">Conexão BD</a>
+                        <a class="nav-link active" id="tabs-fidelidade-tab" data-toggle="pill" href="#tabs-fidelidade" role="tab"
+                            aria-controls="tabs-fidelidade" aria-selected="true">Cartão Fidelidade</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="tabs-alias-tab" data-toggle="pill" href="#tabs-alias" role="tab"
-                            aria-controls="tabs-alias" aria-selected="false">Alias de Tabelas</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tabs-apis-tab" data-toggle="pill" href="#tabs-apis" role="tab"
-                            aria-controls="tabs-apis" aria-selected="false">APIs</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tabs-white-label-tab" data-toggle="pill" href="#tabs-white-label" role="tab"
-                            aria-controls="tabs-white-label" aria-selected="false">White Label</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tabs-work-flow-tab" data-toggle="pill" href="#tabs-work-flow" role="tab"
-                            aria-controls="tabs-work-flow" aria-selected="false">Work Flow</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tabs-padrao-msg-tab" data-toggle="pill" href="#tabs-padrao-msg" role="tab"
-                            aria-controls="tabs-padrao-msg" aria-selected="false">Padrão de Mensagens</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tabs-dados-mestres-tab" data-toggle="pill" href="#tabs-dados-mestres"
-                            role="tab" aria-controls="tabs-dados-mestres" aria-selected="false">Dados Mestres</a>
+                        <a class="nav-link" id="tabs-gift-tab" data-toggle="pill" href="#tabs-gift" role="tab"
+                            aria-controls="tabs-gift" aria-selected="false">Gift Card</a>
                     </li>
 
                 </ul>
@@ -104,307 +99,360 @@
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-two-tabContent">
 
-                    <!---------------------------->
-                    <!---- ABA CONEXÃO COM BD ---->
-                    <!---------------------------->
-                    <div class="tab-pane fade active show" id="tabs-conexao" role="tabpanel"
-                        aria-labelledby="tabs-conexao-tab">
+                    <!------------------------------->
+                    <!---- ABA CARTÃO FIDELIDADE ---->
+                    <!------------------------------->
+                    <div class="tab-pane fade active show" id="tabs-fidelidade" role="tabpanel"
+                        aria-labelledby="tabs-fidelidade-tab">
 
                         <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
                         <div class="form-row">
-
-                            <!-- FILTRO DO FORNECEDOR -->
-                            <div class="form-group col-md-3">
-                                <label for="Fornecedor-bd">Fornecedor:</label>
-                                <select id="fornec_bd" name="fornec_bd"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Pesquise o Fornecedor" style="width: 100%;" aria-hidden="true">
-                                </select>
-                            </div>
-
                             <!-- BOTÃO PESQUISAR -->
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisarFbd" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Pesquisar</button>
+                            <div class="form-group align-self-end">
+                                <button type="button" class="form-control form-control-sm btn btn-primary" id="btnPesquisarFD" data-toggle="modal" data-target="#modalCartoesFD">
+                                    <i class="fa fa-search"></i> Pesquisar</button>
                             </div>
 
-                        </div>
+                            <!-- CAMPO PARA APRESENTAR O NÚMERO DO CARTÃO -->
+                            <div class="form-group col-md-2">
+                                <label for="cliente_cardn">Número do Cartão Fidelidade:</label>
+                                <input autocomplete="off" type="text" maxlength="20" class="form-control form-control-sm"
+                                    id="cliente_cardn_fd" name="cliente_cardn" readonly>
+                                <span id="cliente_cardncError" class="text-danger text-sm"></span>
+                            </div>
 
-                        <div class="card card-primary">
-
-                            <b>AO CLICAR EM PESQUISAR:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_CONEXOES_BC_EMP<br>
-                            <b>FILTROS:</b>
-                            EMP_ID = FILTRO DE EMPRESA (variável empresa_id)<br>
-                            BC_FORNEC = FILTRO DE FORNECEDOR (variável fornec_bd)<br>
-                            <br>
-                            PLOTAR AQUI A TABELA DO BANCO DE DADOS COM OS DADOS GRAVADOS<br>
-                            CASO NÃO TENHA NADA GRAVADO, PLOTAR A ESTRUTURA DA TABELA PARA QUE SEJA PREENCHICA<br>
-                            <br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
-
-                        </div>
-
-                    </div>
-
-                    <!---------------------------->
-                    <!--- ABA ALIAS DE TABELAS --->
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-alias" role="tabpanel" aria-labelledby="tabs-alias-tab">
-
-                        <!-- BOTÃO PESQUISAR -->
-                        <div class="form-row">
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-alias" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Carregar Dados</button>
+                            <div class="form-group col-md-5 d-flex align-items-end">
+                                <label id="card_desc_fd" class="mb-0 ml-3 font-weight-bold text-secondary">
+                                    <!-- Aqui será exibida a descrição do cartão -->
+                                    Descrição do Cartão Selecionado ...
+                                </label>
                             </div>
                         </div>
 
-                        <div class="card card-primary">
-
-                            <b>AO CLICAR EM CARREGAR DADOS:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_TAB_ALIAS<br>
-                            <b>FILTROS:</b>
-                            EMP_ID = FILTRO DE EMPRESA (variável empresa_id)<br>
-                            <br>
-                            PLOTAR AQUI A TABELA DO BANCO DE DADOS COM OS DADOS GRAVADOS<br>
-                            <br>
-                            CASO NÃO TENHA NADA GRAVADO, PLOTAR A ESTRUTURA DA TABELA PARA QUE SEJA PREENCHICA<br>
-                            DURANTE O PREENCHIMENTO, AO CLICAR NO CAMPO EMP_TAB_NAME, DEVERÁ DAR UMA LISTA DE TODAS AS
-                            TABELAS DO SISTEMA E POSSIBILITAR A SELEÇÃO DA TABELA DESEJADA<br>
-                            <br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
-
-                        </div>
-
-                    </div>
-
-                    <!---------------------------->
-                    <!--------- ABA APIS --------->
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-apis" role="tabpanel" aria-labelledby="tabs-apis-tab">
-
-                        <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
-                        <div class="form-row">
-
-                            <!-- FILTRO DO FORNECEDOR -->
-                            <div class="form-group col-md-3">
-                                <label for="Fornecedor-api">Fornecedor:</label>
-                                <select id="fornec_api" name="fornec_api"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Pesquise o Fornecedor" style="width: 100%;" aria-hidden="true">
-                                </select>
-                            </div>
-
-                            <!-- BOTÃO PESQUISAR -->
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-fapi" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Pesquisar</button>
-                            </div>
-
-                        </div>
-
-                        <div class="card card-primary">
-
-                            <b>AO CLICAR EM PESQUISAR:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_CONEXOES_API_EMP<br>
-                            <b>FILTROS:</b>
-                            EMP_ID = FILTRO DE EMPRESA (variável empresa_id)<br>
-                            BC_FORNEC = FILTRO DE FORNECEDOR (variável fornec_api)<br>
-                            <br>
-                            PLOTAR AQUI A TABELA DO BANCO DE DADOS COM OS DADOS GRAVADOS<br>
-                            CASO NÃO TENHA NADA GRAVADO, PLOTAR A ESTRUTURA DA TABELA PARA QUE SEJA PREENCHICA<br>
-                            <br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
-
-                        </div>
-
-                    </div>
-
-                    <!---------------------------->
-                    <!------- WHITE LABEL -------->
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-white-label" role="tabpanel" aria-labelledby="tabs-white-label-tab">
-
-                        <!-- BOTÃO PESQUISAR -->
-                        <div class="form-row">
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-wl" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Carregar Dados</button>
-                            </div>
-                        </div>
-
-                        <div class="card card-primary">
-
-                            <b>AO CLICAR EM CARREGAR DADOS:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_CONFIG_WL<br>
-                            <b>FILTROS:</b>
-                            EMP_ID = FILTRO DE EMPRESA (variável empresa_id)<br>
-                            <br>
-                            PLOTAR AQUI A TABELA DO BANCO DE DADOS COM OS DADOS GRAVADOS<br>
-                            CASO NÃO TENHA NADA GRAVADO, PLOTAR A ESTRUTURA DA TABELA PARA QUE SEJA PREENCHICA<br>
-                            OS CAMPOS DA TABELA DEVEM TER AS OPÇÕES DE SELECIONAR COR / FONTES VÁLIDAS / FORMATOS DE TEXTO /
-                            ETC<br>
-                            <br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
-
-                        </div>
-
-                    </div>
-
-                    <!---------------------------->
-                    <!-------- WORK FLOW --------->
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-work-flow" role="tabpanel" aria-labelledby="tabs-work-flow-tab">
-
-                        <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
-                        <div class="form-row">
-
-                            <!-- FILTRO DAS TABELAS SENSIBILIZADAS -->
-                            <div class="form-group col-md-3">
-                                <label for="tabela-bd">Tabela Sensibilizada:</label>
-                                <select id="tabela-bd" name="tabela-bd"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Pesquise a Tabela Sensibilizada" style="width: 100%;"
-                                    aria-hidden="true">
-                                </select>
-                            </div>
-
-                            <!-- BOTÃO PESQUISAR -->
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-tbd" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Pesquisar</button>
-                            </div>
-
-                        </div>
-
-                        <div class="card card-primary">
-
-                            <b>AO CLICAR EM PESQUISAR:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_CONFIG_WF<br>
-                            <b>FILTROS:</b>
-                            EMP_ID = FILTRO DE EMPRESA (variável empresa_id)<br>
-                            TABELA = FILTRO DA TABELA SENSIBILIZADA (variável tabela-bd)<br>
-                            <br>
-                            PLOTAR AQUI A TABELA DO BANCO DE DADOS COM OS DADOS GRAVADOS<br>
-                            CASO NÃO TENHA NADA GRAVADO, PLOTAR A ESTRUTURA DA TABELA PARA QUE SEJA PREENCHICA<br>
-                            <br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
-
-                        </div>
-
-                    </div>
-
-                    <!---------------------------->
-                    <!--- PADRÃO DE MENSAGENS ---->
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-padrao-msg" role="tabpanel" aria-labelledby="tabs-padrao-msg-tab">
-
-                        <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
-                        <div class="form-row">
-
-                            <!-- FILTRO DE CATEGORIA DE MENSAGEM -->
-                            <div class="form-group col-md-3">
-                                <label for="msg_categ">Categoria da Mensagem:</label>
-                                <select id="msg_categ" name="msg_categ"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Categoria" style="width: 100%;"
-                                    aria-hidden="true">
-                                </select>
-                            </div>
-
-                            <!-- FILTRO DE CANAL DE COMUNICAÇÃO -->
-                            <div class="form-group col-md-3">
-                                <label for="canal_id">Canal de Comunicação:</label>
-                                <select id="canal_id" name="canal_id"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Canal" style="width: 100%;"
-                                    aria-hidden="true">
-                                </select>
-                            </div>
-
-                            <!-- BOTÃO PESQUISAR -->
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-tbdm" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Pesquisar</button>
-                            </div>
-
-                        </div>
-
-                        <div class="card card-primary-2">
-
-                            <!-- CAMPO TEXTO -->
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="msg_text">Mensagem:</label>
-                                    <textarea id="msg_text" name="msg_text" class="form-control  form-control-sm"></textarea>
-                                </div>
-
-                                <button type="button" id="btnSalvarMensagem" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-save"></i> Salvar
+                        <!-- BOTÃO CARREGAR CARTÃO FIDELIDADE -->
+                        <div class="form-row mb-3">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btnCarregarCartaoFD" data-toggle="modal" data-target="#modalCarregarCartaoFD">
+                                    <i class="fa fa-credit-card"></i> Carregar Cartão Fidelidade
                                 </button>
                             </div>
+                        </div>
 
-                            <b>AO CLICAR EM PESQUISAR:</b><br>
-                            <b>FONTE:</b>
-                            TBCF_MSG_COMP<br>
-                            <b>FILTROS:</b>
-                            MSG_CATEG = FILTRO DE CATEGORIA DE MENSAGEM (variável msg_categ)<br>
-                            CANAL_ID = FILTRO DA CANAL DE COMUNICAÇÃO (variável canal_id)<br>
+                        <div class="card card-primary">
+
+                            <div class="table-responsive">
+                                <table cid="gridtemplate" class="table table-striped table-bordered nowrap">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Data de Vencimento</th>
+                                            <th>Valor</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Exemplo de dados estáticos -->
+                                        <tr>
+                                            <td>10/08/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td><span class="badge badge-success">Pago</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/09/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td><span class="badge badge-warning">Pendente</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/10/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td><span class="badge badge-danger">Vencido</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            O CAMPO EMPRESA DEVERÁ VIR PREENCHIDO COM A EMPRESA DO USUÁRIO LOGADO, SOMENTE<br>
+                            NO CASO DO USUÁRIO SER DA MULTBAN OU DE UMA EMPRESA WHITE LABEL, ESTE CAMPO PODERÁ ESTAR DISPONÍVEL<br>
+                            PARA SELECIONAR ALGUMA EMPRESA, NESTE CASO, ELE DEVE SEGUIR O PADRÃO DE CONSULTA, PESQUISANDO SOBRE O<br>
+                            NOME MULTBAN<br>
                             <br>
-                            PLOTAR NO QUADRO msg_text O TEXTO QUE ESTIVER GRAVADO NA TABELA<br>
-                            CASO NÃO TENHA NADA GRAVADO, DEIXAR EM BRANCO PARA QUE O USUÁRIO PREENCHA E SALVE NA TABELA<br>
+                            AO SELECIONAR UM CLIENTE, O SISTEMA DEVE ARMAZENAR O CLIENTE_ID E O CLIENT_DOC DA TABELA TBDM_CLIENTES_GERAL<br>
+                            <br>
+                            AO CLICAR EM PESQUISAR, O SISTEMA DEVE UTILIZAR OS CAMPOS EMPRESA / CLIENTE_ID / CLIENTE_DOC PARA ACESSAR A TABELA<br>
+                            TBDM_CLIENTES_CARD E TRAZER PARA A LISTA DO MODAL APENAS OS CARTÕES QUE TENHAM O CARD_MOD = FIDL<br>
+                            <br>
+                            AO SELECIONAR UM CARTÃO, O SISTEMA DEVE BUSCAR NAS TABELAS DE VENDAS, TODOS OS LANÇAMETNOS JÁ REALIZADOS PARA<br>
+                            O CARTÃO SELECIONADO E MOSTRAR NA LISTAGEM LOGO ABAIXO<br>
+                            <br>
+                            PARA CLICAR EM CARREGAR CARTÃO, AO MENOS UM CARTÃO DEVE ESTAR SELECIONARO<br>
+                            <br>
+                            AO CLICAR EM CARREGAR CARTÃO, O SISTEMA ABRE UM MODAL COM O VALOR PRÉ-ESTABELECIDO DO CARTÃO SELECIONADO<br>
+                            (ESTE VALOR ESTARA GRAVADO NA TABELA tbdm_cartoes_pre, NO CAMPO prg_valor)<br>
+                            E OS CAMPOS DE QUANTIDADE DE MENSALIDADE E DATA DE VENCIMENTO. AO CLICAR EM FINALZIAR, O SISTEMA DEVE GERAR<br>
+                            OS LANÇAMENTOS DE VENDAS NAS TABELAS PERTINENTES
 
                         </div>
 
                     </div>
 
-                    <!---------------------------->
-                    <!------- DADOS MESTRES ------>
-                    <!---------------------------->
-                    <div class="tab-pane fade" id="tabs-dados-mestres" role="tabpanel" aria-labelledby="tabs-dados-mestres-tab">
+                    <!--------------------->
+                    <!--- ABA GIFT CARD --->
+                    <!--------------------->
+                    <div class="tab-pane fade" id="tabs-gift" role="tabpanel" aria-labelledby="tabs-gift-tab">
 
                         <!-- PRIMEIRA LINHA DO FORMULÁRIO DE PESQUISA -->
                         <div class="form-row">
-
-                            <!-- FILTRO DE TABELA DE DADOS MESTRES -->
-                            <div class="form-group col-md-3">
-                                <label for="tabela-bdm">Tabela de Dados Mestre:</label>
-                                <select id="tabela-bdm" name="tabela-bdm"
-                                    class="form-control select2 select2-hidden-accessible"
-                                    data-placeholder="Pesquise a Tabela de Dados Mestre" style="width: 100%;"
-                                    aria-hidden="true">
-                                </select>
-                            </div>
-
                             <!-- BOTÃO PESQUISAR -->
-                            <div class="form-group col-md-3 mt-4">
-                                <button type="button" id="btnPesquisar-tbdm" class="btn btn-primary mt-2" style=""><i
-                                        class="fa fa-search"></i> Pesquisar</button>
+                            <div class="form-group align-self-end">
+                                <button type="button" class="form-control form-control-sm btn btn-primary" id="btnPesquisarGF" data-toggle="modal" data-target="#modalCartoesGF">
+                                    <i class="fa fa-search"></i> Pesquisar</button>
                             </div>
 
+                            <!-- CAMPO PARA APRESENTAR O NÚMERO DO CARTÃO -->
+                            <div class="form-group col-md-2">
+                                <label for="cliente_cardn">Número do Gift Card:</label>
+                                <input autocomplete="off" type="text" maxlength="20" class="form-control form-control-sm"
+                                    id="cliente_cardn_gf" name="cliente_cardn" readonly>
+                                <span id="cliente_cardncError" class="text-danger text-sm"></span>
+                            </div>
+
+                            <div class="form-group col-md-5 d-flex align-items-end">
+                                <label id="card_desc_gf" class="mb-0 ml-3 font-weight-bold text-secondary">
+                                    <!-- Aqui será exibida a descrição do cartão -->
+                                    Descrição do Cartão Selecionado ...
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- BOTÃO CARREGAR CARTÃO GIFT -->
+                        <div class="form-row mb-3">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="btnCarregarCartaoGF" data-toggle="modal" data-target="#modalCarregarCartaoGF">
+                                    <i class="fa fa-credit-card"></i> Carregar Gift Card
+                                </button>
+                            </div>
                         </div>
 
                         <div class="card card-primary">
 
-                            <b>AO CLICAR EM PESQUISAR:</b><br>
-                            <b>FONTE:</b>
-                            TABELAS DO SISTEMA: DAR A OPÇÃO APENAS DAS TABELAS COM PREFIXO TBDM<br>
+                            <div class="table-responsive">
+                                <table cid="gridtemplate" class="table table-striped table-bordered nowrap">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Data da Recarga</th>
+                                            <th>Valor</th>
+                                            <th>Saldo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Exemplo de dados estáticos -->
+                                        <tr>
+                                            <td>10/08/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td>R$ 150,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/09/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td>R$ 0,00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/10/2025</td>
+                                            <td>R$ 150,00</td>
+                                            <td>R$ 0,00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            O CAMPO EMPRESA DEVERÁ VIR PREENCHIDO COM A EMPRESA DO USUÁRIO LOGADO, SOMENTE<br>
+                            NO CASO DO USUÁRIO SER DA MULTBAN OU DE UMA EMPRESA WHITE LABEL, ESTE CAMPO PODERÁ ESTAR DISPONÍVEL<br>
+                            PARA SELECIONAR ALGUMA EMPRESA, NESTE CASO, ELE DEVE SEGUIR O PADRÃO DE CONSULTA, PESQUISANDO SOBRE O<br>
+                            NOME MULTBAN<br>
                             <br>
-                            AO SELECIONAR UMA TABELA, O SISTEMA DEVE PLOTAR A ESTRUTURA DA TABELA NESTE ESPAÇO<br>
-                            SE TIVER DADOS, FEVERÁ MOSTRAR O QUE JÁ TEM GRAVADO<br>
-                            SE NÃO TIVER DADOS, FEVERÁ MOSTRAR O CABEÇÁLHO DA TABELA<br>
+                            AO SELECIONAR UM CLIENTE, O SISTEMA DEVE ARMAZENAR O CLIENTE_ID E O CLIENT_DOC DA TABELA TBDM_CLIENTES_GERAL<br>
                             <br>
-                            DEVEMOS TER A OPÇÃO DE INSERIR UM NOVO REGISTRO NA TABELA<br>
-                            PRECISAMOS ACRESCENTAR UM BOTÃO "SALVAR" QUE IRÁ GRAVAR OS DADOS NO BANCO DE DADOS
+                            AO CLICAR EM PESQUISAR, O SISTEMA DEVE UTILIZAR OS CAMPOS EMPRESA / CLIENTE_ID / CLIENTE_DOC PARA ACESSAR A TABELA<br>
+                            TBDM_CLIENTES_CARD E TRAZER PARA A LISTA DO MODAL APENAS OS CARTÕES QUE TENHAM O CARD_MOD = FIDL<br>
+                            <br>
+                            AO SELECIONAR UM CARTÃO, O SISTEMA DEVE BUSCAR NAS TABELAS DE VENDAS, TODOS OS LANÇAMETNOS JÁ REALIZADOS PARA<br>
+                            O CARTÃO SELECIONADO E MOSTRAR NA LISTAGEM LOGO ABAIXO<br>
+                            <br>
+                            PARA CLICAR EM CARREGAR CARTÃO, AO MENOS UM CARTÃO DEVE ESTAR SELECIONARO<br>
+                            <br>
+                            AO CLICAR EM CARREGAR CARTÃO, O SISTEMA ABRE UM MODAL COM O VALOR PRÉ-ESTABELECIDO DO CARTÃO SELECIONADO<br>
+                            E OS CAMPOS DE QUANTIDADE DE MENSALIDADE E DATA DE VENCIMENTO. AO CLICAR EM FINALZIAR, O SISTEMA DEVE GERAR<br>
+                            OS LANÇAMENTOS DE VENDAS NAS TABELAS PERTINENTES
 
                         </div>
 
+                    </div>
+
+                    <!-- Modal Lista de Cartões Fidelidade -->
+                    <div class="modal fade" id="modalCartoesFD" tabindex="-1" role="dialog" aria-labelledby="modalCartoesFDLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Selecione um Cartão</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover" id="tabelaCartoesFD">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo do Cartão</th>
+                                                <th>Modalidade</th>
+                                                <th>Descrição</th>
+                                                <th>Status</th>
+                                                <th>Número do Cartão</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <!-- Exemplo de dados estáticos -->
+                                            <tr class="linha-cartao-fd" data-numero="1234.5678.9012.3456" data-descricao="Cartão Fidelidade - Plano de Saúde">
+                                                <td>Pré Pago</td>
+                                                <td>Fidelidade</td>
+                                                <td>Cartão Fidelidade - Plano de Saúde</td>
+                                                <td>Ativo</td>
+                                                <td>1234.5678.9012.3456</td>
+                                            </tr>
+                                            <tr class="linha-cartao-fd" data-numero="9876.5432.1098.7654" data-descricao="Cartão Fidelidade - Plano Odontológico">
+                                                <td>Pré Pago</td>
+                                                <td>Fidelidade</td>
+                                                <td>Cartão Fidelidade - Plano Odontológico</td>
+                                                <td>Bloqueado</td>
+                                                <td>9876.5432.1098.7654</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Lista de Cartões Gift -->
+                    <div class="modal fade" id="modalCartoesGF" tabindex="-1" role="dialog" aria-labelledby="modalCartoesGFLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Selecione um Cartão</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover" id="tabelaCartoesGF">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo do Cartão</th>
+                                                <th>Modalidade</th>
+                                                <th>Descrição</th>
+                                                <th>Status</th>
+                                                <th>Número do Cartão</th>
+                                                <th>Saldo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <!-- Exemplo de dados estáticos -->
+                                            <tr class="linha-cartao-gf" data-numero="1234.5678.9012.3456" data-descricao="Cartão Gift - Dia das Mães">
+                                                <td>Pré Pago</td>
+                                                <td>Gift Card</td>
+                                                <td>Cartão Gift - Dia das Mães</td>
+                                                <td>Ativo</td>
+                                                <td>1234.5678.9012.3456</td>
+                                                <td>R$ 10,00</td>
+                                            </tr>
+                                            <tr class="linha-cartao-gf" data-numero="9876.5432.1098.7654" data-descricao="Cartão Gift - Dia dos Namorados">
+                                                <td>Pré Pago</td>
+                                                <td>Gift Card</td>
+                                                <td>Cartão Gift - Dia dos Namorados</td>
+                                                <td>Ativo</td>
+                                                <td>9876.5432.1098.7654</td>
+                                                <td>R$ 0,00</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Carregar Cartão Fidelidade -->
+                    <div class="modal fade" id="modalCarregarCartaoFD" tabindex="-1" role="dialog" aria-labelledby="modalCarregarCartaoFDLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Carregar Cartão</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Valor (não editável) -->
+                                        <div class="form-group">
+                                            <label for="card_limite">Valor:</label>
+                                            <input type="text" id="card_limite" class="form-control" value="R$ 150,00" readonly>
+                                        </div>
+                                        <!-- Quantidade de Mensalidades -->
+                                        <div class="form-group">
+                                            <label for="qtd_mensalidades">Quantidade de Mensalidades:</label>
+                                            <input type="number" id="qtd_mensalidades" class="form-control" min="1" value="1">
+                                        </div>
+                                        <!-- Vencimento Para -->
+                                        <div class="form-group">
+                                            <label for="vencimento_para">Vencimento Para:</label>
+                                            <input type="date" id="vencimento_para" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="btnFinalizarCarregamento">
+                                            <i class="fa fa-check"></i> Finalizar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal Carregar Cartão Gift -->
+                    <div class="modal fade" id="modalCarregarCartaoGF" tabindex="-1" role="dialog" aria-labelledby="modalCarregarCartaoGFLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Carregar Gift Card</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Valor (não editável) -->
+                                        <div class="form-group">
+                                            <label for="card_limite">Valor da Recarga:*</label>
+                                            <input autocomplete="off" type="text" class="form-control money form-control-sm" id="card_limite"
+                                                name="card_limite" placeholder="0,00">
+                                            <span id="card_limiteError" class="text-danger text-sm"></span>
+                                        </div>
+                                        <!-- Vencimento Para -->
+                                        <div class="form-group">
+                                            <label for="vencimento_para">Vencimento Para:</label>
+                                            <input type="date" id="vencimento_para" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="btnFinalizarCarregamento">
+                                            <i class="fa fa-check"></i> Finalizar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
                 </div>
@@ -426,6 +474,7 @@
     <script src="{{ asset('assets/plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
     <script src="{{ asset('assets/plugins/datatables-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{{ asset('assets/dist/js/app.js') }}"></script>
 
     <!-- Carregar CKEditor 5 via CDN -->
@@ -440,6 +489,29 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $(function() {
+                // Ao clicar em uma linha da tabela do modal
+                $('#tabelaCartoesFD').on('click', '.linha-cartao-fd', function() {
+                    var numero = $(this).data('numero');
+                    var descricao = $(this).data('descricao');
+                    $('#cliente_cardn_fd').val(numero);
+                    $('#card_desc_fd').text(descricao);
+                    $('#modalCartoesFD').modal('hide');
+                });
+            });
+
+            $(function() {
+                // Ao clicar em uma linha da tabela do modal
+                $('#tabelaCartoesGF').on('click', '.linha-cartao-gf', function() {
+                    var numero = $(this).data('numero');
+                    var descricao = $(this).data('descricao');
+                    $('#cliente_cardn_gf').val(numero);
+                    $('#card_desc_gf').text(descricao);
+                    $('#modalCartoesGF').modal('hide');
+                });
+            });
+
             @if ($message = Session::get('success'))
                 $("#empresa_id").val({{ Session::get('idModeloInserido') }})
                 toastr.success("{{ $message }}", "Sucesso");
@@ -452,6 +524,8 @@
                     toastr.error("{{ $error }}", "Erro");
                 @endforeach
             @endif
+
+            $('#cliente_cardn').mask('0000.0000.0000.0000');
                                                                                                                                                                                                                                                                                                                                                             });
     </script>
 @endpush
