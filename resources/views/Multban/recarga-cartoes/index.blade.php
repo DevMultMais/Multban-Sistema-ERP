@@ -138,38 +138,37 @@
                             </div>
                         </div>
 
+                        <div class="table-responsive table-sm">
+                            <table id="gridtemplate" class="table table-striped table-bordered nowrap table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Data de Vencimento</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Exemplo de dados estáticos -->
+                                    <tr>
+                                        <td>10/08/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td><span class="badge badge-success">Pago</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10/09/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td><span class="badge badge-warning">Pendente</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10/10/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td><span class="badge badge-danger">Vencido</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="card card-primary">
-
-                            <div class="table-responsive">
-                                <table cid="gridtemplate" class="table table-striped table-bordered nowrap">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Data de Vencimento</th>
-                                            <th>Valor</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Exemplo de dados estáticos -->
-                                        <tr>
-                                            <td>10/08/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td><span class="badge badge-success">Pago</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>10/09/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td><span class="badge badge-warning">Pendente</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>10/10/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td><span class="badge badge-danger">Vencido</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
                             O CAMPO EMPRESA DEVERÁ VIR PREENCHIDO COM A EMPRESA DO USUÁRIO LOGADO, SOMENTE<br>
                             NO CASO DO USUÁRIO SER DA MULTBAN OU DE UMA EMPRESA WHITE LABEL, ESTE CAMPO PODERÁ ESTAR DISPONÍVEL<br>
                             PARA SELECIONAR ALGUMA EMPRESA, NESTE CASO, ELE DEVE SEGUIR O PADRÃO DE CONSULTA, PESQUISANDO SOBRE O<br>
@@ -232,38 +231,37 @@
                             </div>
                         </div>
 
+                        <div class="table-responsive table-sm">
+                            <table id="gridtemplate" class="table table-striped table-bordered nowrap table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Data da Recarga</th>
+                                        <th>Valor</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Exemplo de dados estáticos -->
+                                    <tr>
+                                        <td>10/08/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td>R$ 150,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10/09/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td>R$ 0,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10/10/2025</td>
+                                        <td>R$ 150,00</td>
+                                        <td>R$ 0,00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="card card-primary">
-
-                            <div class="table-responsive">
-                                <table cid="gridtemplate" class="table table-striped table-bordered nowrap">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Data da Recarga</th>
-                                            <th>Valor</th>
-                                            <th>Saldo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Exemplo de dados estáticos -->
-                                        <tr>
-                                            <td>10/08/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td>R$ 150,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10/09/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td>R$ 0,00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10/10/2025</td>
-                                            <td>R$ 150,00</td>
-                                            <td>R$ 0,00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
                             O CAMPO EMPRESA DEVERÁ VIR PREENCHIDO COM A EMPRESA DO USUÁRIO LOGADO, SOMENTE<br>
                             NO CASO DO USUÁRIO SER DA MULTBAN OU DE UMA EMPRESA WHITE LABEL, ESTE CAMPO PODERÁ ESTAR DISPONÍVEL<br>
                             PARA SELECIONAR ALGUMA EMPRESA, NESTE CASO, ELE DEVE SEGUIR O PADRÃO DE CONSULTA, PESQUISANDO SOBRE O<br>
@@ -510,6 +508,42 @@
                     $('#card_desc_gf').text(descricao);
                     $('#modalCartoesGF').modal('hide');
                 });
+            });
+
+            // Validação para o botão Carregar Cartão Fidelidade
+            $('#btnCarregarCartaoFD').on('click', function(e) {
+                var numeroCartaoFD = $('#cliente_cardn_fd').val();
+
+                if (!numeroCartaoFD || numeroCartaoFD.trim() === '') {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    Swal.fire({
+                        title: 'Atenção!',
+                        text: 'Selecionar um Cartão Fidelidade',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+            });
+
+            // Validação para o botão Carregar Gift Card
+            $('#btnCarregarCartaoGF').on('click', function(e) {
+                var numeroCartaoGF = $('#cliente_cardn_gf').val();
+
+                if (!numeroCartaoGF || numeroCartaoGF.trim() === '') {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    Swal.fire({
+                        title: 'Atenção!',
+                        text: 'Selecionar um Gift Card',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
             });
 
             @if ($message = Session::get('success'))
