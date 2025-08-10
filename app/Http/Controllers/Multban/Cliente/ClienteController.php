@@ -111,8 +111,8 @@ class ClienteController extends Controller
             $input['cliente_doc'] = removerCNPJ($request->cliente_doc);
             $input['cliente_rendam'] = formatarTextoParaDecimal($request->cliente_rendam);
 
-            $cliente = Cliente::where('cliente_doc', removerCNPJ($request->cliente_doc))->first();
-            if ($cliente) {
+            $clienteChk = Cliente::where('cliente_doc', removerCNPJ($request->cliente_doc))->first();
+            if ($clienteChk) {
                 return response()->json([
                     'message_type' => 'Já existe um cliente cadastrado com esse CPF/CNPJ.',
                     'message' => ['cliente_doc' => ['Já existe um cliente cadastrado com esse CPF/CNPJ.']],

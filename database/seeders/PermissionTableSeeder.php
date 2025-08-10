@@ -26,6 +26,15 @@ class PermissionTableSeeder extends Seeder
             ['id' => $Vendas, 'parent_id' => 0, 'description' => 'Vendas', 'name' => 'venda', 'icon' => 'fa-plus-square'],
             ['id' => $Administracao, 'parent_id' => 0, 'description' => 'Administração', 'name' => 'administracao', 'icon' => 'fa-plus-square'],
             ['id' => $Configuracoes, 'parent_id' => 0, 'description' => 'Configuracões', 'name' => 'configuracoes', 'icon' => 'fa-plus-square'],
+            //CADASTRO / Agendamento
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.store', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.create', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.edit', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.update', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.copy', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.index', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.show', 'parent_id' => $Cadastros],
+            ['description' => 'Agendamento', 'icon' => 'far fa-calendar-alt', 'name' => 'agendamento.destroy', 'parent_id' => $Cadastros],
 
             //CADASTRO / Usuário
             ['description' => 'Usuário', 'icon' => 'fa fa-user', 'name' => 'usuario.store', 'parent_id' => $Cadastros],

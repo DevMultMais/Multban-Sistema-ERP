@@ -101,6 +101,22 @@ return new class extends Migration
             $table->primary(['cliente_tipo', 'langu']);
         });
 
+        Schema::create('tbdm_agendamento_tp', function (Blueprint $table) {
+            $table->integer('agendamento_tipo');
+            $table->string('langu', 4);
+            $table->string('agendamento_tipo_desc', 50);
+            //KEYS
+            $table->primary(['agendamento_tipo', 'langu']);
+        });
+
+         Schema::create('tbdm_agendamento_sts', function (Blueprint $table) {
+            $table->string('agendamento_sts', 2);
+            $table->string('langu', 4);
+            $table->string('agendamento_sts_desc', 50);
+            //KEYS
+            $table->primary(['agendamento_sts', 'langu']);
+        });
+
         Schema::create('tbdm_cliente_sts', function (Blueprint $table) {
             $table->string('cliente_sts', 2);
             $table->string('langu', 4);
@@ -300,5 +316,6 @@ return new class extends Migration
         Schema::dropIfExists('tbdm_api_subgrp');
         Schema::dropIfExists('tbdm_meio_pag');
         Schema::dropIfExists('tbdm_prt_tp');
+        Schema::dropIfExists('tbdm_agendamento_tp');
     }
 };

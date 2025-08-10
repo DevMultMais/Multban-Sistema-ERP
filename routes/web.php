@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Routes\AgendamentoRoute;
 use App\Http\Routes\AuditoriaRoute;
 use App\Http\Routes\ClienteRoute;
 use App\Http\Routes\EmpresaRoute;
@@ -49,6 +50,12 @@ Route::group(['middleware' => ['auth']], function () {
      */
 
     UsuarioRoute::rotas();
+
+    /**
+     * Agenda Routes
+     */
+
+    AgendamentoRoute::rotas();
 
     /**
      * PerfilRoute Routes

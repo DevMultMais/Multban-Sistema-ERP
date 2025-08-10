@@ -1253,5 +1253,22 @@ class DadosMestreSeeder extends Seeder
 
         DB::table('tbdm_meio_pag')->insert($tbdm_meio_pag);
 
+        $tbdm_agendamento_tp = [
+            ['langu' => 'PORT', "agendamento_tipo" => "1", "agendamento_tipo_desc" => "Consulta"],
+            ['langu' => 'PORT', "agendamento_tipo" => "2", "agendamento_tipo_desc" => "Exame"],
+            ['langu' => 'PORT', "agendamento_tipo" => "3", "agendamento_tipo_desc" => "Retorno"],
+            ['langu' => 'PORT', "agendamento_tipo" => "4", "agendamento_tipo_desc" => "Urgência"],
+        ];
+
+        DB::table('tbdm_agendamento_tp')->insert($tbdm_agendamento_tp);
+
+        $tbdm_agendamento_sts = [
+            ["langu" => "PORT", "agendamento_sts" => "AG", "agendamento_sts_desc" => "Agendado"],
+            ["langu" => "PORT", "agendamento_sts" => "CN", "agendamento_sts_desc" => "Cancelado"],
+            ["langu" => "PORT", "agendamento_sts" => "RE", "agendamento_sts_desc" => "Realizado"],
+            ["langu" => "PORT", "agendamento_sts" => "NA", "agendamento_sts_desc" => "Não Compareceu"],
+        ];
+
+        DB::table('tbdm_agendamento_sts')->insert($tbdm_agendamento_sts);
     }
 }
