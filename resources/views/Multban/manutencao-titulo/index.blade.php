@@ -271,23 +271,40 @@
                 AO CLICAR EM PESQUISAR, O SISTEMA DEVE UTILIZAR OS CAMPOS DO FILTRO PARA ACESSAR AS TABELAS DE VENDA<br>
                 E TRAZER PARA A LISTA TODOS OS LANÇAMENTOS QUE CONDIZEM COM OS FILTROS<br>
                 <br>
-                OS BOTÕES QUE TEMOS NO CAMPO AÇÃO, SERÃO PARA:<br>
-                IMPRIMIR - IMPRIME O COMPROVANTE DE PAGAMENTO REFERENTE AO TÍTULO SELECIONADO<br>
-                MANUTENÇÃO DE TÍTULO - ABRE UMA NOVA TELA, ESTA TELA DEVERÁ SER CRIADA NO EDIT.BLADE POIS TERÁ TODAS AS INFORMAÇÕES<br>
-                                       DO TÍTULO SELECIONADO, E NESTA TELA PODEREMOS EDITAR OS CAMPOS DATA DE VENCIMENTO (SOMENTE DATA FUTURA)<br>
-                                       DESCONTO, ACRÉSCIMO<br>
-                PAGAR - DEVE ABRIR O LINK PARA PAGAMENTO DO TÍTULO<br>
-                CABCELAR - CANCELA O TÍTULO, PARA CANCELAR, É OBRIGATÓRIO DAR UM MOTIVO, SE O CANCELAMENTO FOR DE UMA PARCELA<br>
-                           QUE NÃO SEJA A ÚLTIMA, O SISTEMA DEVE INFORMAR SE O RESTANTE DA VENDA TAMBÉM SERÁ CANCELADA<br>
-                BAIXA MANUAL - ABRE UMA TELA PARA BAIXA MANUAL DO TÍTULO, NESTE CASO, SE FOR LANÇAMENTO DE CARTÃO DE CRÉDITO<br>
-                               O SISTEMA DEVE GERAR UM DÉBITO NO VALOR DO MDR DO TÍTULO E UMA MSG DEVE APARCER NA TELA,<br>
-                               INFORMANDO QUE O MDR SERÁ COBRADO
-                COBRANÇA - ABRE UMA TELA PARA COBRANÇA DO TÍTULO, AO INICIAR UM FLUXO DE COBRANÇA, OS DADOS SERÃO GRAVADOS EM UMA TABELA<br>
-                           ESPECÍFICA, PORTANTO, SE CLICAR NESTE BOTÃO E NÃO TIVER NENHUM FLUXO DE COBRANÇA INICIADO, O SISTEMA<br>
-                           DEVERÁ QUESTIONAR SE O USUÁRIO DESEJA REALMENTE INICIAR O FLUXO DE COBRANÇA
-
-
-
+                <br>
+                Botão de Ação - Imprimir<br>
+                    1. Imprimi o comprovante de pagamento referente ao título selecionado<br>
+                <br>
+                Botão de Ação - Manutenção de Título<br>
+                    1. Abre uma nova tela, esta tela deverá ser criara no edit.blade pois terá todas as informações do título<br>
+                    2. Nesta tela poderemos editar os dampos:<br>
+                       Data de Vencimento (TABELA tbtr_p_titulos_ab / CAMPO data_venc)<br>
+                       Desconto Manual (TABELA tbtr_p_titulos_ab / CAMPO vlr_desc_mn)<br>
+                       Acréscimo Manual (TABELA tbtr_p_titulos_ab / CAMPO vlr_acr_mn)<br>
+                <br>
+                Botão de Ação - Pagar<br>
+                    1. Deve abrir o link de pagamento do Título, neste link deve conter as informações para pagamento<br>
+                       permitindo que o usuário possa escolhar PIX ou BOLETO<br>
+                       Precisamos criar uma tela para este link, customizada e com a identidade visual da Multban<br>
+                <br>
+                Botão de Ação - Cancelar<br>
+                    1. Para Cancelar, é obrigatório dar um motivo.
+                    2. Se o cancelamento for de uma parcela de cartão de crédito e que não seja a última, o sistema deve informar ao usuário<br>
+                       que todas as outras parcelas serão canceladas, pois não podemos cancelar uma única parcela de uma venda<br>
+                       Se o cancelamento for de um boleto parcelado, o sistema deve perguntar se o usuário quer cancelar as demais parcelas<br>
+                       se o usuário selecionar que SIM, todas as demais parcelas deverão ser canceladas<br>
+                <br>
+                Botão de Ação - Baixa Manual<br>
+                    1. Abre um rela para Baixa Manual do Título, se for um lançamento de Cartão de Crédito, o sistema deve gerar<br>
+                       um débito no valor do MDR do título e uma msg deve aparecer na tela informando que o MDR será cobrando<br>
+                       se o cliente for optante de uma Wallet, o sistema deverá lançar um débito na Wallet, se o cliente for optante<br>
+                       de uma Conta Digital, o sistema deverá criar um título em nome do cliente para que ele efetue o pagamento<br>
+                    2. Se for um lançamento de um Boleto e este boleto já foi gerado pelo cliente final, o sistema deve gerar um débito<br>
+                       na wallet com o valor do Boleto+PIX registrado no sistema, ou cria um título para pagamento com este valor,<br>
+                       se for um lançamento de um Boleto ainda não gerado, o sistema apenas cancela o lançamento<br>
+                <br>
+                Botão de Ação - Cobrança<br>
+                    1. Direciona para a tela de cobrança já com os filtros do título selecionado
             </div>
 
         </div>
@@ -313,10 +330,51 @@
                             <input type="date" id="nova_data_venc" name="nova_data_venc" class="form-control form-control-sm" placeholder="Selecione a nova data de vencimento">
                             <small class="form-text text-muted">Deixe em branco para não alterar a data de vencimento</small>
                         </div>
+
+                        <div class="form-group" id="tipoDataVencimentoGroup" style="display: none;">
+                            <label>Tipo de Aplicação da Data de Vencimento:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo_data_vencimento" id="data_mesma" value="mesma_data" checked>
+                                <label class="form-check-label" for="data_mesma">
+                                    Utilizar a mesma data de vencimento para todos os títulos
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo_data_vencimento" id="data_base" value="data_base">
+                                <label class="form-check-label" for="data_base">
+                                    Utilizar a data selecionada como base para a primeira parcela e calcular as demais
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">Selecione como a data de vencimento será aplicada nos títulos selecionados</small>
+                        </div>
+
                         <div class="form-group">
                             <label for="vlr_desc">Desconto:</label>
                             <input type="text" id="vlr_desc" name="vlr_desc" class="form-control form-control-sm money" placeholder="R$ 0,00">
                             <small class="form-text text-muted">Deixe em branco para não aplicar desconto</small>
+                        </div>
+
+                        <div class="form-group" id="tipoDescontoGroup" style="display: none;">
+                            <label>Tipo de Aplicação do Desconto:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo_desconto" id="desconto_mesmo_valor" value="mesmo_valor" checked>
+                                <label class="form-check-label" for="desconto_mesmo_valor">
+                                    Aplicar o mesmo valor de desconto em todos os títulos
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo_desconto" id="desconto_dividir" value="dividir">
+                                <label class="form-check-label" for="desconto_dividir">
+                                    Dividir o valor igualmente para todos os títulos
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">Selecione como o desconto será aplicado nos títulos selecionados</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="negociacao_obs">Detalhes da Negociação:</label>
+                            <textarea id="negociacao_obs" name="negociacao_obs" class="form-control form-control-sm" rows="8" placeholder="Descreva os detalhes das negociações e atendimento..."></textarea>
+                            <small class="form-text text-muted">Informe todos os detalhes sobre as negociações realizadas</small>
                         </div>
                         <div class="alert alert-info" style="background-color: #ecba41; border-color: #ecba41; color: #000;">
                             <i class="fas fa-info-circle"></i>
@@ -517,15 +575,37 @@
                 // Limpa os campos do modal
                 $('#nova_data_venc').val('');
                 $('#desconto').val('');
+                $('#tipoDataVencimentoGroup').hide();
 
                 // Abre o modal
                 $('#modalAlteracaoMassa').modal('show');
+            });
+
+            // Controlar visibilidade dos radio buttons de tipo de desconto
+            $('#vlr_desc').on('input keyup', function() {
+                var valor = $(this).val().trim();
+                if (valor && valor !== '' && valor !== 'R$ 0,00') {
+                    $('#tipoDescontoGroup').slideDown(300);
+                } else {
+                    $('#tipoDescontoGroup').slideUp(300);
+                }
+            });
+
+            // Controlar visibilidade dos radio buttons de tipo de data de vencimento
+            $('#nova_data_venc').on('input change', function() {
+                var data = $(this).val().trim();
+                if (data && data !== '') {
+                    $('#tipoDataVencimentoGroup').slideDown(300);
+                } else {
+                    $('#tipoDataVencimentoGroup').slideUp(300);
+                }
             });
 
             // Botão Executar Mudanças
             $('#btnExecutarMudancas').on('click', function() {
                 var novaDataVencimento = $('#nova_data_venc').val();
                 var desconto = $('#vlr_desc').val();
+                var tipoDataVencimento = $('input[name="tipo_data_vencimento"]:checked').val();
                 var checkedTitulos = [];
 
                 // Coleta os títulos selecionados
@@ -575,6 +655,7 @@
                         var dadosAlteracao = {
                             titulos: checkedTitulos,
                             nova_data_vencimento: novaDataVencimento,
+                            tipo_data_vencimento: tipoDataVencimento,
                             desconto: desconto,
                             _token: $('meta[name="csrf-token"]').attr('content')
                         };

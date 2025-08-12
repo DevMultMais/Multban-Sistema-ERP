@@ -530,21 +530,18 @@
                                             <!-- Exemplo de linha de compra. substituir por valores reais da pesquisa-->
                                             <tbody>
                                                 <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" value="1"></td>
-                                                    <td class="d-flex" align="left">
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Imprimir Comprovante"><i
+                                                    <td><input type="checkbox" name="compraSelecionada" value="1" class="mr-2"></td>
+                                                    <td class="d-flex">
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
                                                                 class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Manutenção de Título"><i
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
                                                                 class="fas fa-wrench"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
                                                                 class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
                                                                 class="fas fa-ban"></i></button>
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
+                                                                class="fas fa-hands-usd"></i></button>
                                                     </td>
                                                     <td>1</td>
                                                     <td>01/01/2023</td>
@@ -556,21 +553,18 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" value="1"></td>
-                                                    <td class="d-flex" align="left">
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Imprimir Comprovante"><i
+                                                    <td><input type="checkbox" name="compraSelecionada" class="mr-2"></td>
+                                                    <td class="d-flex">
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
                                                                 class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Manutenção de Título"><i
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
                                                                 class="fas fa-wrench"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
                                                                 class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
                                                                 class="fas fa-ban"></i></button>
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
+                                                                class="fas fa-hands-usd"></i></button>
                                                     </td>
                                                     <td>2</td>
                                                     <td>15/01/2023</td>
@@ -582,21 +576,18 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" value="1"></td>
-                                                    <td class="d-flex" align="left">
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Imprimir Comprovante"><i
+                                                    <td><input type="checkbox" name="compraSelecionada" class="mr-2"></td>
+                                                    <td class="d-flex">
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
                                                                 class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Manutenção de Título"><i
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
                                                                 class="fas fa-wrench"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
                                                                 class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1"
-                                                            title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
                                                         <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
                                                                 class="fas fa-ban"></i></button>
+                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
+                                                                class="fas fa-hands-usd"></i></button>
                                                     </td>
                                                     <td>2</td>
                                                     <td>15/01/2023</td>
@@ -1492,10 +1483,51 @@
                         <input type="date" id="nova_data_venc" name="nova_data_venc" class="form-control form-control-sm" placeholder="Selecione a nova data de vencimento">
                         <small class="form-text text-muted">Deixe em branco para não alterar a data de vencimento</small>
                     </div>
+
+		    <div class="form-group" id="tipoDataVencimentoGroup" style="display: none;">
+                        <label>Tipo de Aplicação da Data de Vencimento:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_data_vencimento" id="data_mesma" value="mesma_data" checked>
+                            <label class="form-check-label" for="data_mesma">
+                                Utilizar a mesma data de vencimento para todos os títulos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_data_vencimento" id="data_base" value="data_base">
+                            <label class="form-check-label" for="data_base">
+                                Utilizar a data selecionada como base para a primeira parcela e calcular as demais
+                            </label>
+                        </div>
+                        <small class="form-text text-muted">Selecione como a data de vencimento será aplicada nos títulos selecionados</small>
+                    </div>
+
                     <div class="form-group">
                         <label for="vlr_desc">Desconto:</label>
                         <input type="text" id="vlr_desc" name="vlr_desc" class="form-control form-control-sm money" placeholder="R$ 0,00">
                         <small class="form-text text-muted">Deixe em branco para não aplicar desconto</small>
+                    </div>
+
+	            <div class="form-group" id="tipoDescontoGroup" style="display: none;">
+                        <label>Tipo de Aplicação do Desconto:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_desconto" id="desconto_mesmo_valor" value="mesmo_valor" checked>
+                            <label class="form-check-label" for="desconto_mesmo_valor">
+                                Aplicar o mesmo valor de desconto em todos os títulos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_desconto" id="desconto_dividir" value="dividir">
+                            <label class="form-check-label" for="desconto_dividir">
+                                Dividir o valor igualmente para todos os títulos
+                            </label>
+                        </div>
+                        <small class="form-text text-muted">Selecione como o desconto será aplicado nos títulos selecionados</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="negociacao_obs">Detalhes da Negociação:</label>
+                        <textarea id="negociacao_obs" name="negociacao_obs" class="form-control form-control-sm" rows="8" placeholder="Descreva os detalhes das negociações e atendimento..."></textarea>
+                        <small class="form-text text-muted">Informe todos os detalhes sobre as negociações realizadas</small>
                     </div>
                     <div class="alert alert-info" style="background-color: #ecba41; border-color: #ecba41; color: #000;">
                         <i class="fas fa-info-circle"></i>
@@ -1747,15 +1779,37 @@
             // Limpa os campos do modal
             $('#nova_data_venc').val('');
             $('#desconto').val('');
+            $('#tipoDataVencimentoGroup').hide();
 
             // Abre o modal
             $('#modalAlteracaoMassa').modal('show');
+        });
+
+        // Controlar visibilidade dos radio buttons de tipo de desconto
+        $('#vlr_desc').on('input keyup', function() {
+            var valor = $(this).val().trim();
+            if (valor && valor !== '' && valor !== 'R$ 0,00') {
+                $('#tipoDescontoGroup').slideDown(300);
+            } else {
+                $('#tipoDescontoGroup').slideUp(300);
+            }
+        });
+
+        // Controlar visibilidade dos radio buttons de tipo de data de vencimento
+        $('#nova_data_venc').on('input change', function() {
+            var data = $(this).val().trim();
+            if (data && data !== '') {
+                $('#tipoDataVencimentoGroup').slideDown(300);
+            } else {
+                $('#tipoDataVencimentoGroup').slideUp(300);
+            }
         });
 
         // Botão Executar Mudanças
         $('#btnExecutarMudancas').on('click', function() {
             var novaDataVencimento = $('#nova_data_venc').val();
             var desconto = $('#vlr_desc').val();
+            var tipoDataVencimento = $('input[name="tipo_data_vencimento"]:checked').val();
             var checkedTitulos = [];
 
             // Coleta os títulos selecionados
@@ -1805,6 +1859,7 @@
                     var dadosAlteracao = {
                         titulos: checkedTitulos,
                         nova_data_vencimento: novaDataVencimento,
+                        tipo_data_vencimento: tipoDataVencimento,
                         desconto: desconto,
                         _token: $('meta[name="csrf-token"]').attr('content')
                     };
