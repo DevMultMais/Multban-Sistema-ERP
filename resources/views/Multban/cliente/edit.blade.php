@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-fixedheader/css/fixedHeader.bootstrap4.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" />
 <link href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
+
 @endpush
 
 @section('content')
@@ -446,7 +447,9 @@
 
                         <!-- ABA COMPRAS REALIZADAS -->
                         <div class="tab-pane fade" id="tabs-compras" role="tabpanel" aria-labelledby="tabs-compras-tab">
+
                             <div class="card card-primary">
+
                                 <div class="card-body">
 
                                     <!-- FILTROS -->
@@ -485,12 +488,20 @@
                                                 style=""><i class="fa fa-search"></i> Pesquisar</button>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- CORPO DO QUADRO DO GRID DE TÍTULOS -->
+                            <div class="card card-outline card-primary">
+
+                                <!-- CORPO DO QUADRO DO GRID DE TÍTULOS -->
+                                <div class="card-body">
 
                                     <!-- AÇÕES GERAIS -->
                                     <div class="form-row">
                                         <div class="form-group col-md-2 align-self-end input-group-sm">
                                             <button type="button" class="form-control form-control-sm btn btn-primary" id="btnImprimirTudo">
-                                                <i class="fas fa-shredder"></i> Imprimir Todos</button>
+                                                <i class="fas fa-shredder"></i> Imprimir Boletos</button>
                                         </div>
 
                                         <div class="form-group col-md-2 align-self-end input-group-sm">
@@ -499,112 +510,163 @@
                                         </div>
                                         <div class="form-group col-md-2 align-self-end input-group-sm">
                                             <button type="button" class="form-control form-control-sm btn btn-primary" id="btnEnviarLinkCompra">
-                                                <i class="fas fa-money-check-edit-alt"></i> Enviar Link de Pagto da Compra</button>
+                                                <i class="fas fa-money-check-edit-alt"></i> Enviar Link de Pagto</button>
                                         </div>
                                         <div class="form-group col-md-2 align-self-end input-group-sm">
                                             <button type="button" class="form-control form-control-sm btn btn-primary" id="btnEnviarLinkFatura">
-                                                <i class="fas fa-credit-card"></i> Enviar Link de Pagto da Fatura</button>
+                                                <i class="fas fa-credit-card"></i> Enviar Link da Fatura</button>
                                         </div>
                                     </div>
 
-                                    <!-- TABELA -->
-                                    <div class="table-responsive input-group-sm">
-                                        <table id="gridtemplate" class="table table-striped table-bordered nowrap input-group-sm">
+                                    <!-- TABELA DE DADOS -->
+                                    <div class="table-responsive table-sm">
+                                        <table id="gridtemplate" class="table table-striped table-bordered nowrap table-sm">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 20px;">
                                                         <input type="checkbox" id="selectAll" class="mr-2" title="Selecionar Todos" />
                                                     </th>
-                                                    <th>Ações</th>
-                                                    <th>ID da Transação</th>
-                                                    <th>Data da Transação</th>
-                                                    <th>Data de Vencimento</th>
-                                                    <th>Valor da Transação</th>
-                                                    <th>Meio de Pagamento</th>
+                                                    <th style="width: 230px;">Ações</th>
+                                                    <th>ID Emp.</th>
+                                                    <th>Título</th>
+                                                    <th>Cliente</th>
                                                     <th>Parcela</th>
-                                                    <th>Status da Transação</th>
+                                                    <th>Vlr. Init.</th>
+                                                    <th>Vlr. Jrs.</th>
+                                                    <th>Vlr. Tot.</th>
+                                                    <th>Meio Pgto</th>
+                                                    <th>Data Venda</th>
+                                                    <th>Data Venc.</th>
+                                                    <th>Status</th>
                                                 </tr>
+
+                                                <!-- Exemplo de dados estáticos -->
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" class="mr-2" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Imprimir Comprovante">
+                                                                <i class="fas fa-print"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Manutenção de Título">
+                                                                <i class="fas fa-wrench"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Pagar">
+                                                                <i class="fas fa-usd-square"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Cancelar">
+                                                                <i class="fas fa-ban"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Baixa Manual">
+                                                                <i class="fas fa-hands-usd"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Cobrança">
+                                                                <i class="far fa-file-invoice-dollar"></i>
+                                                            </button>
+                                                        </td>
+                                                        <td>1</td>
+                                                        <td>12345</td>
+                                                        <td>Cliente Teste</td>
+                                                        <td>2</td>
+                                                        <td>R$ 100,00</td>
+                                                        <td>R$ 1,50</td>
+                                                        <th>R$ 101,50</th>
+                                                        <td>Cartão</td>
+                                                        <td>10/05/2025</td>
+                                                        <td>10/07/2025</td>
+                                                        <td><span class="badge badge-success">Pago</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" class="mr-2" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Imprimir Comprovante">
+                                                                <i class="fas fa-print"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Manutenção de Título">
+                                                                <i class="fas fa-wrench"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Pagar">
+                                                                <i class="fas fa-usd-square"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Cancelar">
+                                                                <i class="fas fa-ban"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Baixa Manual">
+                                                                <i class="fas fa-hands-usd"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-primary mt-1" title="Cobrança">
+                                                                <i class="far fa-file-invoice-dollar"></i>
+                                                            </button>
+                                                        </td>
+                                                        <td>1</td>
+                                                        <td>12345</td>
+                                                        <td>Cliente Teste</td>
+                                                        <td>2</td>
+                                                        <td>R$ 100,00</td>
+                                                        <td>R$ 1,50</td>
+                                                        <th>R$ 101,50</th>
+                                                        <td>Cartão</td>
+                                                        <td>10/05/2025</td>
+                                                        <td>10/07/2025</td>
+                                                        <td><span class="badge badge-danger">Vencido</span></td>
+                                                    </tr>
+
+                                                </tbody>
                                             </thead>
-
-                                            <!------------------------------------------------------------------------->
-                                            <!-- Exemplo de linha de compra. substituir por valores reais da pesquisa-->
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" value="1" class="mr-2"></td>
-                                                    <td class="d-flex">
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
-                                                                class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
-                                                                class="fas fa-wrench"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
-                                                                class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
-                                                                class="fas fa-ban"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
-                                                    </td>
-                                                    <td>1</td>
-                                                    <td>01/01/2023</td>
-                                                    <td>01/02/2023</td>
-                                                    <td>R$ 100,00</td>
-                                                    <td>Dinheiro</td>
-                                                    <td>1</td>
-                                                    <td>Pago</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" class="mr-2"></td>
-                                                    <td class="d-flex">
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
-                                                                class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
-                                                                class="fas fa-wrench"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
-                                                                class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
-                                                                class="fas fa-ban"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
-                                                    </td>
-                                                    <td>2</td>
-                                                    <td>15/01/2023</td>
-                                                    <td>15/02/2023</td>
-                                                    <td>R$ 250,00</td>
-                                                    <td>Boleto</td>
-                                                    <td>1</td>
-                                                    <td>Pendente</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><input type="checkbox" name="compraSelecionada" class="mr-2"></td>
-                                                    <td class="d-flex">
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Imprimir Comprovante"><i
-                                                                class="fas fa-print"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Manutenção de Título"><i
-                                                                class="fas fa-wrench"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Pagar"><i
-                                                                class="fas fa-usd-square"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Cancelar"><i
-                                                                class="fas fa-ban"></i></button>
-                                                        <button class="btn btn-sm btn-primary mr-1" title="Baixa Manual"><i
-                                                                class="fas fa-hands-usd"></i></button>
-                                                    </td>
-                                                    <td>2</td>
-                                                    <td>15/01/2023</td>
-                                                    <td>15/02/2023</td>
-                                                    <td>R$ 550,00</td>
-                                                    <td>Cartão</td>
-                                                    <td>1</td>
-                                                    <td>Inadimplente</td>
-                                                </tr>
-                                            </tbody>
-                                            <!-- Exemplo de linha de compra. substituir por valores reais da pesquisa-->
-                                            <!------------------------------------------------------------------------->
-
                                         </table>
                                     </div>
+
+                                    O CAMPO EMPRESA DEVERÁ VIR PREENCHIDO COM A EMPRESA DO USUÁRIO LOGADO, SOMENTE<br>
+                                    NO CASO DO USUÁRIO SER DA MULTBAN OU DE UMA EMPRESA WHITE LABEL, ESTE CAMPO PODERÁ ESTAR DISPONÍVEL<br>
+                                    PARA SELECIONAR ALGUMA EMPRESA, NESTE CASO, ELE DEVE SEGUIR O PADRÃO DE CONSULTA, PESQUISANDO SOBRE O<br>
+                                    NOME MULTBAN<br>
+                                    <br>
+                                    AO SELECIONAR UM CLIENTE, O SISTEMA DEVE ARMAZENAR O CLIENTE_ID E O CLIENT_DOC DA TABELA TBDM_CLIENTES_GERAL<br>
+                                    <br>
+                                    AO CLICAR EM PESQUISAR, O SISTEMA DEVE UTILIZAR OS CAMPOS DO FILTRO PARA ACESSAR AS TABELAS DE VENDA<br>
+                                    E TRAZER PARA A LISTA TODOS OS LANÇAMENTOS QUE CONDIZEM COM OS FILTROS<br>
+                                    <br>
+                                    <br>
+                                    Botão de Ação - Imprimir<br>
+                                        1. Imprimi o comprovante de pagamento referente ao título selecionado<br>
+                                    <br>
+                                    Botão de Ação - Manutenção de Título<br>
+                                        1. Abre uma nova tela, esta tela deverá ser criara no edit.blade pois terá todas as informações do título<br>
+                                        2. Nesta tela poderemos editar os dampos:<br>
+                                        Data de Vencimento (TABELA tbtr_p_titulos_ab / CAMPO data_venc)<br>
+                                        Desconto Manual (TABELA tbtr_p_titulos_ab / CAMPO vlr_desc_mn)<br>
+                                        Acréscimo Manual (TABELA tbtr_p_titulos_ab / CAMPO vlr_acr_mn)<br>
+                                    <br>
+                                    Botão de Ação - Pagar<br>
+                                        1. Deve abrir o link de pagamento do Título, neste link deve conter as informações para pagamento<br>
+                                        permitindo que o usuário possa escolhar PIX ou BOLETO<br>
+                                        Precisamos criar uma tela para este link, customizada e com a identidade visual da Multban<br>
+                                    <br>
+                                    Botão de Ação - Cancelar<br>
+                                        1. Para Cancelar, é obrigatório dar um motivo.
+                                        2. Se o cancelamento for de uma parcela de cartão de crédito e que não seja a última, o sistema deve informar ao usuário<br>
+                                        que todas as outras parcelas serão canceladas, pois não podemos cancelar uma única parcela de uma venda<br>
+                                        Se o cancelamento for de um boleto parcelado, o sistema deve perguntar se o usuário quer cancelar as demais parcelas<br>
+                                        se o usuário selecionar que SIM, todas as demais parcelas deverão ser canceladas<br>
+                                    <br>
+                                    Botão de Ação - Baixa Manual<br>
+                                        1. Abre um rela para Baixa Manual do Título, se for um lançamento de Cartão de Crédito, o sistema deve gerar<br>
+                                        um débito no valor do MDR do título e uma msg deve aparecer na tela informando que o MDR será cobrando<br>
+                                        se o cliente for optante de uma Wallet, o sistema deverá lançar um débito na Wallet, se o cliente for optante<br>
+                                        de uma Conta Digital, o sistema deverá criar um título em nome do cliente para que ele efetue o pagamento<br>
+                                        2. Se for um lançamento de um Boleto e este boleto já foi gerado pelo cliente final, o sistema deve gerar um débito<br>
+                                        na wallet com o valor do Boleto+PIX registrado no sistema, ou cria um título para pagamento com este valor,<br>
+                                        se for um lançamento de um Boleto ainda não gerado, o sistema apenas cancela o lançamento<br>
+                                    <br>
+                                    Botão de Ação - Cobrança<br>
+                                        1. Direciona para a tela de cobrança já com os filtros do título selecionado
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- ABA SCORE -->
@@ -1922,6 +1984,9 @@
 <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/i18n/pt-BR.js') }}"></script>
+
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
 <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-select/js/dataTables.select.min.js')}}"></script>
@@ -1929,12 +1994,18 @@
 <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- InputMask -->
+<script src="{{ asset('assets/dist/js/app.js') }}"></script>
+<script src="{{ asset('assets/dist/js/pages/empresa/gridempresa.js') }}"></script>
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
+
 <!-- Summernote -->
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <link rel="stylesheet" href="{{asset('assets/dist/css/app.css') }}" />
 <script src="{{asset('assets/dist/js/app.js') }}"></script>
 <script src="{{asset('assets/dist/js/pages/cliente/cliente.js') }}"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 @endpush

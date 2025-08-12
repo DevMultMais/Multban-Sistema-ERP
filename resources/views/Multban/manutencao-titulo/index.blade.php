@@ -133,10 +133,10 @@
 
         </div>
 
-        <!-- QUADRO DO GRID DE EMPRESAS -->
+        <!-- QUADRO DO GRID DE TÍTULOS -->
         <div class="card card-outline card-primary">
 
-            <!-- CORPO DO QUADRO DO GRID DE EMPRESAS -->
+            <!-- CORPO DO QUADRO DO GRID DE TÍTULOS -->
             <div class="card-body">
 
                 <!-- AÇÕES GERAIS -->
