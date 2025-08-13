@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('nro_carteirinha', 255)->nullable();
             $table->string('title');
             $table->string('description')->nullable();
+            $table->date('date');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->text('observacao')->nullable();
             $table->string('backgroundColor')->nullable();
             $table->string('borderColor')->nullable();
             $table->string('textColor')->nullable();
@@ -43,4 +45,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('tbtr_agendamento');
     }
+
+
 };

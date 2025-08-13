@@ -4,13 +4,17 @@
 <link href="{{ asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
 <!-- summernote -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet"
+    href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
 @endpush
 
 @section('content')
 <!-- Main content -->
 <section class="content">
     @if($routeAction)
-    <form class="form-horizontal" id="formPrincipal" role="form" method="POST"
+    <form class="form-horizontal" id="formPrincipal" autocomplete="off" role="form" method="POST"
         action="{{ route('agendamento.update', $agendamento->id) }}">
         @method('PATCH')
         @else
@@ -22,302 +26,195 @@
             @csrf
             @include('Multban.template.updatetemplate')
 
-            <div class="card card-outline card-tabs">
-                <div class="card-header p-0 pt-1 border-bottom-0">
 
-                    <!--ABAS/TABS-->
-                    <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
 
-                        <li class="nav-item">
-                            <a class="nav-link active" id="tabs-agendamentomento-tab" data-toggle="pill" href="#tabs-agendamentomento"
-                                role="tab" aria-controls="tabs-agendamentomento" aria-selected="true">Agendamento</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabs-procedimento-tab" data-toggle="pill" href="#tabs-procedimento" role="tab"
-                                aria-controls="tabs-procedimento" aria-selected="false">Procedimento</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabs-financeiro-tab" data-toggle="pill" href="#tabs-financeiro"
-                                role="tab" aria-controls="tabs-financeiro" aria-selected="false">Financeiro</a>
-                        </li>
-                    </ul>
-                </div>
-
+            <div class="card card-primary">
                 <div class="card-body">
-                    <div class="tab-content" id="custom-tabs-two-tabContent">
 
-                        <!--ABA DADOS GERAIS-->
-                        <div class="tab-pane fade active show" id="tabs-agendamentomento" role="tabpanel"
-                            aria-labelledby="tabs-agendamentomento-tab">
-                            <div class="card card-primary">
-                                <div class="card-body">
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_id">Protocolo:</label>
-                                            <div class="input-group input-group-sm">
-                                                <!--O código tem que ser registrado automaticamnete após a criação do usuário-->
-                                                <input autocomplete="off" class="form-control  form-control-sm"
-                                                    id="user_id" name="user_id" value="{{str_pad($agendamento->id, 12, '0', STR_PAD_LEFT)}}"
-                                                    placeholder="Protocolo" readonly="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="Empresa">Nome:*</label>
-                                            <select id="emp_id" name="emp_id"
-                                                class="form-control select2 select2-hidden-accessible"
-                                                data-placeholder="Pesquise o paciente" style="width: 100%;"
-                                                aria-hidden="true">
-                                                @if($agendamento->cliente->cliente_id)
-                                                <option value="{{$agendamento->cliente->cliente_id}}">
-                                                    {{str_pad($agendamento->cliente->cliente_id, 5, '0', STR_PAD_LEFT)}} - {{$agendamento->cliente->cliente_nome}}
-                                                </option>
-                                                @endif
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_sts">Tipo de atendimento:*</label>
-                                            <select id="user_sts" name="user_sts" class="form-control select2"
-                                                data-placeholder="Selecione" style="width: 100%;" required
-                                                aria-hidden="true">
-                                                <option></option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_name">Nome Completo:*</label>
-                                            <input autocomplete="off" class="form-control  form-control-sm" placeholder="Digite o nome"
-                                                name="user_name" type="text" id="user_name"
-                                                value="{{$agendamento->user_name}}">
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_cpf">CPF do Usuário:*</label>
-                                            <input autocomplete="off" type="text"
-                                                class="form-control cpf form-control-sm" id="user_cpf" name="user_cpf"
-                                                value="{{$agendamento->user_cpf}}" placeholder="CPF" maxlength="14">
-
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_email">E-mail:*</label>
-                                            <input autocomplete="off" type="email" class="form-control  form-control-sm" id="user_email"
-                                                name="user_email" value="{{$agendamento->user_email}}"
-                                                placeholder="Digite o E-mail">
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_func">Cargo:*</label>
-                                            <select id="user_func" name="user_func" class="form-control select2"
-                                                data-placeholder="Selecione" style="width: 100%;" required
-                                                aria-hidden="true">
-                                                <option></option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_cel">Número de Celular:*</label>
-                                            <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
-                                                id="user_cel" name="user_cel" value="{{$agendamento->user_cel}}"
-                                                placeholder="Digite o Celular">
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_tfixo">Telefone Fixo:</label>
-                                            <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
-                                                id="user_tfixo" name="user_tfixo" value="{{$agendamento->user_tfixo}}"
-                                                placeholder="Digite o Telefone Fixo">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_role">Perfil de Acesso:*</label>
-                                            <select class="form-control select2" name="user_role" id="user_role"
-                                                data-placeholder="Selecione" style="width: 100%;">
-                                                <option></option>
-
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_screen">Tela Inicial:*</label>
-                                            <select class="form-control select2" name="user_screen" id="user_screen"
-                                                data-placeholder="Selecione" style="width: 100%;">
-                                                <option></option>
-
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="langu">Idioma:</label>
-                                            <select class="form-control select2" name="langu" id="langu"
-                                                data-placeholder="Selecione" style="width: 100%;">
-                                                <option></option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="agendamento_id">Protocolo:</label>
+                            <div class="input-group input-group-sm">
+                                <!--O código tem que ser registrado automaticamnete após a criação do usuário-->
+                                <input autocomplete="off" class="form-control  form-control-sm" id="agendamento_id"
+                                    name="agendamento_id" value="{{str_pad($agendamento->id, 12, '0', STR_PAD_LEFT)}}"
+                                    placeholder="Protocolo" readonly="">
                             </div>
                         </div>
 
-                        <!--ABA DE SENHA-->
-                        <div class="tab-pane fade" id="tabs-procedimento" role="tabpanel" aria-labelledby="tabs-procedimento-tab">
-                            <div class="card card-primary">
-                                <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_pass">Senha do Usuário:</label>
-                                            <div class="input-group input-group-sm">
-                                                <input type="password" class="form-control custom-input" id="user_pass"
-                                                    name="user_pass" required placeholder="Digite sua senha">
-                                                <span class="input-group-append">
-                                                    <button type="button" class="btn btn-default eye"><i
-                                                            class="fa fa-eye-slash"></i></button>
-                                                </span>
-                                            </div>
-                                            <span id="user_passError" class="text-danger text-sm"></span>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="confirm_password">Repetir Senha:</label>
-                                            <div class="input-group input-group-sm">
-                                                <input type="password" class="form-control custom-input"
-                                                    id="confirm_password" name="confirm_password" required
-                                                    placeholder="Repita sua senha">
-                                                <span class="input-group-append">
-                                                    <button type="button" class="btn btn-default eye"><i
-                                                            class="fa fa-eye-slash"></i></button>
-                                                </span>
-                                            </div>
-                                            <span id="confirm_passwordError" class="text-danger text-sm"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <button type="button" class="btn btn-primary btn-sm" id="btnEnviarSenha">Enviar
-                                                Solicitação de Cadastro por Email</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="cliente_id">Nome:*</label>
+                            <select id="cliente_id" name="cliente_id"
+                                class="form-control select2 select2-hidden-accessible"
+                                data-placeholder="Pesquise o paciente" style="width: 100%;" aria-hidden="true">
+                                @if($agendamento->cliente)
+                                <option value="{{$agendamento->cliente->cliente_id}}">
+                                    {{str_pad($agendamento->cliente->cliente_id, 5, '0', STR_PAD_LEFT)}}
+                                    - {{$agendamento->cliente->cliente_nome}}
+                                </option>
+                                @endif
+                            </select>
                         </div>
 
-                        <!-- ABA DADOS ADICIONAIS -->
-                        <div class="tab-pane fade" id="tabs-financeiro" role="tabpanel"
-                            aria-labelledby="tabs-financeiro-tab">
-                            <div class="card card-primary">
-                                <div class="card-body">
 
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="user_resp">Supervisor do Usuário:</label>
-                                            <select class="form-control select2" name="user_resp" id="user_resp"
-                                                data-placeholder="Selecione" style="width: 100%;">
-                                                <option></option>
+                        <div class="form-group col-md-3">
+                            <label for="cliente_doc">CPF:*</label>
+                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
+                                id="cliente_doc" name="cliente_doc"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
+                                placeholder="CPF" maxlength="14">
 
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-2 text-center">
-                                            <label>Usuário Comissionado:</label>
-
-                                            <div class="form-group">
-                                                <div class="custom-control custom-radio d-inline">
-                                                    <input class="custom-control-input" type="radio"
-                                                        {{$agendamento->user_comis == 'x' ? 'checked' : ''}}
-                                                    value="sim"
-                                                    id="user_comis" name="user_comis">
-                                                    <label for="user_comis" class="custom-control-label">SIM</label>
-                                                </div>
-                                                <div class="custom-control custom-radio d-inline">
-                                                    <input class="custom-control-input" type="radio"
-                                                        {{$agendamento->user_comis == '' ? 'checked' : ''}} value="nao"
-                                                    id="user_comis_n" name="user_comis">
-                                                    <label for="user_comis_n" class="custom-control-label">NÃO</label>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="user_pcomis">Percentual de Comissão:</label>
-                                            <input type="text" value="{{$agendamento->user_pcomis}}" class="form-control porcentagem form-control-sm" id="user_pcomis" name="user_pcomis"
-                                                placeholder="%" min="0" max="100">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-3">
-                                            <label for='user_cdgbc'>Cdg Banco Principal:</label>
-                                            <select class="form-control select2" data-allow-clear="true"
-                                                name="user_cdgbc" id="user_cdgbc" data-placeholder="Selecione"
-                                                style="width: 100%;">
-                                                <option></option>
+                        </div>
 
 
-                                            </select>
-                                            <span id="user_cdgbcError" class="text-danger text-sm"></span>
-                                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="cliente_doc">RG:</label>
+                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
+                                id="cliente_doc" name="cliente_doc"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
+                                placeholder="RG" maxlength="14">
 
-                                        <div class="col-md-7" id="banco-principal" style="display: none;">
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label for='user_agbc'>Agência:</label>
-                                                    <input type="text" maxlength="20" id='user_agbc' name='user_agbc'
-                                                        value="{{ $agendamento->user_agbc ?? '' }}" class="form-control form-control-sm"
-                                                        placeholder='Agência'>
-                                                    <span id="user_agbcError" class="text-danger text-sm"></span>
-                                                </div>
+                        </div>
 
-                                                <div class="form-group col-md-3">
-                                                    <label for='user_ccbc'>Conta Corrente:</label>
-                                                    <input type="text" id='user_ccbc' name='user_ccbc'
-                                                        value="{{$agendamento->user_ccbc ?? '' }}" class="form-control form-control-sm"
-                                                        placeholder='Conta Corrente'>
-                                                    <span id="user_ccbcError" class="text-danger text-sm"></span>
-                                                </div>
+                    </div>
 
-                                                <div class="form-group col-md-3">
-                                                    <label for='user_pix'>Chave PIX:</label>
-                                                    <input type="text" id='user_pix' name='user_pix'
-                                                        value="{{$agendamento->user_pix ?? '' }}" class="form-control form-control-sm"
-                                                        placeholder='Chave PIX'>
-                                                    <span id="user_pixError" class="text-danger text-sm"></span>
-                                                </div>
+                    <div class="form-row">
 
-                                                <div class="form-group col-md-3">
-                                                    <label for='user_seller'>Seller:</label>
-                                                    <input type="text" id='user_seller' name='user_seller'
-                                                        value="{{$agendamento->user_seller ?? '' }}" class="form-control form-control-sm"
-                                                        placeholder='Seller'>
-                                                    <span id="user_sellerError" class="text-danger text-sm"></span>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">Data:*</label>
+                            <input autocomplete="off" type="text"
+                                class="form-control datetimepicker-input form-control-sm" id="date" name="date"
+                                value="{{$agendamento->date}}" data-toggle="datetimepicker" placeholder="hh:mm"
+                                data-target="#date" placeholder="Data">
+                            <span id="dateError" class="text-danger text-sm"></span>
+                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="user_cel">Número de Celular:*</label>
+                            <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
+                                id="user_cel" name="user_cel"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_cel : ''}}"
+                                placeholder="Digite o Celular">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="user_tfixo">Telefone Fixo:</label>
+                            <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
+                                id="user_tfixo" name="user_tfixo" value="{{$agendamento->user_tfixo}}"
+                                placeholder="Digite o Telefone Fixo">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="cliente_email">E-mail:*</label>
+                            <input autocomplete="off" type="email" class="form-control  form-control-sm"
+                                id="cliente_email" name="cliente_email"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_email : ''}}"
+                                placeholder="Digite o E-mail">
                         </div>
                     </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="cliente_id">Convênio:*</label>
+                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
+                                id="cliente_doc" name="cliente_doc"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
+                                placeholder="CPF" maxlength="14">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="cliente_doc">Nro carteirinha:*</label>
+                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
+                                id="cliente_doc" name="cliente_doc"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
+                                placeholder="Nro carteirinha">
+
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="form-row">
+                        <p class="text-muted">
+                        <h4>Informações do atendimento:*</h4>
+                        </p>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="user_id">Profissional:*</label>
+                            <select class="form-control select2" name="user_id" id="user_id"
+                                data-placeholder="Selecione" style="width: 100%;">
+                                <option></option>
+                                @foreach ($users as $user)
+                                <option value="{{$user->user_id}}" {{ $user->user_id == $agendamento->user_id ?
+                                    'selected' : '' }}>{{$user->user_name}} @if ($user->cargo)
+                                    - {{$user->cargo->user_func_desc}}
+                                    @endif </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="date">Data:*</label>
+                            <input autocomplete="off" type="text"
+                                class="form-control datetimepicker-input form-control-sm" id="date" name="date"
+                                value="{{$agendamento->date}}" data-toggle="datetimepicker" placeholder="hh:mm"
+                                data-target="#date" placeholder="Data">
+                            <span id="dateError" class="text-danger text-sm"></span>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <label for="start">Início:*</label>
+                            <input autocomplete="off" type="text"
+                                class="form-control datetimepicker-input form-control-sm" id="start" name="start"
+                                value="{{$agendamento->start}}" data-toggle="datetimepicker" placeholder="hh:mm"
+                                data-target="#start">
+                            <span id="startError" class="text-danger text-sm"></span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="end">Término:*</label>
+                            <input autocomplete="off" role="presentation" type="text"
+                                class="form-control datetimepicker-input form-control-sm" id="end" name="end"
+                                value="{{$agendamento->end}}" data-toggle="datetimepicker" placeholder="hh:mm"
+                                data-target="#end">
+                            <span id="endError" class="text-danger text-sm"></span>
+
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="agendamento_tipo">Tipo de atendimento:*</label>
+                            <select id="agendamento_tipo" name="agendamento_tipo" class="form-control select2"
+                                data-placeholder="Selecione" style="width: 100%;" required aria-hidden="true">
+                                <option></option>
+                                @foreach ($tipos as $tipo)
+                                <option value="{{$tipo->agendamento_tipo}}" {{ $tipo->agendamento_tipo
+                                    == $agendamento->agendamento_tipo ? 'selected' : ''
+                                    }}>{{$tipo->agendamento_tipo_desc}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <label for="agendamento_observacoes">Observações:</label>
+                            <textarea id="agendamento_observacoes" name="agendamento_observacoes" class="form-control"
+                                rows="3">{{ $agendamento->agendamento_observacoes }}</textarea>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
+
+
+
+
         </form>
     </form>
 </section>
@@ -327,16 +224,27 @@
 
 @push('scripts')
 
+
+
+
 <script type="text/javascript">
     $(document).ready(function(e) {
 
-         @if ($agendamento->user_pcomis > 0)
-            $("#banco-principal").show();
-        @endif
+        // Inicializa o seletor de data
+        $('#date').datetimepicker({
+            format: 'DD/MM/YYYY',
+            locale: 'pt-br'
+        });
 
-        @if ($agendamento->user_cdgbc)
-            $("#banco-principal").show();
-        @endif
+        // Inicializa o seletor de hora
+        $('#start').datetimepicker({
+            format: 'LT',
+            locale: 'pt-br'
+        });
+        $('#termino').datetimepicker({
+            format: 'LT',
+            locale: 'pt-br'
+        });
 
         // Verifica o status do usuário e ajusta o texto do botão de ativação/inativação
         if ("{{$agendamento->user_sts}}" == "EX" ) {
@@ -353,18 +261,25 @@
             $("#btnInativar").text("Inativar");
             $("#btnInativar").prepend('<i class="fa fa-ban"></i> ');
         }
+
+
     });
 </script>
-<script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery-validation/localization/messages_pt_BR.min.js') }}"></script>
+
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/select2/js/i18n/pt-BR.js') }}"></script>
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- InputMask -->
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 <!-- Summernote -->
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- Moment -->
+<script src="{{ asset('assets/plugins/moment/moment-with-locales.js') }}"></script>
+<script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 <link rel="stylesheet" href="{{asset('assets/dist/css/app.css') }}" />
+<script src="{{asset('assets/dist/js/pages/agendamento/agendamento.js') }}"></script>
 <script src="{{asset('assets/dist/js/app.js') }}"></script>
+
 @endpush

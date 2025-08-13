@@ -94,7 +94,7 @@
 <script src="{{ asset('assets/plugins/fullcalendar-6.1.18/dist/locales/pt-br.global.min.js') }}"></script>
 
 <script src="{{ asset('assets/dist/js/app.js') }}"></script>
-<script src="{{ asset('assets/dist/js/pages/agendamento/agendamento.js') }}"></script>
+<script src="{{ asset('assets/dist/js/pages/agendamento/indexagendamento.js') }}"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -103,9 +103,6 @@
             $("#empresa_id").val({{ Session::get('idModeloInserido') }})
             toastr.success("{{ $message }}", "Sucesso");
         @endif
-        @if ($message = Session::get('error'))
-            toastr.error("{{ $message }}", "Erro");
-        @endif
         @if (count($errors) > 0)
             @foreach ($errors->all() as $error)
                 toastr.error("{{ $error }}", "Erro");
@@ -113,8 +110,6 @@
         @endif
     });
 </script>
-
-
 
 @if ($message = Session::get('success'))
 <script>

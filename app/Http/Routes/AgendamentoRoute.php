@@ -9,7 +9,7 @@ class AgendamentoRoute
 {
     public static function rotas()
     {
-        Route::get('agendamento', [AgendamentoController::class, 'index'])->name('agendamentomento.index');
+        Route::get('agendamento', [AgendamentoController::class, 'index'])->name('agendamento.index');
         Route::get('get-agendamento', [AgendamentoController::class, 'getAgenda']);
         Route::get('agendamento/{id}/alterar', [AgendamentoController::class, 'edit'])->name('agendamento.edit');
         Route::patch('agendamento/{id}/alterar', [AgendamentoController::class, 'update'])->name('agendamento.update');

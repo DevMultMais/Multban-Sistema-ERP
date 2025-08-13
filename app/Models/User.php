@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Multban\DadosMestre\TbDmUserFunc;
 use App\Models\Multban\DadosMestre\TbDmUserStatus;
 use App\Models\Multban\Empresa\Empresa;
 use App\Models\Multban\TbCf\ConexoesBcEmp;
@@ -166,7 +167,8 @@ class User extends Authenticatable
         return $this->emp_id;
     }
 
-    public function getUserDataBase(){
+    public function getUserDataBase()
+    {
 
         $conexao = ConexoesBcEmp::where('emp_id', $this->emp_id)->first();
 
@@ -186,6 +188,11 @@ class User extends Authenticatable
     public function status()
     {
         return $this->belongsTo(TbDmUserStatus::class, 'user_sts', 'user_sts');
+    }
+
+    public function cargo()
+    {
+        return $this->belongsTo(TbDmUserFunc::class, 'user_func', 'user_func');
     }
 
     public function empresa()
