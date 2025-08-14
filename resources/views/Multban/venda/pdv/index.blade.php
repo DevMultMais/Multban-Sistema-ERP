@@ -107,9 +107,11 @@
         @method('POST')
         @csrf
         <div class="row align-items-start pt-3" id="listaDeProdutos">
+
+            <!-- COLUNA ESQUERDA -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                <!-- HEADER DA SESSÃO -->
                 <div class="card card-widget widget-user-2 shadow">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-primary">
                         <div class="widget-user-image">
                         <img class="img-circle elevation-2"
@@ -120,6 +122,8 @@
                         <h5 class="widget-user-desc">{{$empresa->emp_rzsoc}}</h5>
                     </div>
                 </div>
+
+                <!-- INFORMAÇÕES DO CLIENTE E SELEÇÃO DE ITENS -->
                 <div class="card card-outline card-primary">
                     <div class="card-body p-2">
                         <div class="row">
@@ -226,8 +230,12 @@
                     </div>
                 </div>
             </div>
+
+            <!-- COLUNA DIREITA -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 pull-right">
-                <div class="card card-outline card-primary" style="margin-bottom: 0px;">
+
+                <!-- RESUMO DA VENDA -->
+                <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title mt-2"><span class="badge badge-multban" id="totalItens">0</span> Itens
                             <span id="TableNo"> </span>
@@ -284,23 +292,22 @@
                     </div>
                 </div>
 
-                <div class="card mt-2 p-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 mt-3">
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" name="gerarComprovanteSeparados" id="gerarComprovanteSeparados">
-                                    <label for="gerarComprovanteSeparados" class="custom-control-label">Gerar Comprovante Separados Por Participante</label>
-                                </div></div>
-                            <div class="col-md-6">
-                                <div class="btn-group" role="group" aria-label="Checkout">
+                <!-- AÇÕES -->
+                <div class="card-body card mt-2 p-3">
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" name="gerarComprovanteSeparados" id="gerarComprovanteSeparados">
+                                <label for="gerarComprovanteSeparados" class="custom-control-label">Gerar Comprovante Separados Por Participante</label>
+                            </div></div>
+                        <div class="col-md-6">
+                            <div class="btn-group" role="group" aria-label="Checkout" style="float: right;">
 
-                                    <button type="button" id="limparCarrinho" class="btn btn-danger btn-lg btn-flat mr-3"><i
-                                    class="fas fa-ban"></i> Cancelar (F7)</button>
-                                    <button type="button" id="checkout" class="btn btn-secundary-multban btn-lg btn-flat"><i
-                                    class="fas fa-cash-register"></i> Finalizar venda(F9)</button>
+                                <button type="button" id="limparCarrinho" class="btn btn-secundary-multban btn-md btn-flat mr-3"><i
+                                class="fas fa-ban"></i> Cancelar (F7)</button>
+                                <button type="button" id="checkout" class="btn btn-primary btn-md btn-flat"><i
+                                class="fas fa-cash-register"></i> Finalizar venda (F9)</button>
 
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -367,6 +374,7 @@
 
 @endsection
 @push('scripts')
+<!-- MODAL - IMPRIMIR CUPOM -->
 <div class="modal inmodal" id="impressaoModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
     data-backdrop="static">
     <div class="modal-dialog">
@@ -387,6 +395,7 @@
     </div>
 </div>
 
+<!-- MODAL - CHECKOUT -->
 <div class="modal inmodal" id="checkout-modal" role="dialog" aria-hidden="true">
 
     <div class="modal-dialog modal-lg">
@@ -421,27 +430,14 @@
                             </div>
                              <div class="col-md-6 text-right">
                                 <p class="mr-4 text-bold m-0" >Total a Pagar</p>
-                                <p class="text-bold"><span class="money-multban-bold-secundary">R$ 722,60</span></p>
+                                <p class="text-bold"><span class="money-multban-bold-secundary">R$ {{ isset($valorTotalPagar) ? number_format($valorTotalPagar, 2, ',', '.') : '0,00' }}</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" name="blt_ctr" id="blt_ctr">
-                            <label for="blt_ctr" class="custom-control-label">Pagamento Total:</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" name="blt_ctr" id="blt_ctr">
-                            <label for="blt_ctr" class="custom-control-label">Mais de Um Meio de Pagamento:</label>
-                        </div>
-                    </div>
 
-                </div>
                 <hr>
+                <!-- SELEÇÃO DOS MEIOS DE PAGAMENTO -->
                 <div class="form-row" style="display:none">
                     <div class="form-group col-sm-12">
                         <select class="form-control select2" name="id_forma_pagto" id="id_forma_pagto"
@@ -476,97 +472,42 @@
 
                 <div class="card card-outline card-primary">
                     <div class="card-body p-3">
+
                        <div class="row m-0 text-center">
+
                             <div class="col-md-3">
-                                <div class="total-box">
-                                    <h5 class="text-bold m-0">Valor Pago</h5>
-                                    <h5 class="text-bold m-0">R$ 730,00</h5>
-                                </div>
+                                <label for="valortotalacobrar" class="text-bold m-0" style="font-size:16px;">Valor à Cobrar</label>
+                                <input autocomplete="off" type="text" class="form-control money form-control-sm" id="vlr_imp"
+                                    name="valortotalacobrar" value="{{ isset($valorTotalPedido) ? number_format($valorTotalPedido, 2, ',', '.') : '0,00' }}" placeholder="0,00">
+                                <span id="valortotalacobrarError" class="text-danger text-sm"></span>
                             </div>
+
                             <div class="col-md-3">
-                                <div class="total-box">
-                                    <h5 class="text-bold m-0">Saldo</h5>
-                                    <h5 class="text-bold m-0">R$ 730,00</h5>
-                                </div>
+                                <label for="valorsaldo" class="text-bold m-0" style="font-size:16px;">Saldo</label>
+                                <input autocomplete="off" type="text" class="form-control money form-control-sm" id="valorsaldo"
+                                    name="valorsaldo" value="{{ isset($valorTotalPedido) && isset($valortotalacobrar) ? number_format($valorTotalPedido - $valortotalacobrar - $valorsaldo, 2, ',', '.') : '0,00' }}" placeholder="0,00" readonly>
+                                <span id="valorsaldoError" class="text-danger text-sm"></span>
                             </div>
+
                             <div class="col-md-3">
-                                <div class="total-box" style="display: none">
-                                    <h5 class="text-bold m-0">Valor Pago</h5>
-                                    <h5 class="text-bold m-0">R$ 730,00</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 float-right">
-                                <div class="box-finalizar">
-                                    <h5 class="text-bold m-0">Cobrar</h5>
-                                </div>
+                                <label for="valortroco" class="text-bold m-0" style="font-size:16px;">Troco</label>
+                                <input autocomplete="off" type="text" class="form-control money form-control-sm" id="valortroco"
+                                    name="valortroco" value="{{ isset($valorTotalPedido) && isset($valortotalacobrar) ? number_format($valorTotalPedido - $valortotalacobrar, 2, ',', '.') : '0,00' }}" placeholder="0,00" readonly>
+                                <span id="valortrocoError" class="text-danger text-sm"></span>
                             </div>
 
-                        </div>
-                    </div>
-                </div>
-                <!--<div class="clearfix"></div>
-                <div class="form-row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="valorDescCento">Desconto %:</label>
-                            <input type="text"id="valorDescCento" placeholder="Desconto%"
-                                class="form-control money form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="valorDesconto">Desconto R$:</label>
-                            <input type="text" id="valorDesconto" placeholder="Valor desconto"
-                                class="form-control money form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="valorDesconto">Valor a pagar R$:</label>
-                            <input type="text" id="valorAPagar" readonly="" placeholder="Valor desconto"
-                                class="form-control money form-control-sm">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="valortotalpago">Valor Pago:</label>
-                            <input type="text" id="valortotalpago" placeholder="Valor pago" class="form-control money form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="valortroco">Troco:</label>
-                            <input type="text" id="valortroco" readonly="" placeholder="Troco"
-                                class="form-control money form-control-sm">
-                        </div>
-                    </div>
-                </div>
+                            <div class="col-md-3 d-flex align-items-center justify-content-center">
+                                <button type="button" class="form-control form-control-sm btn btn-secundary-multban d-flex align-items-center justify-content-center" style="height: 100%;">
+                                    <h5 class="text-bold m-0 w-100 text-center">Cobrar</h5>
+                                </button>
+                            </div>
 
-                <div class="form-row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <textarea id="observacao" value="" placeholder="Observações"
-                                class="form-control  form-control-sm"></textarea>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-12 text-right">
-                    <button type="button" class="btn btn-warning" id="gravarPedidoEmEspera">Pedido em espera
-                    </button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar </button>
-                    <input type="hidden" value="" id="id">
-                    <button type="button" id="finalizarPedido" class="btn btn-primary btn-sm">Finalizar</button>
-                </div>-->
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <div class="modal inmodal" id="pesquisar-cliente-modal">
