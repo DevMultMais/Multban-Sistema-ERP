@@ -32,6 +32,7 @@
                 <div class="card-body">
 
                     <div class="form-row">
+
                         <div class="form-group col-md-3">
                             <label for="agendamento_id">Protocolo:</label>
                             <div class="input-group input-group-sm">
@@ -43,19 +44,34 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="cliente_id">Nome:*</label>
+                            <label for="status">Status:*</label>
+                            <select class="form-control select2" name="status" id="status"
+                                data-placeholder="Selecione" style="width: 100%;">
+                                <option></option>
+                                @foreach ($status as $sts)
+                                <option value="{{$sts->agendamento_sts}}" {{ $sts->agendamento_sts == $agendamento->status ?
+                                    'selected' : '' }}>{{$sts->agendamento_sts_desc}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="cliente_id">Nome:* @if($agendamento->cliente)
+                                <a href="/cliente/{{$agendamento->cliente->cliente_id}}" class="text- text-primary" >[ <i class="fa fa-address-card"></i> Ver prontuário]</a></label>
+                            @endif
                             <select id="cliente_id" name="cliente_id"
                                 class="form-control select2 select2-hidden-accessible"
                                 data-placeholder="Pesquise o paciente" style="width: 100%;" aria-hidden="true">
                                 @if($agendamento->cliente)
                                 <option value="{{$agendamento->cliente->cliente_id}}">
-                                    {{str_pad($agendamento->cliente->cliente_id, 5, '0', STR_PAD_LEFT)}}
-                                    - {{$agendamento->cliente->cliente_nome}}
+                                    {{str_pad($agendamento->cliente->cliente_id, 5, '0', STR_PAD_LEFT)}} - {{$agendamento->cliente->cliente_nome}}
                                 </option>
                                 @endif
                             </select>
                         </div>
-
 
                         <div class="form-group col-md-3">
                             <label for="cliente_doc">CPF:*</label>
@@ -66,13 +82,12 @@
 
                         </div>
 
-
                         <div class="form-group col-md-3">
-                            <label for="cliente_doc">RG:</label>
+                            <label for="cliente_rg">RG:</label>
                             <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
-                                id="cliente_doc" name="cliente_doc"
-                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
-                                placeholder="RG" maxlength="14">
+                                id="cliente_rg" name="cliente_rg"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_rg : ''}}"
+                                placeholder="RG" maxlength="10">
 
                         </div>
 
@@ -81,27 +96,28 @@
                     <div class="form-row">
 
                         <div class="form-group col-md-3">
-                            <label for="date">Data:*</label>
+                            <label for="cliente_dt_nasc">Data de Nascimento:*</label>
                             <input autocomplete="off" type="text"
-                                class="form-control datetimepicker-input form-control-sm" id="date" name="date"
-                                value="{{$agendamento->date}}" data-toggle="datetimepicker" placeholder="hh:mm"
-                                data-target="#date" placeholder="Data">
-                            <span id="dateError" class="text-danger text-sm"></span>
+                                class="form-control datetimepicker-input form-control-sm" id="cliente_dt_nasc" name="cliente_dt_nasc"
+                                value="{{!empty($agendamento->cliente) ? formatarData( $agendamento->cliente->cliente_dt_nasc,'Y-m-d', 'd/m/Y') : ''}}"
+                                data-toggle="datetimepicker" data-target="#cliente_dt_nasc" placeholder="Data de Nascimento">
+                            <span id="cliente_dt_nascError" class="text-danger text-sm"></span>
                         </div>
 
 
                         <div class="form-group col-md-3">
-                            <label for="user_cel">Número de Celular:*</label>
+                            <label for="cliente_cel">Número de Celular:*</label>
                             <input autocomplete="off" type="text" class="form-control cell_with_ddd form-control-sm"
-                                id="user_cel" name="user_cel"
+                                id="cliente_cel" name="cliente_cel"
                                 value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_cel : ''}}"
                                 placeholder="Digite o Celular">
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="user_tfixo">Telefone Fixo:</label>
+                            <label for="cliente_telfixo">Telefone Fixo:</label>
                             <input autocomplete="off" type="text" class="form-control phone_with_ddd form-control-sm"
-                                id="user_tfixo" name="user_tfixo" value="{{$agendamento->user_tfixo}}"
+                                id="cliente_telfixo" name="cliente_telfixo"
+                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_telfixo : ''}}"
                                 placeholder="Digite o Telefone Fixo">
                         </div>
 
@@ -116,18 +132,16 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="cliente_id">Convênio:*</label>
-                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
-                                id="cliente_doc" name="cliente_doc"
-                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
-                                placeholder="CPF" maxlength="14">
+                            <label for="convenio">Convênio:</label>
+                            <input autocomplete="off" type="text" class="form-control form-control-sm" id="convenio"
+                                name="convenio" value="{{$agendamento->convenio}}" placeholder="Convênio"
+                                maxlength="50">
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="cliente_doc">Nro carteirinha:*</label>
-                            <input autocomplete="off" type="text" class="form-control cpf form-control-sm"
-                                id="cliente_doc" name="cliente_doc"
-                                value="{{!empty($agendamento->cliente) ? $agendamento->cliente->cliente_doc : ''}}"
+                            <label for="nro_carteirinha">Nro carteirinha:</label>
+                            <input autocomplete="off" type="text" class="form-control form-control-sm"
+                                id="nro_carteirinha" name="nro_carteirinha" value="{{$agendamento->nro_carteirinha }}"
                                 placeholder="Nro carteirinha">
 
                         </div>
@@ -149,8 +163,7 @@
                                 <option></option>
                                 @foreach ($users as $user)
                                 <option value="{{$user->user_id}}" {{ $user->user_id == $agendamento->user_id ?
-                                    'selected' : '' }}>{{$user->user_name}} @if ($user->cargo)
-                                    - {{$user->cargo->user_func_desc}}
+                                    'selected' : '' }}>{{$user->user_name}} @if ($user->cargo) - {{$user->cargo->user_func_desc}}
                                     @endif </option>
                                 @endforeach
                             </select>
@@ -202,9 +215,9 @@
 
 
                         <div class="form-group col-md-3">
-                            <label for="agendamento_observacoes">Observações:</label>
-                            <textarea id="agendamento_observacoes" name="agendamento_observacoes" class="form-control"
-                                rows="3">{{ $agendamento->agendamento_observacoes }}</textarea>
+                            <label for="observacao">Observações:</label>
+                            <textarea id="observacao" name="observacao" rows="3" class="form-control form-control-sm"
+                                rows="3">{{ $agendamento->observacao }}</textarea>
                         </div>
 
                     </div>
@@ -279,7 +292,7 @@
 <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
 <link rel="stylesheet" href="{{asset('assets/dist/css/app.css') }}" />
-<script src="{{asset('assets/dist/js/pages/agendamento/agendamento.js') }}"></script>
 <script src="{{asset('assets/dist/js/app.js') }}"></script>
+<script src="{{asset('assets/dist/js/pages/agendamento/agendamento.js') }}"></script>
 
 @endpush

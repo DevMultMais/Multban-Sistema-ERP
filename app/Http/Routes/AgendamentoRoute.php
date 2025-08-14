@@ -20,5 +20,6 @@ class AgendamentoRoute
         Route::delete('agendamento/{id}', [AgendamentoController::class, 'destroy'])->name('agendamento.destroy');
 
         Route::get('agendamento/obtergridpesquisa', [AgendamentoController::class, 'getObterGridPesquisa']);
+        Route::get('agendamento/get-cliente', [AgendamentoController::class, 'getCliente']);
     }
 }

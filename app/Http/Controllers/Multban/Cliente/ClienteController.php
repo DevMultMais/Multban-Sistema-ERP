@@ -138,9 +138,9 @@ class ClienteController extends Controller
             $cliente->cliente_nm_card    = $request->cliente_nm_card;
             $cliente->cliente_email      = $request->cliente_email;
             $cliente->cliente_email_s    = $request->cliente_email_s;
-            $cliente->cliente_cel        = $request->cliente_cel;
-            $cliente->cliente_cel_s      = $request->cliente_cel_s;
-            $cliente->cliente_telfixo    = $request->cliente_telfixo;
+            $cliente->cliente_cel        = removerMascaraTelefone($request->cliente_cel);
+            $cliente->cliente_cel_s      = removerMascaraTelefone($request->cliente_cel_s);
+            $cliente->cliente_telfixo    = removerMascaraTelefone($request->cliente_telfixo);
             $cliente->cliente_rendam     = $input['cliente_rendam'];
             $cliente->cliente_rdam_s     = $request->cliente_rdam_s;
             $cliente->cliente_dt_fech    = $request->cliente_dt_fech;

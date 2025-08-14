@@ -94,9 +94,9 @@ function codigoEDescricaoCliente($model)
     return $retorno;
 }
 
-function formatarData($data, $formato = 'd/m/Y')
+function formatarData($data, $formatoData = "Y-m-d H:i:s", $formato = "d/m/Y")
 {
-    return date_format($data, $formato);
+    return Carbon::createFromFormat($formatoData, $data)->format($formato);
 }
 
 function formatarDataComHora($date, $date_format = 'd/m/Y H:i:s')
