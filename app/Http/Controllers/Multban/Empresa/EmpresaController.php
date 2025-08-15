@@ -47,9 +47,12 @@ class EmpresaController extends Controller
             FiltrosEnum::COD_FRANQUEADORA => 'Código da Franqueadora',
             FiltrosEnum::EMPRESA => 'Empresa',
             FiltrosEnum::NOME_FANTASIA => 'Nome Fantasia',
+            FiltrosEnum::NOME_MULTMAIS => 'Nome MultMais',
             FiltrosEnum::CNPJ => 'CNPJ'
         ];
-        return response(view('Multban.empresa.index', compact('filtros')));
+        $status = EmpresaStatus::all();
+        $empresaGeral = new Empresa();
+        return response(view('Multban.empresa.index', compact('filtros', 'status', 'empresaGeral')));
     }
 
     /**
@@ -866,10 +869,10 @@ class EmpresaController extends Controller
                 $empresaGeral->emp_ratv = $request->emp_ratv;
 
                 if ($request->emp_frq == "sim") {
-                    $empresaGeral->emp_frqmst = $request->emp_frqmst;
+                    $empresaGeral->emp_frqmst = null;
                     $empresaGeral->emp_frq = "x";
                 } else {
-                    $empresaGeral->emp_frqmst = null;
+                    $empresaGeral->emp_frqmst = $request->emp_frqmst;
                     $empresaGeral->emp_frq = "";
                 }
 
@@ -1050,6 +1053,8 @@ class EmpresaController extends Controller
         }
     }
 
+    // FUNÇÃO QUE BUSCA DADOS DO FILTRO EMPRESA FRANQUEADORA
+    // Neste campos, mostraremos como opção de filtro, apenas as empresas que são franqueadoras
     public function getObterEmpresasFranqueadoras(Request $request)
     {
 
@@ -1058,16 +1063,17 @@ class EmpresaController extends Controller
         $parametro = removerMascaraCEP($parametro);
         $parametro = removerMascaraTelefone($parametro);
 
-        return Empresa::select(DB::raw('emp_id as id, emp_id, emp_cnpj, UPPER(emp_rzsoc) text'))
-            ->whereRaw("(emp_rzsoc LIKE '%$parametro%' OR emp_cnpj LIKE '%$parametro%' OR emp_id LIKE '%$parametro%') AND emp_frq = 'x'")
+        return Empresa::select(DB::raw('emp_id as id, emp_id, emp_cnpj, UPPER(emp_nmult) text'))
+            ->whereRaw("(emp_nmult LIKE '%$parametro%' OR emp_cnpj LIKE '%$parametro%' OR emp_id LIKE '%$parametro%') AND emp_frq = 'x'")
             ->get()
             ->toArray();
     }
 
+    // FUNÇÃO QUE BUSCA DADOS DO FILTRO EMPRESA
     public function getObterEmpresas(Request $request)
     {
         $parametro = $request != null ? $request->all()['parametro'] : '';
-        $campo = 'emp_rzsoc';
+        $campo = 'emp_nmult';
 
         if (empty($parametro)) {
             return [];
@@ -1145,8 +1151,6 @@ class EmpresaController extends Controller
 
         return $data;
     }
-
-
 
     public function validaTaxas(Request $request): array
     {
@@ -1352,6 +1356,7 @@ class EmpresaController extends Controller
         return ["hasError" => $hasError, "error_list" => $error_list];
     }
 
+    // FUNÇÃO QUE RETORNA AS EMPRESAS AO CLICAR EM PESQUISAR
     public function getObterGridPesquisa(Request $request)
     {
         if (!Auth::check()) {
@@ -1359,32 +1364,65 @@ class EmpresaController extends Controller
         }
 
         $emp_id = "";
+        $emp_id_frqmst = "";
+        $emp_id_nmult = "";
+        $status = "";
+
         $data = new Collection();
 
         if (!empty($request->cod_franqueadora)) {
-            $emp_id = $request->cod_franqueadora;
+            $emp_id_frqmst = $request->cod_franqueadora;
         }
 
         if (!empty($request->empresa_id)) {
             $emp_id = $request->empresa_id;
         }
 
-        if (!empty($request->nome_fantasia)) {
-            $emp_id = $request->nome_fantasia;
+        if (!empty($request->nome_multmais)) {
+            $emp_id_nmult = $request->nome_multmais;
         }
 
+        if (!empty($request->emp_sts)) {
+            $status = $request->emp_sts;
+        }
+
+        // PESQUISA A EMPRESA PELOS FILTROS SELECIONADOS
+        $query = Empresa::query();
+
         if (!empty($emp_id)) {
-            $data = Empresa::where('emp_id', '=', $emp_id)->get();
-            if (intval($emp_id) > 0) {
-                $data = Empresa::where('emp_id', '=', $emp_id)->get();
+            if (is_numeric($emp_id) && intval($emp_id) > 0) {
+                $query->where('emp_id', '=', $emp_id);
             } else {
-                $data = Empresa::where('emp_rzsoc', 'like', "%" . $emp_id . "%")->get();
+                $query->where('emp_rzsoc', 'like', '%' . $emp_id . '%');
             }
         }
 
-        if (!empty($request->empresa_cnpj)) {
-            $data = Empresa::where('emp_cnpj', 'like', "%" . removerCNPJ($request->empresa_cnpj) . "%")->get();
+        if (!empty($emp_id_frqmst)) {
+            if (is_numeric($emp_id_frqmst) && intval($emp_id_frqmst) > 0) {
+                $query->where('emp_frqmst', '=', $emp_id_frqmst);
+            } else {
+                $query->where('emp_rzsoc', 'like', '%' . $emp_id_frqmst . '%');
+            }
         }
+
+        if (!empty($emp_id_nmult)) {
+            if (is_numeric($emp_id_nmult) && intval($emp_id_nmult) > 0) {
+                $query->where('emp_id', '=', $emp_id_nmult);
+            } else {
+                $query->where('emp_rzsoc', 'like', '%' . $emp_id_nmult . '%');
+            }
+        }
+
+        if (!empty($status)) {
+                $query->where('emp_sts', '=', $status);
+        }
+
+        if (!empty($request->empresa_cnpj)) {
+            $query->where('emp_cnpj', 'like', "%" . removerCNPJ($request->empresa_cnpj) . "%");
+        }
+
+        // RESULTADO FINAL DA PESQUISA
+        $data = $query->get();
 
         $this->permissions = \Illuminate\Support\Facades\Auth::user()->getAllPermissions()->pluck('name')->toArray();
 

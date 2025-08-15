@@ -6,6 +6,8 @@ $(document).ready(function () {
         ns.comboBoxSelect("cod_franqueadora", "/empresa/obter-empresas-franqueadoras", "emp_id");
         ns.comboBoxSelectTags("empresa_id", "/empresa/obter-empresas", "emp_id");
         ns.comboBoxSelect("nome_fantasia", "/empresa/obter-empresas", "emp_id");
+        ns.comboBoxSelect("nome_multmais", "/empresa/obter-empresas", "emp_id");
+
 
         $('#btnPesquisar').click(function () {
             var totaliza = {};
@@ -27,8 +29,8 @@ $(document).ready(function () {
                 name: 'emp_id'
             },
             {
-                data: 'emp_rzsoc',
-                name: 'emp_rzsoc',
+                data: 'emp_nmult',
+                name: 'emp_nmult',
                 autoWidth: true
             },
             {
