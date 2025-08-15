@@ -58,17 +58,32 @@
                         </select>
                     </div>
 
+                    <!-- FILTRO DO STATUS DA EMPRESA -->
+                    <div class="form-group col-md-2">
+                        <label for="emp_sts">Status:*</label>
+                        <select class="form-control select2" name="emp_sts" id="emp_sts"
+                            data-placeholder="Selecione" data-allow-clear="true" style="width: 100%;">
+                            <option></option>
+                            @foreach($status as $key => $sta)
+
+                                <option {{$sta->emp_sts == $empresaGeral->emp_sts ? 'selected' : ''}}
+                                    value="{{$sta->emp_sts}}">{{$sta->emp_sts_desc}}</option>
+                            @endforeach
+                        </select>
+                        <span id="emp_stsError" class="text-danger text-sm"></span>
+                    </div>
+
                 </div>
 
                 <!-- SEGUNDA LINHA DO FORMULÁRIO DE PESQUISA -->
                 <div class="form-row">
 
-                    <!-- FILTRO DO NOME FANTASIA -->
+                    <!-- FILTRO DO NOME MULTMAIS -->
                     <div class="form-group col-md-3">
-                        <label for="nome_fantasia">Nome Fantasia:</label>
-                        <select id="nome_fantasia" name="nome_fantasia"
+                        <label for="nome_multmais">Nome MultMais:</label>
+                        <select id="nome_multmais" name="nome_multmais"
                             class="form-control select2 select2-hidden-accessible"
-                            data-placeholder="Pesquise o Nome Fantasia" style="width: 100%;" aria-hidden="true">
+                            data-placeholder="Pesquise o Nome MultMais" style="width: 100%;" aria-hidden="true">
                         </select>
                     </div>
 
@@ -80,9 +95,8 @@
                     </div>
 
                     <!-- BOTÃO PESQUISAR -->
-                    <div class="form-group col-md-3 mt-4">
-                        <button type="button" id="btnPesquisar" class="btn btn-primary mt-2" style=""><i
-                                class="fa fa-search"></i> Pesquisar</button>
+                    <div class="form-group col-md-3 d-flex align-items-end">
+                        <button type="button" id="btnPesquisar" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Pesquisar</button>
                     </div>
 
                 </div>
@@ -110,25 +124,13 @@
                             <tr>
                                 <th>Ações</th>
                                 <th>Código</th>
-                                <th>Razão Social</th>
+                                <th>Nome</th>
                                 <th>CNPJ</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
-
-                O FILTRO CÓDIGO DA FRANQUEADORA DEVE TRAZER NAS OPÇÕES DE SELEÇÃO, APENAS EMPRESAS QUE TENHAM O CAMPO EMP_FRQ SELECIONADO</br>
-                PORÉM, AO FAZER O FILTRO NA BASE, DEVE FILTRAR A TABELA TBDM_EMPRESA_GERAL PELO CAMPO EMP_FRQMST</br>
-                E TRAZER TODAS AS EMPRESAS QUE FOREM FRANQUEADAS DA EMPRESA SELECIONADA</br>
-                </br>
-                TROCAR O FILTRO EMPRESA PARA NOME MULTBAN, CAMPO EMP_NMULT DA TABELA TBDM_EMPRESA_GERAL</br>
-                <br>
-                ACRESCENTAR FILTRO DE STATUS DA EMPRESA CAMPO EMP_STS DA TABELA TBDM_EMPRESA_GERAL</br>
-                </br>
-                DEIXAR TODOS OS FILTROS, QUANDO PREENCHIDOS, COMO 'E' .. E NÃO COMO 'OU'</br>
-                </br>
-                TODOS OS FILTROS TEM QUE SER NO MESMO ESQUEMA DAS TAGS, ONDE A TAG DIGITADA TB PODE SER UMA OPÇÃO PARA FILTRAR
 
             </div>
 

@@ -4,7 +4,6 @@ namespace App\Enums;
 
 abstract class FiltrosEnum
 {
-
     const ID = 0;
     const DESCRICAO = 1;
     const CNPJ = 2;
@@ -21,6 +20,5 @@ abstract class FiltrosEnum
     const COD_FRANQUEADORA = 13;
     const EMPRESA = 14;
     const NOME_FANTASIA = 15;
-
-
+    const NOME_MULTMAIS = 16;
 }

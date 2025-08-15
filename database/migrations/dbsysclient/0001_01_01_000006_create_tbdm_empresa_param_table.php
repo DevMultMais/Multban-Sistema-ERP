@@ -18,6 +18,7 @@ class CreateTbdmEmpresaParamTable extends Migration
             $table->foreignId('emp_id');
             //FIELDS
             $table->string('emp_destvlr', 4)->nullable();
+            $table->string('emp_dbaut', 1)->nullable();
             $table->string('emp_cdgbc', 6)->nullable();
             $table->string('emp_agbc', 20)->nullable();
             $table->string('emp_ccbc', 20)->nullable();

@@ -66,6 +66,7 @@ class CreateTbdmEmpresaGeralTable extends Migration
             $table->string('emp_celfi', 25)->nullable();
             $table->text('emp_pagweb')->nullable();
             $table->text('emp_rdsoc')->nullable();
+            $table->text('logo_path')->nullable();
             $table->integer('criador')->nullable();
             $table->timestamp('dthr_cr')->nullable();
             $table->integer('modificador')->nullable();
