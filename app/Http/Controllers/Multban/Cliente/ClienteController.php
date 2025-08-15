@@ -17,6 +17,7 @@ use App\Models\Multban\Cliente\ClienteTipo;
 use App\Models\Multban\Cliente\Endereco\Cadasest;
 use App\Models\Multban\Cliente\Endereco\Cadasmun;
 use App\Models\Multban\Cliente\Endereco\CadasPais;
+use App\Models\Multban\DadosMestre\TbDmConvenios;
 use App\Models\Multban\Empresa\Empresa;
 use Carbon\Carbon;
 use Exception;
@@ -129,7 +130,10 @@ class ClienteController extends Controller
             }
 
             $cliente->cliente_tipo       = $request->cliente_tipo;
+            $cliente->convenio_id        = $request->convenio_id;
+            $cliente->cliente_dt_nasc    = $request->cliente_dt_nasc ? Carbon::createFromFormat('d/m/Y', $request->cliente_dt_nasc)->format('Y-m-d') : null;
             $cliente->cliente_doc        = removerCNPJ($request->cliente_doc);
+            $cliente->cliente_rg         = removerCNPJ($request->cliente_rg);
             $cliente->cliente_pasprt     = $request->cliente_pasprt;
             $cliente->cliente_sts        = !$canChangeStatus ? 'NA' : $request->cliente_sts; /*Cliente nasce com o status "Em Análise"*/
             $cliente->cliente_uuid       = Str::uuid()->toString();
@@ -163,7 +167,7 @@ class ClienteController extends Controller
             $cliente->cliente_score      = $request->cliente_score;
             $cliente->cliente_lmt_sg     = $request->cliente_lmt_sg;
             $cliente->criador            = Auth::user()->user_id;
-            $cliente->modificador            = Auth::user()->user_id;
+            $cliente->modificador        = Auth::user()->user_id;
             $cliente->dthr_cr            = Carbon::now();
             $cliente->dthr_ch            = Carbon::now();
 
@@ -244,6 +248,7 @@ class ClienteController extends Controller
         $cardMod = CardMod::all();
         $cardCateg = CardCateg::all();
         $cliente = Cliente::findOrFail($id);
+        $convenios = TbDmConvenios::all();
 
         $canChangeStatus = false;
         foreach ($userRole as $key => $value) {
@@ -260,7 +265,8 @@ class ClienteController extends Controller
             'cardTipos',
             'cardMod',
             'cardCateg',
-            'canChangeStatus'
+            'canChangeStatus',
+            'convenios'
         ));
     }
 

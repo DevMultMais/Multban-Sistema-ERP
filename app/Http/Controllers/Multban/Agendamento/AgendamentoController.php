@@ -191,8 +191,6 @@ class AgendamentoController extends Controller
             $agendamento->agendamento_tipo = $request->agendamento_tipo;
             $agendamento->cliente_id = $request->cliente_id;
             $agendamento->user_id = $request->user_id;
-            $agendamento->convenio = $request->convenio;
-            $agendamento->nro_carteirinha = $request->nro_carteirinha;
             $agendamento->description = $request->description;
             $agendamento->date = Carbon::createFromFormat('d/m/Y', $request->date)->format('Y-m-d');
 

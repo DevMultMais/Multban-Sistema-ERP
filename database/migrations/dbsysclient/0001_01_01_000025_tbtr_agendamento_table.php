@@ -17,8 +17,6 @@ return new class extends Migration
             $table->foreignId('cliente_id');
             $table->foreignId('user_id');
             $table->foreignId('prontuario_id');
-            $table->string('convenio', 255)->nullable();
-            $table->string('nro_carteirinha', 255)->nullable();
             $table->string('title');
             $table->string('description')->nullable();
             $table->date('date');
