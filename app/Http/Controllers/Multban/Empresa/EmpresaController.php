@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 
 class EmpresaController extends Controller
 {
@@ -327,7 +329,6 @@ class EmpresaController extends Controller
             $empresaParam->tax_cobsrv_adm = $input['tax_cobsrv_adm'];
             $empresaParam->tax_cobsrv_juss = $input['tax_cobsrv_juss'];
 
-
             $empresaParam->pp_particular = $input['pp_particular'];
             $empresaParam->pp_franquia = $input['pp_franquia'];
             $empresaParam->pp_multmais = $input['pp_multmais'];
@@ -335,6 +336,7 @@ class EmpresaController extends Controller
             $empresaParam->ant_blktit = $input['ant_blktit'];
             $empresaParam->ant_titpdv = $input['ant_titpdv'];
             $empresaParam->emp_destvlr = $input['emp_destvlr'];
+            $empresaParam->emp_dbaut = $request->emp_dbaut == "on" ? "x" : "";
 
             $empresaParam->criador = \Illuminate\Support\Facades\Auth::user()->user_id;
             $empresaParam->dthr_cr = Carbon::now();
@@ -405,6 +407,19 @@ class EmpresaController extends Controller
             $empresaGeral->emp_checkm = $input['emp_checkm'];
             $empresaGeral->emp_checkc = $input['emp_checkc'];
             $empresaGeral->emp_reemb = $input['emp_reemb'];
+
+            if ($request->hasFile('logoFile')) {
+                $empresaId = $empresaGeral->emp_id;
+                // Remove o arquivo anterior, se existir
+                if ($empresaGeral->logo_path && Storage::disk('public')->exists($empresaGeral->logo_path)) {
+                    Storage::disk('public')->delete($empresaGeral->logo_path);
+                }
+                $file = $request->file('logoFile');
+                $extension = $file->getClientOriginalExtension();
+                $filename = "logo.$extension";
+                $path = $file->storeAs("logos/empresa_$empresaId", $filename, 'public');
+                $empresaGeral->logo_path = $path;
+            }
 
             $empresaGeral->dthr_cr = Carbon::now();
             $empresaGeral->modificador = \Illuminate\Support\Facades\Auth::user()->user_id;
@@ -622,7 +637,6 @@ class EmpresaController extends Controller
 
                 ], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
-
 
             $input['blt_ctr'] = $request->blt_ctr == 'on' ? 'x' : '';
             $input['tax_blt'] = formatarTextoParaDecimal($request->tax_blt);
@@ -852,6 +866,7 @@ class EmpresaController extends Controller
                 $empresaParam->ant_blktit = $input['ant_blktit'];
                 $empresaParam->ant_titpdv = $input['ant_titpdv'];
                 $empresaParam->emp_destvlr = $input['emp_destvlr'];
+                $empresaParam->emp_dbaut = $request->emp_dbaut == "on" ? "x" : "";
 
                 $empresaParam->criador = \Illuminate\Support\Facades\Auth::user()->user_id;
                 $empresaParam->dthr_cr = Carbon::now();
@@ -888,7 +903,6 @@ class EmpresaController extends Controller
                     $empresaGeral->emp_altlmt = "";
                 }
 
-
                 $empresaGeral->emp_tpbolet = $request->emp_tpbolet;
                 $empresaGeral->tp_plano = $request->tp_plano;
                 $empresaGeral->emp_adqrnt = $request->emp_adqrnt;
@@ -924,6 +938,18 @@ class EmpresaController extends Controller
                 $empresaGeral->emp_checkc = $input['emp_checkc'];
                 $empresaGeral->emp_reemb = $input['emp_reemb'];
 
+                if ($request->hasFile('logoFile')) {
+                    $empresaId = $empresaGeral->emp_id;
+                    // Remove o arquivo anterior, se existir
+                    if ($empresaGeral->logo_path && Storage::disk('public')->exists($empresaGeral->logo_path)) {
+                        Storage::disk('public')->delete($empresaGeral->logo_path);
+                    }
+                    $file = $request->file('logoFile');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = "logo.$extension";
+                    $path = $file->storeAs("logos/empresa_$empresaId", $filename, 'public');
+                    $empresaGeral->logo_path = $path;
+                }
 
                 $empresaGeral->dthr_cr = Carbon::now();
                 $empresaGeral->modificador = \Illuminate\Support\Facades\Auth::user()->user_id;
